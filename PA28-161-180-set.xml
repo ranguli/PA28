@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+
+<PropertyList include="PA28-main.xml">
+
+	<sim>
+		<description>Piper PA28-161 Warrior II (180hp)</description>
+		<long-description> The Piper PA28 is a family of light single-engine piston aircraft, typically used for private flights and flight training. This variant represents the 180hp Warrior II, equipped with a Lycoming O-360 AVGAS engine and IFR-capable, although not permitted for flight into known icing.</long-description>
+		<flight-model>jsb</flight-model>
+		<aero>PA28-161-180</aero>
+		<variant-of>PA28-161-160</variant-of>
+		
+		<model>
+			<path type="string">Aircraft/PA28/Models/PA28-161-180.xml</path>
+		</model>
+	</sim>
+
+</PropertyList>
