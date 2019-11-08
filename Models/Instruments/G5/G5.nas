@@ -33,7 +33,7 @@ var ap_lat	=	ap_out.getNode("lat",									1);
 var bat_f	=	props.globals.getNode("/instrumentation/G5/electrical/feed-from-battery",		1);
 var bat_c	=	props.globals.getNode("/instrumentation/G5/electrical/battery-charge-percent",		1);
 var bat_s	=	props.globals.getNode("/instrumentation/G5/electrical/always-show-battery-status",	1);
-var bat_l	=	props.globals.getNode("/instrumentation/G5/electrical/load-average",			1);
+var bat_l	=	props.globals.initNode("/instrumentation/G5/electrical/load-average",	0.0, "DOUBLE"	);
 var bat_ch	=	props.globals.getNode("/instrumentation/G5/electrical/battery-charging",		1);
 var device_av	=	props.globals.getNode("options/attitude-indicator",					1);
 
@@ -267,6 +267,19 @@ setlistener("sim/signals/fdm-initialized", func {
 	G5_start = canvas_G5_start.new(groupStart, base_path~"G5-start.svg");
 	
 	canvas_G5_base.update();
+	
+	
+	setlistener(volts, func {
+		if( volts.getValue() < 9 and getprop(start_prop) != 0){
+			setprop(start_prop, 0);
+		}
+	});
+
+	setlistener(device_av, func {
+		if ( device_av.getValue() == "Garmin G5" ){
+			canvas_G5_base.update();
+		}
+	});
 });
 
 var showG5 = func {
@@ -281,7 +294,7 @@ var power_btn = func (x) {	# 1 = pressed 0 = released
 		pressed_time = getprop("/sim/time/elapsed-sec");
 	} else if ( x == 0 ) {
 		var dt = getprop("/sim/time/elapsed-sec") - pressed_time;
-		if ( dt < 1 ){
+		if ( dt < 1 and getprop(start_prop) == 1 ){
 			if(bat_s.getValue() == 0){
 				bat_s.setValue(1);
 			}else{
@@ -299,16 +312,4 @@ var power_btn = func (x) {	# 1 = pressed 0 = released
 	}
 }
 	
-
-setlistener(volts, func {
-	if( volts.getValue() < 9 and getprop(start_prop) != 0){
-		setprop(start_prop, 0);
-	}
-});
-
-setlistener(device_av, func {
-	if ( device_av.getValue() == "Garmin G5" ){
-		canvas_G5_base.update();
-	}
-});
 	

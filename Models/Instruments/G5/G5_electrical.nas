@@ -20,6 +20,7 @@ var load = electrical_base.initNode("load", 0.0, "DOUBLE");				#	internal batter
 var bus_load = electrical_base.initNode("bus-load", 0.0, "DOUBLE");			#	Load on the avionics bus (from this instrument)
 var ffb = electrical_base.initNode("feed-from-battery", 0, "BOOL");			#	0: fed from avionics bus 1: fed from internal battery (for instrument indication)
 var bc	=	electrical_base.initNode("battery-charging", 0, "BOOL");		#	0: not charging 1: charging
+var option = props.globals.getNode("/options/attitude-indicator", 1);
 
 ##
 # Battery model class.
@@ -87,7 +88,7 @@ var update_electrical = func () {
 	var charge_v = charge.getValue();
 	
 	var instrument_consumption = 0.0;
-	if( start_v != 0 ){
+	if( start_v != 0 and option.getValue() == "Garmin G5" ){
 		instrument_consumption = 2.1 + rand() * 0.7;				# average is 2.8W, maximal 3.5W
 	}
 	
