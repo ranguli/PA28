@@ -145,7 +145,22 @@
 			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/Splash1.png</path>
+				<path>Splash/exterior1.jpg</path>
+			</preview>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/exterior2.jpg</path>
+			</preview>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/exterior3.jpg</path>
+			</preview>
+			<preview>
+				<type>cockpit</type>
+				<splash type="bool">true</splash>
+				<path>Splash/cockpit1.jpg</path>
 			</preview>	
 		</previews>
 		<rating>
@@ -158,7 +173,7 @@
 			<path>Aircraft/PA28/Sounds/sound.xml</path>
 		</sound>
 		<startup>
-			<splash-texture>Aircraft/PA28/Splash/splash1.png</splash-texture>
+			<splash-texture>Aircraft/PA28/Splash/cockpit1.jpg</splash-texture>
 		</startup>
 		<status>Pre V1.0</status>
 		<systems>
