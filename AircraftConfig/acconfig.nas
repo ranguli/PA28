@@ -80,22 +80,6 @@ var renderingSettings = {
 			rendering_dlg.open();
 		}
 	},
-	fixAll: func() {
-		me.fixCore();
-		var landmass = getprop("/sim/rendering/shaders/landmass") >= 4;
-		var model = getprop("/sim/rendering/shaders/model") >= 2;
-		if (!landmass) {
-			setprop("/sim/rendering/shaders/landmass", 4);
-		}
-		if (!model) {
-			setprop("/sim/rendering/shaders/model", 2);
-		}
-	},
-	fixCore: func() {
-		setprop("/sim/rendering/shaders/skydome", 1); # ALS on
-		setprop("/sim/rendering/shaders/custom-settings", 1);
-		gui.popupTip("Rendering Settings updated!");
-	},
 };
 
 var readSettings = func {

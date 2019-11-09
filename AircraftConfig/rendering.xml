@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
-
-<!-- MD-11 Aircraft Config Dialog -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450), Benedikt Wolf (D-ECHO) -->
 
 <PropertyList>
 
@@ -34,39 +32,7 @@
 		
 		<text>
 			<halign>left</halign>
-			<label>Aircraft Config has detected that rendering settings are not set properly!</label>
-		</text>
-		
-		<text>
-			<halign>left</halign>
-			<label>This means lighting effects on the exterior and in the virtual cockpit will not be visible.</label>
-		</text>
-		
-		<text>
-			<halign>left</halign>
-			<label>ALS, and custom shader settings must be on.</label>
-		</text>
-		
-		<text>
-			<halign>left</halign>
-			<label>Landmass shader must be at least 4 for lightspots to work.</label>
-		</text>
-		
-		<text>
-			<halign>left</halign>
-			<label>Model shader must be at least 2 for lightmaps to work.</label>
-		</text>
-		
-		<hrule/>
-		
-		<text>
-			<halign>left</halign>
-			<label>Would you like Aircraft Config to automatically turn on ALS and fix shader settings?</label>
-		</text>
-		
-		<text>
-			<halign>left</halign>
-			<label>If the settings do not save after fixing, try quitting FlightGear through File -&gt; Exit after fixing.</label>
+			<label>This model has been optimized for best experience with certain rendering settings. It seems like these differ from your current settings.</label>
 		</text>
 	
 	</group>
@@ -77,7 +43,7 @@
 		<layout>hbox</layout>
 	
 		<checkbox>
-			<label>Do not warn me about rendering settings again</label>
+			<label>Don't show this information again.</label>
 			<halign>center</halign>
 			<property>/systems/acconfig/options/no-rendering-warn</property>
 			<binding>
@@ -105,13 +71,11 @@
 		
 		<button>
 			<halign>center</halign>
-			<legend>Yes, fix all settings</legend>
-			<pref-width>180</pref-width>
+			<legend>Show detailed rendering information (opens a PDF document)</legend>
+			<pref-width>400</pref-width>
 			<binding>
-				<command>nasal</command>
-				<script>
-				acconfig.renderingSettings.fixAll();
-				</script>
+				<command>open-browser</command>
+				<path>Aircraft/PA28/Docs/Rendering.pdf</path>
 			</binding>
 			<binding>
 				<command>dialog-close</command>
@@ -120,30 +84,7 @@
 		
 		<button>
 			<halign>center</halign>
-			<legend>Yes, but I'll fix shaders myself</legend>
-			<pref-width>180</pref-width>
-			<binding>
-				<command>nasal</command>
-				<script>
-				acconfig.renderingSettings.fixCore();
-				</script>
-			</binding>
-			<binding> <!-- Close the non-ALS shader dialog if it is open for some bizarre reason -->
-				<command>dialog-close</command>
-				<dialog-name>shaders</dialog-name>
-			</binding>
-			<binding>
-				<command>dialog-show</command>
-				<dialog-name>shaders-lightfield</dialog-name>
-			</binding>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
-		
-		<button>
-			<halign>center</halign>
-			<legend>I don't care</legend>
+			<legend>Close this Dialog</legend>
 			<pref-width>180</pref-width>
 			<binding>
 				<command>dialog-close</command>

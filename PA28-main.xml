@@ -20,7 +20,6 @@
 			<setting>1.000</setting>
 		</flaps>
 		<flight-recorder include="Systems/flight-recorder.xml"/>
-		<gui n="0" include="gui/it-gui.xml"/>
 		<hud n="0">
 			<enable3d n="0">false</enable3d>
 			<enable3d n="1">false</enable3d>
@@ -116,6 +115,13 @@
 						<binding>
 							<command>open-browser</command>
 							<path>Aircraft/PA28/Docs/MiniPanel.pdf</path>
+						</binding>
+					</item>
+					<item>
+						<label>Optimal Rendering Settings</label>
+						<binding>
+							<command>open-browser</command>
+							<path>Aircraft/PA28/Docs/Rendering.pdf</path>
 						</binding>
 					</item>
 				</menu>

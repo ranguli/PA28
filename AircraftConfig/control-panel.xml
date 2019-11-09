@@ -277,7 +277,7 @@
 				<row>2</row>
 				<col>0</col>
 				<halign>center</halign>
-				<property>/controls/switches/avionics-master</property>
+				<property>/controls/electrical/switches/avionics-master</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -475,7 +475,7 @@
 				<row>2</row>
 				<col>0</col>
 				<pref-width>90</pref-width>
-				<property>/systems/fuel/selected-tank</property>
+				<property>/controls/fuel/switches/selected-tank</property>
 				<min>0</min>
 				<max>2</max>
 				<step>1</step>
