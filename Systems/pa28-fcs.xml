@@ -246,18 +246,11 @@
 	
 	<channel name="Nose Wheel">
 		
-		<switch name="fcs/steer-switch">
-			<default value="/controls/flight/rudder"/>
-			<test logic="AND" value="/controls/flight/aileron">
-				/controls/flight/aileron-drives-tiller eq 1
-			</test>
-		</switch>
-		
 		<fcs_function name="fcs/steer-function">
 			<function>
 				<table>
 					<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
-					<independentVar lookup="column">fcs/steer-switch</independentVar>
+					<independentVar lookup="column">/controls/flight/rudder</independentVar>
 					<tableData>
 							   -1     0    1
 						 0.250  00.0  0.0  00.0

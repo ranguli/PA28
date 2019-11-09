@@ -90,13 +90,6 @@ var variousReset = func {
 	setprop("/fdm/jsbsim/extra/door-baggage-cmd", 0);
 }
 
-if (getprop("/controls/flight/auto-coordination") == 1) {
-	setprop("/controls/flight/auto-coordination", 0);
-	setprop("/controls/flight/aileron-drives-tiller", 1);
-} else {
-	setprop("/controls/flight/aileron-drives-tiller", 0);
-}
-
 var slewProp = func(prop, delta) {
 	delta *= getprop("/sim/time/delta-realtime-sec");
 	setprop(prop, getprop(prop) + delta);
