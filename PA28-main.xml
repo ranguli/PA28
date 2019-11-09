@@ -546,14 +546,6 @@
 					<value>2</value>
 				</binding>
 			</key>
-			<key n="115">
-				<name>s</name>
-				<desc>Kill starter-key</desc>
-				<binding>
-					<command>nasal</command>
-					<script></script>
-				</binding>
-			</key>
 			<key n="120">
 				<name>x</name>
 				<desc>Decrease field of view</desc>
@@ -815,6 +807,9 @@
 			<file>Aircraft/PA28/Models/Instruments/Hobbs/hobbs.nas</file>
 			<script>HobbsMeter.new(index: 0, switchPath: 'gear/gear/wow', inverted: 1);</script>
 		</HobbsMeter>
+		<controls>
+			<file>Aircraft/PA28/Nasal/controls_override.nas</file>
+		</controls>
 	</nasal>
 
 </PropertyList>

@@ -170,11 +170,3 @@ var MISC = {
 	},
 };
 
-# Overwrite controls.stepMagnetos() function to correspond with properties used in aircraft
-var stepMagnetos = func(change) {
-	if (!change)
-		return;
-	var mag = props.globals.getNode("/controls/engines/engine[0]/magnetos-switch", 1);
-	mag.setIntValue(mag.getValue() + change);
-	}
-}
