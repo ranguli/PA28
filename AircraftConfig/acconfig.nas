@@ -188,6 +188,8 @@ var taxi = func {
 	setprop("/controls/electrical/switches/battery", 1);
 	setprop("/controls/electrical/switches/alternator", 1);
 	setprop("/controls/electrical/switches/avionics-master", 1);
+	g5.power_btn(1);
+	g5.power_btn(0);
 	setprop("/controls/switches/beacon", 1);
 	setprop("/controls/switches/strobe-lights", 1);
 	setprop("/controls/switches/nav-lights-factor", 1);
