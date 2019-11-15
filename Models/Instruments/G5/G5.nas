@@ -24,12 +24,16 @@ var gr_speed	=	props.globals.getNode("/velocities/groundspeed-kt",					1);
 var ai_roll	=	props.globals.getNode("/orientation/roll-deg",						1);
 var ai_pitch	=	props.globals.getNode("/orientation/pitch-deg",						1);
 var ar_speed	=	props.globals.getNode("/instrumentation/airspeed-indicator/indicated-speed-kt-actual",	1);
+var ap_sw	=	props.globals.getNode("/it-stec55x/internal/master-sw",					1);
 var ap_alt	=	props.globals.getNode("/it-stec55x/input/alt",						1);
 var ap_vs	=	props.globals.getNode("/it-stec55x/input/vs",						1);
 var ap_out	=	props.globals.getNode("/instrumentation/G5/ap_out",					1);
 var ap_on	=	ap_out.getNode("ap",									1);
 var ap_vert	=	ap_out.getNode("vert",									1);
 var ap_lat	=	ap_out.getNode("lat",									1);
+var ap_fd_eq	=	props.globals.getNode("/it-stec55x/settings/fd-equipped",				1);
+var ap_fd_pitch	=	props.globals.getNode("/it-stec55x/output/fd-pitch",					1);
+var ap_fd_roll	=	props.globals.getNode("/it-stec55x/output/fd-roll",					1);
 var bat_f	=	props.globals.getNode("/instrumentation/G5/electrical/feed-from-battery",		1);
 var bat_c	=	props.globals.getNode("/instrumentation/G5/electrical/battery-charge-percent",		1);
 var bat_s	=	props.globals.getNode("/instrumentation/G5/electrical/always-show-battery-status",	1);
@@ -128,7 +132,7 @@ var canvas_G5_only = {
 		return m;
 	},
 	getKeys: func() {
-		return ["qnh","gs","ball","rollpointer","heading","horizon","asi.10","asi.rollingdigits","asi.dashes","asi.tape","altBig0","altBig1","altBig2","altBig3","altBig4","altSmall0","altSmall1","altSmall2","altSmall3","altSmall4","alt.tape","alt.1000","alt.100","alt.rollingdigits","hdg.scale","hdg0","hdg1","hdg2","hdg3","ap.alt","ap.alt.pointer","ap.annun","vert.annun","lat.annun","vert.number","bat.group","bat.time","bat.status","bat.rectangles","bat.flash"];
+		return ["qnh","gs","ball","rollpointer","heading","horizon","asi.10","asi.rollingdigits","asi.dashes","asi.tape","altBig0","altBig1","altBig2","altBig3","altBig4","altSmall0","altSmall1","altSmall2","altSmall3","altSmall4","alt.tape","alt.1000","alt.100","alt.rollingdigits","hdg.scale","hdg0","hdg1","hdg2","hdg3","ap.alt","ap.alt.pointer","ap.annun","vert.annun","lat.annun","vert.number","bat.group","bat.time","bat.status","bat.rectangles","bat.flash","fd.symbol"];
 	},
 	update: func() {
 		var roll = ai_roll.getValue();
@@ -136,7 +140,7 @@ var canvas_G5_only = {
 		var setting_qnh = alt_qnh.getValue();
 		me["qnh"].setText(sprintf("%4.2f", setting_qnh));
 		me["gs"].setText(sprintf("%3d", math.round(gr_speed.getValue())));
-		me["ball"].setTranslation(slipskid.getValue()*58, 0);
+		me["ball"].setTranslation(-math.max(math.min(slipskid.getValue(), 1), -1)*58, 0);
 		me["rollpointer"].setRotation(-roll*D2R);
 		
 		var hdg_deg = hdg.getValue();
@@ -152,6 +156,14 @@ var canvas_G5_only = {
 		
 		me.h_trans.setTranslation(0,pitch*7.2);
 		me.h_rot.setRotation(-roll*D2R,me["horizon"].getCenter());
+		
+		if( ap_fd_eq.getValue() == 1 and ap_sw.getValue() > 0 ){
+			me["fd.symbol"].show();
+			me["fd.symbol"].setTranslation(0,(ap_fd_pitch.getValue())*7.2);
+			me["fd.symbol"].setRotation(-(ap_fd_roll.getValue())*D2R,me["fd.symbol"].getCenter());
+		} else {
+			me["fd.symbol"].hide();
+		}
 		
 		var airspeed = ar_speed.getValue();
 		if(airspeed < 30){

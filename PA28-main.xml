@@ -5,7 +5,7 @@
 <PropertyList>
 	
 	<sim>
-		<author>Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp), Benedikt Wolf (D-ECHO)</author>
+		<author>Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp), Benedikt Wolf (D-ECHO), Based on IDG-PA28</author>
 		<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
 		<model>
 			<fallback-model-index type="int">11</fallback-model-index>

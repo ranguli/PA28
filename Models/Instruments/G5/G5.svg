@@ -26,18 +26,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="48.783747"
-     inkscape:cy="173.5139"
+     inkscape:zoom="4"
+     inkscape:cx="167.70562"
+     inkscape:cy="72.383969"
      inkscape:document-units="px"
-     inkscape:current-layer="bat.group"
+     inkscape:current-layer="layer1"
      showgrid="false"
      units="px"
      inkscape:pagecheckerboard="true"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1600"
-     inkscape:window-height="1135"
+     inkscape:window-width="1680"
+     inkscape:window-height="991"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1">
@@ -2083,7 +2083,8 @@
        id="path856"
        inkscape:connector-curvature="0" />
     <g
-       id="g936">
+       id="fd.symbol"
+       inkscape:label="#g936">
       <g
          id="g910">
         <path
