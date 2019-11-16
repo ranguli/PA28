@@ -9,6 +9,18 @@ pts.Fdm.Jsbsim.CrashStress.rWingDamaged.setBoolValue(0);
 pts.Fdm.Jsbsim.CrashStress.hTailDamaged.setBoolValue(0);
 pts.Fdm.Jsbsim.CrashStress.vTailDamaged.setBoolValue(0);
 
+var messages = { 	"nose" : "Your nose was damaged!", 
+			"nosegear" : "Your nose gear was damaged!", 
+			"lwing": "Your left wing was damaged!", 
+			"rwing": "Your right wing was damaged!", 
+			"vtail": "Your vertical tail was damaged!", 
+			"htail": "Your horizontal tail was damaged!",
+		};
+
+var damage_message = func ( part ) {
+	screen.log.write( messages[part] );
+}		
+
 var crashStress = {
 	reset: func() {
 		if (damagedHappened) {
@@ -46,6 +58,7 @@ setlistener("/gear/gear[3]/wow", func {
 		pts.Fdm.Jsbsim.CrashStress.noseDamaged.setBoolValue(1);
 		pts.Fdm.Jsbsim.Contact.posNorm[9].setValue(0);
 		pts.Fdm.Jsbsim.Gear.posNorm[0].setValue(0); # Nose Gear
+		damage_message("nosegear");
 	}
 }, 0, 0);
 
@@ -55,6 +68,7 @@ setlistener("/gear/gear[4]/wow", func {
 		pts.Fdm.Jsbsim.CrashStress.noseDamaged.setBoolValue(1);
 		pts.Fdm.Jsbsim.Contact.posNorm[9].setValue(0);
 		pts.Fdm.Jsbsim.Gear.posNorm[0].setValue(0); # Nose Gear
+		damage_message("nosegear");
 	}
 }, 0, 0);
 
@@ -62,8 +76,10 @@ setlistener("/gear/gear[9]/wow", func {
 	if (pts.Gear.wow[9].getBoolValue() and loaded) {
 		damagedHappened = 1;
 		pts.Fdm.Jsbsim.CrashStress.noseDamaged.setBoolValue(1);
+		damage_message(nose);
 		pts.Fdm.Jsbsim.Contact.posNorm[9].setValue(0);
 		pts.Fdm.Jsbsim.Gear.posNorm[0].setValue(0); # Nose Gear
+		damage_message("nosegear");
 	}
 }, 0, 0);
 
@@ -71,6 +87,7 @@ setlistener("/gear/gear[10]/wow", func {
 	if (pts.Gear.wow[10].getBoolValue() and loaded) {
 		damagedHappened = 1;
 		pts.Fdm.Jsbsim.CrashStress.hTailDamaged.setBoolValue(1);
+		damage_message("htail");
 		pts.Fdm.Jsbsim.Contact.posNorm[14].setValue(0);
 		pts.Fdm.Jsbsim.Contact.posNorm[15].setValue(0);
 	}
@@ -80,6 +97,7 @@ setlistener("/gear/gear[11]/wow", func {
 	if (pts.Gear.wow[11].getBoolValue() and loaded) {
 		damagedHappened = 1;
 		pts.Fdm.Jsbsim.CrashStress.vTailDamaged.setBoolValue(1);
+		damage_message("vtail");
 		pts.Fdm.Jsbsim.Contact.posNorm[11].setValue(0);
 	}
 }, 0, 0);
@@ -88,6 +106,7 @@ setlistener("/gear/gear[12]/wow", func {
 	if (pts.Gear.wow[12].getBoolValue() and loaded) {
 		damagedHappened = 1;
 		pts.Fdm.Jsbsim.CrashStress.lWingDamaged.setBoolValue(1);
+		damage_message("lwing");
 		pts.Fdm.Jsbsim.Contact.posNorm[12].setValue(0);
 		pts.Fdm.Jsbsim.Gear.posNorm[1].setValue(0); # Left Gear
 	}
@@ -97,6 +116,7 @@ setlistener("/gear/gear[13]/wow", func {
 	if (pts.Gear.wow[13].getBoolValue() and loaded) {
 		damagedHappened = 1;
 		pts.Fdm.Jsbsim.CrashStress.rWingDamaged.setBoolValue(1);
+		damage_message("rwing");
 		pts.Fdm.Jsbsim.Contact.posNorm[13].setValue(0);
 		pts.Fdm.Jsbsim.Gear.posNorm[2].setValue(0); # Right Gear
 	}
@@ -106,6 +126,7 @@ setlistener("/gear/gear[14]/wow", func {
 	if (pts.Gear.wow[14].getBoolValue() and loaded) {
 		damagedHappened = 1;
 		pts.Fdm.Jsbsim.CrashStress.hTailDamaged.setBoolValue(1);
+		damage_message("htail");
 		pts.Fdm.Jsbsim.Contact.posNorm[14].setValue(0);
 		pts.Fdm.Jsbsim.Contact.posNorm[15].setValue(0);
 	}
@@ -115,6 +136,7 @@ setlistener("/gear/gear[15]/wow", func {
 	if (pts.Gear.wow[15].getBoolValue() and loaded) {
 		damagedHappened = 1;
 		pts.Fdm.Jsbsim.CrashStress.hTailDamaged.setBoolValue(1);
+		damage_message("htail");
 		pts.Fdm.Jsbsim.Contact.posNorm[14].setValue(0);
 		pts.Fdm.Jsbsim.Contact.posNorm[15].setValue(0);
 	}
