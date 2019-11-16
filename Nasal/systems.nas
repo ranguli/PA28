@@ -180,3 +180,9 @@ setlistener("/instrumentation/dme/kn62a-mode", func ( i ) {
 	}
 });
 
+
+setlistener("/options/panel", func(i) {
+	if(i.getValue() != "HSI Panel" and getprop("/options/adf-equipped") == 1){
+		settimer( func() {props.globals.getNode("/options/adf-equipped").setBoolValue(0); }, 0.01);
+	}
+});

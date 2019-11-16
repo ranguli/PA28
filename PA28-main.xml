@@ -617,6 +617,9 @@
 				<tumble-flag>true</tumble-flag>
 			</config>
 		</attitude-indicator>
+		<altimeter n="1">
+			<serviceable type="bool">1</serviceable>
+		</altimeter>
 		<comm n="0">
 			<frequencies>
 				<selected-mhz type="double">118.7</selected-mhz>
@@ -700,6 +703,7 @@
 		<panel type="string">HSI Panel</panel>
 		<attitude-indicator type="string">standard</attitude-indicator>
 		<radio-setup type="string">traditional</radio-setup>
+		<adf-equipped type="bool">0</adf-equipped>
 		<show-l-yoke type="bool">1</show-l-yoke>
 		<show-r-yoke type="bool">1</show-r-yoke>
 		<wip type="bool">0</wip> <!-- Enable the WIP instruments -->
@@ -784,6 +788,7 @@
 			<file>Aircraft/PA28/Models/Instruments/ELT/ELTmessage.nas</file>
 			<file>Aircraft/PA28/Nasal/zoom-views.nas</file>
 			<file>Aircraft/PA28/Nasal/crash-stress.nas</file>
+			<file>Aircraft/PA28/Nasal/kr87.nas</file>
 		</libraries>
 		<acconfig>
 			<file>Aircraft/PA28/AircraftConfig/acconfig.nas</file>

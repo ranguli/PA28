@@ -133,31 +133,24 @@
 			<z>-1</z>
 		</axis>
 	</animation>
-
-	<!-- Altimeter -->
+	
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>disk</object-name>
 		<property>instrumentation/altimeter/setting-inhg</property>
+		<factor>-300</factor>
+		<center>
+			<y-m>-0.030019</y-m>
+			<z-m>-0.031103</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+		</axis>
 		<action>
-			<button>0</button>
-			<button>3</button>
 			<binding>
 				<command>property-adjust</command>
 				<property>instrumentation/altimeter/setting-inhg</property>
-				<step>0.01</step>
-				<min>26.0</min>
-				<max>33.0</max>
-				<wrap>false</wrap>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<binding>
-				<command>property-adjust</command>
-				<property>instrumentation/altimeter/setting-inhg</property>
-				<step>-0.01</step>
+				<factor>0.01</factor>
 				<min>26.0</min>
 				<max>33.0</max>
 				<wrap>false</wrap>
@@ -166,8 +159,8 @@
 		<hovered>
 			<binding>
 				<command>set-tooltip</command>
-				<tooltip-id>alt-setting</tooltip-id>
-				<label>Altimeter In Hg: %5.2f</label>
+				<tooltip-id>qnh-setting</tooltip-id>
+				<label>QNH inHg: %4.2f</label>
 				<property>instrumentation/altimeter/setting-inhg</property>
 			</binding>
 		</hovered>

@@ -697,6 +697,26 @@
 				<property>options/panel</property>
 				<value>HSI Panel</value>
 			</equals>
+			<not>
+				<property>options/adf-equipped</property>
+			</not>
+		</condition>
+		<offsets>
+			<x-m>-1.734</x-m>
+			<y-m>-0.035637</y-m>
+			<z-m>0.246775</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>RMI</name>
+		<path>Instruments/kr87-adf/ki227-00.xml</path>
+		<condition>
+			<equals>
+				<property>options/panel</property>
+				<value>HSI Panel</value>
+			</equals>
+			<property>options/adf-equipped</property>
 		</condition>
 		<offsets>
 			<x-m>-1.734</x-m>
@@ -1100,6 +1120,23 @@
 			<x-m>-1.73</x-m>
 			<y-m>0.28167</y-m>
 			<z-m>0.188</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>adf-traditional</name>
+		<path>Instruments/kr87-adf/kr87.xml</path>
+		<condition>
+			<equals>
+				<property>options/radio-setup</property>
+				<value>traditional</value>
+			</equals>
+			<property>options/adf-equipped</property>
+		</condition>
+		<offsets>
+			<x-m>-1.73</x-m>
+			<y-m>0.28167</y-m>
+			<z-m>0.225</z-m>
 		</offsets>
 	</model>
 	

@@ -247,7 +247,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
 		<axis-alignment>yz-plane</axis-alignment>
 		<type type="string">number-value</type>
 		<property type="string">instrumentation/dme/indicated-time-min</property>
-		<format type="string">%3d</format> <!-- sprintf() format to display -->
+		<format type="string">%2d</format> <!-- sprintf() format to display -->
 		<draw-text type="bool">true</draw-text> <!-- draw the text itself -->
 		<font>7-Segment.ttf</font> <!-- The font file name, relative to data/Fonts -->
 		<character-size type="double">0.004</character-size> <!-- size (height) im meters -->

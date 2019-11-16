@@ -26,5 +26,42 @@
 			</mod-up>
 		</action>
 	</animation>
+	
+	<animation>
+		<type>knob</type>
+		<object-name>G5.knob</object-name>
+		<property>instrumentation/G5/qnh-knob</property>
+		<factor>1</factor>
+		<center>
+			<y-m>0.027102</y-m>
+			<z-m>-0.036916</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/altimeter[1]/setting-inhg</property>
+				<factor>0.01</factor>
+				<min>26.0</min>
+				<max>33.0</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/G5/qnh-knob</property>
+				<factor>5</factor>
+			</binding>
+		</action>
+		<hovered>
+			<binding>
+				<command>set-tooltip</command>
+				<tooltip-id>g5-qnh-setting</tooltip-id>
+				<label>QNH inHg: %4.2f</label>
+				<property>instrumentation/altimeter[1]/setting-inhg</property>
+			</binding>
+		</hovered>
+	</animation>
 
 </PropertyList>

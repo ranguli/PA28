@@ -230,7 +230,7 @@
 			</text>
 			<text>
 				<halign>left</halign>
-				<label>HSI: 1 HSI and 1 OBS.</label>
+				<label>HSI: 1 HSI and 1 OBS, optionally with ADF</label>
 			</text>
 			<text>
 				<halign>left</halign>
@@ -261,6 +261,24 @@
 				</binding>
 				<live>true</live>
 			</combo>
+			
+			<checkbox>
+				<halign>right</halign>
+				<name>adf-option</name>
+				<pref-width>150</pref-width>
+				<label>ADF equipped</label>
+				<enable>
+					<equals>
+						<property>/options/panel</property>
+						<value>HSI Panel</value>
+					</equals>
+				</enable>
+				<property>/options/adf-equipped</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
 			
 			<hrule/>
 			

@@ -35,6 +35,7 @@ setprop("/systems/acconfig/options/welcome-skip", 0);
 setprop("/systems/acconfig/options/panel", "HSI Panel");
 setprop("/systems/acconfig/options/attitude-indicator", "standard");
 setprop("/systems/acconfig/options/radio-setup", "traditional");
+setprop("/systems/acconfig/options/adf-equipped", 0);
 setprop("/systems/acconfig/options/show-l-yoke", 1);
 setprop("/systems/acconfig/options/show-r-yoke", 1);
 setprop("/systems/acconfig/options/mini-panel", 0);
@@ -83,22 +84,20 @@ var renderingSettings = {
 	},
 };
 
+var options = [ "show-l-yoke", "show-r-yoke", "panel", "attitude-indicator", "radio-setup", "attitude-indicator", "adf-equipped", "mini-panel" ];
+
 var readSettings = func {
 	io.read_properties(getprop("/sim/fg-home") ~ "/Export/PA28-config.xml", "/systems/acconfig/options");
-	setprop("/options/show-l-yoke", getprop("/systems/acconfig/options/show-l-yoke"));
-	setprop("/options/show-r-yoke", getprop("/systems/acconfig/options/show-r-yoke"));
-	setprop("/options/panel", getprop("/systems/acconfig/options/panel"));
-	setprop("/options/attitude-indicator", getprop("/systems/acconfig/options/attitude-indicator"));
-	setprop("/options/mini-panel", getprop("/systems/acconfig/options/mini-panel"));
+	foreach(var key; options){
+		setprop("/options/"~key, getprop("/systems/acconfig/options/"~key));
+	}
 	autopilotSettings();
 }
 
 var writeSettings = func {
-	setprop("/systems/acconfig/options/show-l-yoke", getprop("/options/show-l-yoke"));
-	setprop("/systems/acconfig/options/show-r-yoke", getprop("/options/show-r-yoke"));
-	setprop("/systems/acconfig/options/panel", getprop("/options/panel"));
-	setprop("/systems/acconfig/options/attitude-indicator", getprop("/options/attitude-indicator"));
-	setprop("/systems/acconfig/options/mini-panel", getprop("/options/mini-panel"));
+	foreach(var key; options){
+		setprop("/systems/acconfig/options/"~key, getprop("/options/"~key));
+	}
 	autopilotSettings();
 	io.write_properties(getprop("/sim/fg-home") ~ "/Export/PA28-config.xml", "/systems/acconfig/options");
 }
