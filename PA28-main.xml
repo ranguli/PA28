@@ -634,7 +634,7 @@
 			<volume type="double">0.6</volume>
 		</comm>
 		<dme>
-			<switch-position type="int">1</switch-position>
+			<kn62a-mode type="int">0</kn62a-mode>
 			<volume type="double">0</volume>
 		</dme>
 		<elt>
@@ -699,6 +699,7 @@
 		<nav-source type="int">1</nav-source>
 		<panel type="string">HSI Panel</panel>
 		<attitude-indicator type="string">standard</attitude-indicator>
+		<radio-setup type="string">traditional</radio-setup>
 		<show-l-yoke type="bool">1</show-l-yoke>
 		<show-r-yoke type="bool">1</show-r-yoke>
 		<wip type="bool">0</wip> <!-- Enable the WIP instruments -->
@@ -781,10 +782,8 @@
 		<libraries>
 			<file>Aircraft/PA28/Nasal/libraries.nas</file>
 			<file>Aircraft/PA28/Models/Instruments/ELT/ELTmessage.nas</file>
-			<file>Aircraft/PA28/Nasal/ki266.nas</file>
 			<file>Aircraft/PA28/Nasal/zoom-views.nas</file>
 			<file>Aircraft/PA28/Nasal/crash-stress.nas</file>
-			<script>ki266.new(0);</script>
 		</libraries>
 		<acconfig>
 			<file>Aircraft/PA28/AircraftConfig/acconfig.nas</file>

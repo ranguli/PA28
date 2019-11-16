@@ -34,6 +34,7 @@ setprop("/systems/acconfig/spin", "-");
 setprop("/systems/acconfig/options/welcome-skip", 0);
 setprop("/systems/acconfig/options/panel", "HSI Panel");
 setprop("/systems/acconfig/options/attitude-indicator", "standard");
+setprop("/systems/acconfig/options/radio-setup", "traditional");
 setprop("/systems/acconfig/options/show-l-yoke", 1);
 setprop("/systems/acconfig/options/show-r-yoke", 1);
 setprop("/systems/acconfig/options/mini-panel", 0);

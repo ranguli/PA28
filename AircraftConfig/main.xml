@@ -206,9 +206,14 @@
 
 			<hrule/>
 			
-			<checkbox>
+			<text>
 				<halign>left</halign>
-				<label>FD equipped</label>
+				<label>Autopilot (STEC-55X):</label>
+			</text>
+			
+			<checkbox>
+				<halign>right</halign>
+				<label>Flight Director (FD) equipped</label>
 				<property>/it-stec55x/settings/fd-equipped</property>
 				<binding>
 					<command>dialog-apply</command>
@@ -230,11 +235,6 @@
 			<text>
 				<halign>left</halign>
 				<label>DG: 2 OBS and no HSI.</label>
-			</text>
-			
-			<text>
-				<halign>left</halign>
-				<label>Select Navigation Option:</label>
 			</text>
 		
 			<combo>
@@ -290,6 +290,41 @@
 				<property>/options/attitude-indicator</property>
 				<value>standard</value>
 				<value>Garmin G5</value>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+					acconfig.writeSettings();
+					</script>
+				</binding>
+				<live>true</live>
+			</combo>
+			
+			<hrule/>
+			
+			<text>
+				<halign>left</halign>
+				<label>There are 2 options for the radio setup:</label>
+			</text>
+			<text>
+				<halign>left</halign>
+				<label>traditional: Two KX-165 (COM/NAV 1 and 2) and a normal DME instrument.</label>
+			</text>
+			<text>
+				<halign>left</halign><!--
+				<label>GNS530: Garmin GNS530 for COM/NAV 1 and navigation, KX-165 for COM/NAV 2</label>-->
+				<label>GNS530: not yet available</label>
+			</text>
+		
+			<combo>
+				<halign>right</halign>
+				<name>radio-setup</name>
+				<pref-width>150</pref-width>
+				<property>/options/radio-setup</property>
+				<value>traditional</value><!--
+				<value>GNS530</value>-->
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

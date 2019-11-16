@@ -170,3 +170,13 @@ var MISC = {
 	},
 };
 
+var dme_ext_src = 	props.globals.getNode("it-stec55x/input/nav-selector", 1);
+var dme_src	=	props.globals.getNode("instrumentation/dme/frequencies/source", 1);
+setlistener("/instrumentation/dme/kn62a-mode", func ( i ) {
+	if ( i.getValue() == 0 ) { # External
+		dme_src.setValue("/instrumentation/nav["~dme_ext_src.getIntValue()~"]/frequencies/selected-mhz");
+	} else if ( i.getValue() == 1 ) { # Internal
+		dme_src.setValue("/instrumentation/dme/frequencies/selected-mhz");
+	}
+});
+

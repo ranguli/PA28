@@ -1,0 +1,512 @@
+<?xml version="1.0"?>
+
+<!--
+Bendix/King KN62a DME
+Gary "Buckaroo" Neely and Benedikt Wolf (D-ECHO)
+Released under GNU GENERAL PUBLIC LICENSE Version 2
+-->
+
+<PropertyList>
+
+	<path>kn62a.ac</path>
+
+	<animation>
+		<type>material</type>
+		<object-name>kn62a</object-name>
+		<object-name>kn62a.swt.onoff</object-name>
+		<object-name>kn62a.swt.mode</object-name>
+		<object-name>kn62a.knb.mhz</object-name>
+		<object-name>kn62a.knb.khz</object-name>
+		<emission>
+			<red>0.75</red>
+			<green>0.75</green>
+			<blue>0.75</blue>
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+		</emission>
+		<specular>
+			<red>   0.0 </red>
+			<green> 0.0 </green>
+			<blue>  0.0 </blue>
+		</specular>
+		<ambient>
+			<red>   1 </red>
+			<green> 1 </green>
+			<blue>  1 </blue>
+		</ambient>
+		<diffuse>
+			<red>   0.3 </red>
+			<green> 0.3 </green>
+			<blue>  0.3 </blue>
+		</diffuse>
+		<shininess>
+			<red>   0 </red>
+			<green> 0 </green>
+			<blue>  0 </blue>
+		</shininess>
+	</animation>
+
+	
+	<animation>
+		<type>knob</type>
+		<object-name>kn62a.knb.mhz</object-name>
+		<property>/instrumentation/dme/knob1-pos</property>
+		<factor>1</factor>
+		<center>
+			<y-m>0.063545</y-m>
+			<z-m>-0.000978</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/dme/knob1-pos</property>
+				<factor>1</factor>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/dme/frequencies/selected-mhz</property>
+				<step>1</step>
+				<min>108.0</min>
+				<max>118.0</max>
+				<wrap>true</wrap>
+				<mask>integer</mask>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>kn62a.knb.khz</object-name>
+		<property>/instrumentation/dme/knob2-pos</property>
+		<factor>1</factor>
+		<center>
+			<y-m>0.063545</y-m>
+			<z-m>-0.000978</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/dme/knob2-pos</property>
+				<factor>1</factor>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/dme/frequencies/selected-mhz</property>
+				<step>0.025</step>
+				<min>0.0</min>
+				<max>1.0</max>
+				<resolution>0.025</resolution>
+				<wrap>true</wrap>
+				<mask>decimal</mask>
+			</binding>
+		</action>
+	</animation>
+	
+	<!-- OSG Text -->
+	<text>
+		<name>distance-nm</name>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>-0.058</y-m>
+			<z-m>0.007875</z-m>
+		</offsets>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<property type="string">instrumentation/dme/indicated-distance-nm</property>
+		<format type="string">%3.1f</format> <!-- sprintf() format to display -->
+		<draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+		<font>7-Segment.ttf</font> <!-- The font file name, relative to data/Fonts -->
+		<character-size type="double">0.004</character-size> <!-- size (height) im meters -->
+		<character-aspect-ratio type="double">1.0</character-aspect-ratio>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+		<alignment>center-center</alignment>
+	</text>
+	<text>
+		<name>distance-unit</name>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>-0.057</y-m>
+			<z-m>-0.000409</z-m>
+		</offsets>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">literal</type>
+		<text>NM</text>
+		<draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+		<font>lcd.txf</font> <!-- The font file name, relative to data/Fonts -->
+		<character-size type="double">0.003</character-size> <!-- size (height) im meters -->
+		<character-aspect-ratio type="double">1.0</character-aspect-ratio>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+		<alignment>center-center</alignment>
+	</text>
+	<!-- FREQUENCY DISPLAY -->
+	<text>
+		<name>frequency</name>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>-0.02</y-m>
+			<z-m>0.007875</z-m>
+		</offsets>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<property type="string">instrumentation/dme/frequencies/selected-mhz</property>
+		<format type="string">%5.2f</format> <!-- sprintf() format to display -->
+		<draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+		<font>7-Segment.ttf</font> <!-- The font file name, relative to data/Fonts -->
+		<character-size type="double">0.004</character-size> <!-- size (height) im meters -->
+		<character-aspect-ratio type="double">1.0</character-aspect-ratio>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+		<alignment>center-center</alignment>
+	</text>
+	<text>
+		<name>frequency-unit</name>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>-0.02</y-m>
+			<z-m>-0.000409</z-m>
+		</offsets>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">literal</type>
+		<text>MHZ</text>
+		<draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+		<font>lcd.txf</font> <!-- The font file name, relative to data/Fonts -->
+		<character-size type="double">0.003</character-size> <!-- size (height) im meters -->
+		<character-aspect-ratio type="double">1.0</character-aspect-ratio>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+		<alignment>center-center</alignment>
+	</text>
+	<!-- GROUNDSPEED DISPLAY -->
+	<text>
+		<name>groundspeed</name>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>-0.035</y-m>
+			<z-m>0.007875</z-m>
+		</offsets>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<property type="string">instrumentation/dme/indicated-ground-speed-kt</property>
+		<format type="string">%3d</format> <!-- sprintf() format to display -->
+		<draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+		<font>7-Segment.ttf</font> <!-- The font file name, relative to data/Fonts -->
+		<character-size type="double">0.004</character-size> <!-- size (height) im meters -->
+		<character-aspect-ratio type="double">1.0</character-aspect-ratio>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+		<alignment>center-center</alignment>
+	</text>
+	<text>
+		<name>groundspeed-unit</name>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>-0.035</y-m>
+			<z-m>-0.000409</z-m>
+		</offsets>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">literal</type>
+		<text>KT</text>
+		<draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+		<font>lcd.txf</font> <!-- The font file name, relative to data/Fonts -->
+		<character-size type="double">0.003</character-size> <!-- size (height) im meters -->
+		<character-aspect-ratio type="double">1.0</character-aspect-ratio>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+		<alignment>center-center</alignment>
+	</text>
+	<!-- TIME TO STATION DISPLAY -->
+	<text>
+		<name>tts</name>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>-0.015</y-m>
+			<z-m>0.007875</z-m>
+		</offsets>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">number-value</type>
+		<property type="string">instrumentation/dme/indicated-time-min</property>
+		<format type="string">%3d</format> <!-- sprintf() format to display -->
+		<draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+		<font>7-Segment.ttf</font> <!-- The font file name, relative to data/Fonts -->
+		<character-size type="double">0.004</character-size> <!-- size (height) im meters -->
+		<character-aspect-ratio type="double">1.0</character-aspect-ratio>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+		<alignment>center-center</alignment>
+	</text>
+	<text>
+		<name>tts-unit</name>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>-0.015</y-m>
+			<z-m>-0.000409</z-m>
+		</offsets>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">literal</type>
+		<text>MIN</text>
+		<draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+		<font>lcd.txf</font> <!-- The font file name, relative to data/Fonts -->
+		<character-size type="double">0.003</character-size> <!-- size (height) im meters -->
+		<character-aspect-ratio type="double">1.0</character-aspect-ratio>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+		<alignment>center-center</alignment>
+	</text>
+	<text>
+		<name>rmt-flag</name>
+		<offsets>
+			<x-m>0.001</x-m>
+			<y-m>-0.045</y-m>
+			<z-m>-0.000409</z-m>
+		</offsets>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">literal</type>
+		<text>RMT</text>
+		<draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+		<font>lcd.txf</font> <!-- The font file name, relative to data/Fonts -->
+		<character-size type="double">0.003</character-size> <!-- size (height) im meters -->
+		<character-aspect-ratio type="double">1.0</character-aspect-ratio>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+		<alignment>center-center</alignment>
+	</text>
+	
+	
+	<animation>
+		<type>select</type>
+		<condition>
+			<property>/instrumentation/dme/serviceable</property>
+			<greater-than>
+				<property>/systems/electrical/outputs/dme</property>
+				<value>9</value>
+			</greater-than>
+			<property>/controls/switches/kn-62a</property>
+			<property>/instrumentation/dme/in-range</property>
+		</condition>
+		<object-name>distance-nm</object-name>
+	</animation>
+	<animation>
+		<type>select</type>
+		<condition>
+			<property>/instrumentation/dme/serviceable</property>
+			<greater-than>
+				<property>/systems/electrical/outputs/dme</property>
+				<value>9</value>
+			</greater-than>
+			<property>/controls/switches/kn-62a</property>
+		</condition>
+		<object-name>distance-unit</object-name>
+	</animation>
+	<animation>
+		<type>select</type>
+		<condition>
+			<property>/instrumentation/dme/serviceable</property>
+			<greater-than>
+				<property>/systems/electrical/outputs/dme</property>
+				<value>9</value>
+			</greater-than>
+			<property>/controls/switches/kn-62a</property>
+			<equals>
+				<property>instrumentation/dme/kn62a-mode</property>
+				<value>1</value>
+			</equals>
+		</condition>
+		<object-name>frequency</object-name>
+		<object-name>frequency-unit</object-name>
+	</animation>
+	<animation>
+		<type>select</type>
+		<condition>
+			<property>/instrumentation/dme/serviceable</property>
+			<greater-than>
+				<property>/systems/electrical/outputs/dme</property>
+				<value>9</value>
+			</greater-than>
+			<property>/controls/switches/kn-62a</property>
+			<not-equals>
+				<property>instrumentation/dme/kn62a-mode</property>
+				<value>1</value>
+			</not-equals>
+		</condition>
+		<object-name>tts</object-name>
+		<object-name>tts-unit</object-name>
+		<object-name>groundspeed</object-name>
+		<object-name>groundspeed-unit</object-name>
+	</animation>
+	<animation>
+		<type>select</type>
+		<condition>
+			<property>/instrumentation/dme/serviceable</property>
+			<greater-than>
+				<property>/systems/electrical/outputs/dme</property>
+				<value>9</value>
+			</greater-than>
+			<property>/controls/switches/kn-62a</property>
+			<equals>
+				<property>instrumentation/dme/kn62a-mode</property>
+				<value>0</value>
+			</equals>
+		</condition>
+		<object-name>rmt-flag</object-name>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>distance-nm</object-name>
+		<object-name>distance-unit</object-name>
+		<object-name>frequency</object-name>
+		<object-name>frequency-unit</object-name>
+		<object-name>tts</object-name>
+		<object-name>tts-unit</object-name>
+		<object-name>groundspeed</object-name>
+		<object-name>groundspeed-unit</object-name>
+		<object-name>rmt-flag</object-name>
+		<emission>
+			<red>0.8</red>
+			<green>0.4</green>
+			<blue>0.2</blue>
+		</emission>
+		<specular>
+			<red>   0.0 </red>
+			<green> 0.0 </green>
+			<blue>  0.0 </blue>
+		</specular>
+		<ambient>
+			<red>0.8</red>
+			<green>0.4</green>
+			<blue>0.2</blue>
+		</ambient>
+		<diffuse>
+			<red>0.8</red>
+			<green>0.4</green>
+			<blue>0.2</blue>
+		</diffuse>
+		<shininess>
+			<red>   0 </red>
+			<green> 0 </green>
+			<blue>  0 </blue>
+		</shininess>
+	</animation>
+
+	<!-- Switches -->
+
+	<animation>
+		<type>pick</type>
+		<object-name>kn62a.swt.mode</object-name>
+		<visible>true</visible>
+		<action>
+		<button>0</button>
+		<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>/instrumentation/dme/kn62a-mode</property>
+				<value>1</value>
+				<value>2</value>
+				<value>0</value>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/dme/kn62a-mode</property>
+				<value>2</value>
+				<value>1</value>
+				<value>0</value>
+			</binding>
+		</action>
+		<!--TODO-->
+		<hovered>
+			<binding>
+				<command>set-tooltip</command>
+				<tooltip-id>kn62a-mode</tooltip-id>
+				<label>Mode: %s</label>
+				<property>/instrumentation/dme/kn62a-mode</property>
+				<mapping>on-off</mapping>
+			</binding>
+		</hovered>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>kn62a.swt.mode</object-name>
+		<property>/instrumentation/dme/kn62a-mode</property>
+		<factor>0.004</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>kn62a.swt.onoff</object-name>
+		<visible>true</visible>
+		<action>
+		<button>0</button>
+		<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/switches/kn-62a</property>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/controls/switches/kn-62a</property>
+			</binding>
+		</action>
+		<hovered>
+			<binding>
+				<command>set-tooltip</command>
+				<tooltip-id>kn62a-pwr</tooltip-id>
+				<label>Power: %s</label>
+				<property>/controls/switches/kn-62a</property>
+				<mapping>on-off</mapping>
+			</binding>
+		</hovered>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>kn62a.swt.onoff</object-name>
+		<property>/controls/switches/kn-62a</property>
+		<factor>0.004</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+</PropertyList>
+
+

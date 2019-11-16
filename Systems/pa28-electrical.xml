@@ -274,5 +274,16 @@
 		</switch>
 	
 	</channel>
+	
+	<channel name="DME" execrate="8">
+		<!--
+		<switch name="/instrumentation/dme/frequencies/source">
+			<default value="/instrumentation/dme/external-source"/>
+			<test value="/instrumentation/dme/internal-source">
+				/instrumentation/dme/kn62a-mode ne 1
+			</test>
+		</switch>-->
+		
+	</channel>
 
 </system>

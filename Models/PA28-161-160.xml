@@ -1045,16 +1045,6 @@
 	</model>
 	
 	<model>
-		<name>GNS530</name>
-		<path>Instruments/GNS530/GNS530.xml</path>
-		<offsets>
-			<x-m>-1.73</x-m>
-			<y-m>0.10665</y-m>
-			<z-m>0.215</z-m>
-		</offsets>
-	</model>
-	
-	<model>
 		<name>STEC-55X</name>
 		<path>Instruments/stec-55x/stec-55x.xml</path>
 		<offsets>
@@ -1064,18 +1054,79 @@
 		</offsets>
 	</model>
 	
-	<model> <!-- Remove once GPS working -->
-		<name>kx165-2</name>
+	<model>
+		<name>kx165-traditional-1</name>
+		<condition>
+			<equals>
+				<property>options/radio-setup</property>
+				<value>traditional</value>
+			</equals>
+		</condition>
 		<path>Instruments/kx165/kx165-1.xml</path>
 		<offsets>
 			<x-m>-1.742</x-m>
-			<y-m>0.28167</y-m>
+			<y-m>0.10665</y-m>
 			<z-m>0.236</z-m>
 		</offsets>
 	</model>
 	
 	<model>
-		<name>kx165-2</name>
+		<name>kx165-traditional-2</name>
+		<condition>
+			<equals>
+				<property>options/radio-setup</property>
+				<value>traditional</value>
+			</equals>
+		</condition>
+		<path>Instruments/kx165/kx165-2.xml</path>
+		<offsets>
+			<x-m>-1.742</x-m>
+			<y-m>0.10665</y-m>
+			<!--z-m>0.236</z-m-->
+			<z-m>0.185</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>dme-traditional</name>
+		<path>Instruments/kn62a/kn62a.xml</path>
+		<condition>
+			<equals>
+				<property>options/radio-setup</property>
+				<value>traditional</value>
+			</equals>
+		</condition>
+		<offsets>
+			<x-m>-1.73</x-m>
+			<y-m>0.28167</y-m>
+			<z-m>0.188</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>GNS530</name>
+		<path>Instruments/GNS530/GNS530.xml</path>
+		<condition>
+			<equals>
+				<property>options/radio-setup</property>
+				<value>GNS530</value>
+			</equals>
+		</condition>
+		<offsets>
+			<x-m>-1.73</x-m>
+			<y-m>0.10665</y-m>
+			<z-m>0.215</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>kx165-GNS530</name>
+		<condition>
+			<equals>
+				<property>options/radio-setup</property>
+				<value>GNS530</value>
+			</equals>
+		</condition>
 		<path>Instruments/kx165/kx165-2.xml</path>
 		<offsets>
 			<x-m>-1.742</x-m>
@@ -1084,17 +1135,6 @@
 			<z-m>0.185</z-m>
 		</offsets>
 	</model>
-	
-	<!-- Need a DME still - the one that was here is fubar -->
-	<!--model>
-		<name>dme</name>
-		<path>Instruments/</path>
-		<offsets>
-			<x-m>-1.72</x-m>
-			<y-m>0.28167</y-m>
-			<z-m>0.188</z-m>
-		</offsets>
-	</model-->
 	
 	<model>
 		<name>gtx-327</name>
