@@ -9,7 +9,7 @@ name "adf.annun"
 data 14
 adf.annun.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.00639 0.06852
 0.00093 0.00338 0.06852
@@ -29,7 +29,7 @@ name "ant.annun"
 data 14
 ant.annun.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.00977 0.06852
 0.00093 0.00676 0.06852
@@ -49,7 +49,7 @@ name "bfo.annun"
 data 14
 bfo.annun.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.00977 0.03172
 0.00093 0.00676 0.03172
@@ -69,7 +69,7 @@ name "et.annun"
 data 13
 et.annun.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.00604 -0.01272
 0.00093 0.00303 -0.01272
@@ -89,7 +89,7 @@ name "flt.annun"
 data 14
 flt.annun.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.00986 -0.01166
 0.00093 0.00685 -0.01166
@@ -109,7 +109,7 @@ name "freq.001"
 data 13
 freq.001.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.01053 0.05805
 0.00093 0.00291 0.05904
@@ -129,7 +129,7 @@ name "freq.002"
 data 13
 freq.002.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.01053 0.04634
 0.00093 0.00291 0.04733
@@ -149,7 +149,7 @@ name "freq.003"
 data 13
 freq.003.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.01053 0.03957
 0.00093 0.00291 0.04056
@@ -169,7 +169,7 @@ name "freq.004"
 data 13
 freq.004.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.01053 0.0328
 0.00093 0.00291 0.03378
@@ -189,7 +189,7 @@ name "frq.annun"
 data 14
 frq.annun.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.00573 0.02435
 0.00093 0.00272 0.02435
@@ -5896,7 +5896,7 @@ name "stby"
 data 9
 stby.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 8
 0.00093 0.00555 0.00169
 0.00093 0.00443 0.00185
@@ -5927,7 +5927,7 @@ name "stby.001"
 data 13
 stby.001.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.01053 0.00937
 0.00093 0.00291 0.01036
@@ -5947,7 +5947,7 @@ name "stby.002"
 data 13
 stby.002.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.01053 0.0026
 0.00093 0.00291 0.00358
@@ -5967,7 +5967,7 @@ name "stby.003"
 data 13
 stby.003.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.01053 -0.00418
 0.00093 0.00291 -0.00319
@@ -5987,7 +5987,7 @@ name "stby.004"
 data 13
 stby.004.mesh
 crease 30.0
-texture "KR87.png"
+texture "kr87-display.png"
 numvert 4
 0.00093 0.01053 -0.006
 0.00093 0.00291 -0.00501
