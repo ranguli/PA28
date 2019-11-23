@@ -1084,7 +1084,7 @@
 		</condition>
 		<path>Instruments/kx165/kx165-1.xml</path>
 		<offsets>
-			<x-m>-1.742</x-m>
+			<x-m>-1.735</x-m>
 			<y-m>0.10665</y-m>
 			<z-m>0.236</z-m>
 		</offsets>
@@ -1100,7 +1100,7 @@
 		</condition>
 		<path>Instruments/kx165/kx165-2.xml</path>
 		<offsets>
-			<x-m>-1.742</x-m>
+			<x-m>-1.735</x-m>
 			<y-m>0.10665</y-m>
 			<!--z-m>0.236</z-m-->
 			<z-m>0.185</z-m>
@@ -1166,7 +1166,7 @@
 		</condition>
 		<path>Instruments/kx165/kx165-2.xml</path>
 		<offsets>
-			<x-m>-1.742</x-m>
+			<x-m>-1.735</x-m>
 			<y-m>0.28167</y-m>
 			<!--z-m>0.236</z-m-->
 			<z-m>0.185</z-m>

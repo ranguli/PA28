@@ -9,6 +9,25 @@
 		<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
 		<model>
 			<fallback-model-index type="int">11</fallback-model-index>
+			<!-- Lighting used by model and ALS -->
+			<!--<lighting>
+				<taxi type="bool">false</taxi>
+				<landing type="bool">false</landing>
+				<ra-r-p type="double">.05</ra-r-p>
+				<ra-g-p type="double">.05</ra-g-p>
+				<ra-b-p type="double">.03</ra-b-p>
+				<ra-r-r type="double">0.05</ra-r-r>
+				<ra-g-r type="double">0.025</ra-g-r>
+				<ra-b-r type="double">0.025</ra-b-r>
+				<ra-r type="double">0.0</ra-r>
+				<ra-g type="double">0.0</ra-g>
+				<ra-b type="double">0.0</ra-b>
+				<dome-norm type="float">0</dome-norm>
+				<gps-norm type="float">0</gps-norm>
+				<courtesy-lights>
+					<courtesy-on type="bool">false</courtesy-on>
+				</courtesy-lights>
+			</lighting>-->
 		</model>
 		<checklists include="PA28-Checklists.xml"/>
 		<current-view>
@@ -621,20 +640,30 @@
 			<serviceable type="bool">1</serviceable>
 		</altimeter>
 		<comm n="0">
+			<power-btn type="bool">1</power-btn>
 			<frequencies>
 				<selected-mhz type="double">118.7</selected-mhz>
 				<standby-mhz type="double">121.4</standby-mhz>
+				<dial-khz type="int">0</dial-khz>
+				<dial-mhz type="int">0</dial-mhz>
 			</frequencies>
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0.6</volume>
+			<volume-selected type="double">0.6</volume-selected>
+			<channel-mode-selector type="bool">1</channel-mode-selector>
 		</comm>
 		<comm n="1">
+			<power-btn type="bool">1</power-btn>
 			<frequencies>
 				<selected-mhz type="double">119.4</selected-mhz>
 				<standby-mhz type="double">122.6</standby-mhz>
+				<dial-khz type="int">0</dial-khz>
+				<dial-mhz type="int">0</dial-mhz>
 			</frequencies>
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0.6</volume>
+			<volume-selected type="double">0.6</volume-selected>
+			<channel-mode-selector type="bool">1</channel-mode-selector>
 		</comm>
 		<dme>
 			<kn62a-mode type="int">0</kn62a-mode>
@@ -650,23 +679,29 @@
 			<frequencies>
 				<selected-mhz type="double">111.15</selected-mhz>
 				<standby-mhz type="double">110.95</standby-mhz>
+				<dial-khz type="int">0</dial-khz>
+				<dial-mhz type="int">0</dial-mhz>
 			</frequencies>
 			<radials>
 				<selected-deg type="double">360</selected-deg>
 			</radials>
 			<serviceable type="bool">true</serviceable>
-			<volume type="double">0</volume>
+			<volume type="double">0.7</volume>
+			<ident-audible type="bool">false</ident-audible>
 		</nav>
 		<nav n="1">
 			<frequencies>
 				<selected-mhz type="double">109.55</selected-mhz>
 				<standby-mhz type="double">110.55</standby-mhz>
+				<dial-khz type="int">0</dial-khz>
+				<dial-mhz type="int">0</dial-mhz>
 			</frequencies>
 			<radials>
 				<selected-deg type="double">360</selected-deg>
 			</radials>
 			<serviceable type="bool">true</serviceable>
-			<volume type="double">0</volume>
+			<volume type="double">0.7</volume>
+			<ident-audible type="bool">false</ident-audible>
 		</nav>
 		<G5>
 			<start type="float">0</start>
@@ -789,6 +824,7 @@
 			<file>Aircraft/PA28/Nasal/zoom-views.nas</file>
 			<file>Aircraft/PA28/Nasal/crash-stress.nas</file>
 			<file>Aircraft/PA28/Nasal/kr87.nas</file>
+			<file>Aircraft/PA28/Nasal/kx165a.nas</file>
 		</libraries>
 		<acconfig>
 			<file>Aircraft/PA28/AircraftConfig/acconfig.nas</file>
