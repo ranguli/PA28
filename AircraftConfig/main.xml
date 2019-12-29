@@ -203,6 +203,22 @@
 					</script>
 				</binding>
 			</button>
+			
+			<text>
+				<halign>left</halign>
+				<label>Factory-set VFR Transponder Code:</label>
+			</text>
+			
+			<input>
+				<halign>right</halign>
+				<width>75</width>
+				<height>25</height>
+				<property>/instrumentation/it-gtx327/factory-vfr-code</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</input>
 
 			<hrule/>
 			

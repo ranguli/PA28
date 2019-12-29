@@ -3,7 +3,7 @@
 
 # Initialize variables
 var annuns = ["off", "stby", "off", "stby", "on", "alt"];
-var code = "1200";
+var code = "";
 var mode = 1; # 0 = OFF, 1 = STANDBY, 4 = ON, 5 = ALTITUDE
 var modes = ["OFF", "STANDBY", "TEST", "GROUND", "ON", "ALTITUDE"];
 var powerUpTime = 0;
@@ -19,6 +19,7 @@ var systemAliveTemp = 0;
 var powerUpTest = props.globals.initNode("/instrumentation/it-gtx327/internal/powerup-test", -1, "INT"); # -1 = Powerup test not done, 0 = Powerup test complete, 1 = Powerup test in progress
 var powerUpTestTemp = 0;
 var idCode = props.globals.getNode("/instrumentation/transponder/id-code", 1);
+var vfrCode = props.globals.getNode("/instrumentation/it-gtx327/factory-vfr-code", 1);
 var modeKnob = props.globals.getNode("/instrumentation/transponder/inputs/knob-mode", 1);
 var identBtn = props.globals.getNode("/instrumentation/transponder/inputs/ident-btn", 1);
 var modeID = props.globals.getNode("/sim/gui/dialogs/radios/transponder-mode", 1);
@@ -43,9 +44,8 @@ setlistener("/sim/signals/fdm-initialized", func {
 
 var system = {
 	init: func() {
-		mode = 1;
 		codeEntryActive.setBoolValue(0);
-		code = idCode.getValue(); # If a code was saved via aircraft-data or other means, import it
+		code = idCode.getValue() or vfrCode.getValue(); # If a code was saved via aircraft-data or other means, import it, else use the default VFR code
 		me.updateCode();
 		identBtn.setBoolValue(0);
 		powerUpTest.setValue(-1);
@@ -56,6 +56,7 @@ var system = {
 		Annun.r.setBoolValue(0);
 		Annun.sel.setValue(0);
 		Annun.test.setBoolValue(0);
+		mode=modeKnob.getValue();
 		me.setMode(mode);
 		update.start();
 	},
@@ -192,7 +193,7 @@ var button = {
 	},
 	VFR: func() {
 		if (systemAlive.getBoolValue() and powerUpTest.getValue() == 0 and serviceable.getBoolValue()) {
-			system.setCode(1200);
+			system.setCode(vfrCode.getValue());
 		}
 	},
 	CLR: func() {

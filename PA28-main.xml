@@ -306,6 +306,12 @@
 				<default-field-of-view-deg type="double">70</default-field-of-view-deg>
 			</config>
 		</view>
+		
+		<aircraft-data>
+			<path>/instrumentation/it-gtx327/factory-vfr-code</path>
+			<path>/instrumentation/transponder/inputs/knob-mode</path>
+			<path>/instrumentation/transponder/id-code</path>
+		</aircraft-data>
 	</sim>
 	
 	<airport>
@@ -706,6 +712,9 @@
 		<G5>
 			<start type="float">0</start>
 		</G5>
+		<it-gtx327>
+			<factory-vfr-code type="int">1200</factory-vfr-code>
+		</it-gtx327>
 	</instrumentation>
 	
 	<it-stec55x n="0"> <!-- S-TEC 55X Settings -->
