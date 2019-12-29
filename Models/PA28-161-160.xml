@@ -1075,6 +1075,37 @@
 	</model>
 	
 	<model>
+		<name>KAP140</name>
+		<path>Instruments/kap140/KAP140TwoAxisAlt.xml</path>
+		<offsets>
+			<x-m>-1.73</x-m>
+			<y-m>0.10665</y-m>
+			<z-m>0.137551</z-m>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>STEC-55X</object-name>
+		<condition>
+			<equals>
+				<property>options/autopilot</property>
+				<value>S-TEC-55X</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>KAP140</object-name>
+		<condition>
+			<equals>
+				<property>options/autopilot</property>
+				<value>KAP140</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<model>
 		<name>kx165-traditional-1</name>
 		<condition>
 			<equals>

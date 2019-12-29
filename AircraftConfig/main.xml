@@ -224,13 +224,43 @@
 			
 			<text>
 				<halign>left</halign>
-				<label>Autopilot (STEC-55X):</label>
+				<label>Autopilot:</label>
 			</text>
+			
+			<combo>
+				<halign>right</halign>
+				<pref-width>150</pref-width>
+				<enable>
+					<equals> <!-- Changing panel type while the AP is running could cause problems -->
+						<property>/it-stec55x/output/roll</property>
+						<value>-1</value>
+					</equals>
+				</enable>
+				<property>/options/autopilot</property>
+				<value>S-TEC-55X</value>
+				<value>KAP140</value>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+					acconfig.writeSettings();
+					</script>
+				</binding>
+				<live>true</live>
+			</combo>
 			
 			<checkbox>
 				<halign>right</halign>
-				<label>Flight Director (FD) equipped</label>
+				<label>Flight Director (FD) equipped (only with STEC-55X)</label>
 				<property>/it-stec55x/settings/fd-equipped</property>
+				<enable>
+					<equals>
+						<property>/options/autopilot</property>
+						<value>S-TEC-55X</value>
+					</equals>
+				</enable>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

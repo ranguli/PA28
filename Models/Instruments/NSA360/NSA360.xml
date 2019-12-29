@@ -94,7 +94,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>heading.bug</object-name>
-		<property>it-stec55x/input/hdg</property>
+		<property>instrumentation/heading-indicator/heading-bug-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x>-1</x>
@@ -167,7 +167,7 @@
 					</and>
 				</condition>
 				<command>property-adjust</command>
-				<property>it-stec55x/input/hdg</property>
+				<property>instrumentation/heading-indicator/heading-bug-deg</property>
 				<step>1</step>
 				<min>1</min>
 				<max>361</max>
@@ -181,7 +181,7 @@
 					</and>
 				</condition>
 				<command>property-adjust</command>
-				<property>it-stec55x/input/hdg</property>
+				<property>instrumentation/heading-indicator/heading-bug-deg</property>
 				<step>10</step>
 				<min>1</min>
 				<max>361</max>
@@ -228,7 +228,7 @@
 					</and>
 				</condition>
 				<command>property-adjust</command>
-				<property>it-stec55x/input/hdg</property>
+				<property>instrumentation/heading-indicator/heading-bug-deg</property>
 				<step>-1</step>
 				<min>1</min>
 				<max>361</max>
@@ -242,7 +242,7 @@
 					</and>
 				</condition>
 				<command>property-adjust</command>
-				<property>it-stec55x/input/hdg</property>
+				<property>instrumentation/heading-indicator/heading-bug-deg</property>
 				<step>-10</step>
 				<min>1</min>
 				<max>361</max>
@@ -286,7 +286,7 @@
 				<tooltip-id>nsa360-bug</tooltip-id>
 				<mapping>heading</mapping>
 				<label>Heading Bug: %3d</label>
-				<property>it-stec55x/input/hdg</property>
+				<property>instrumentation/heading-indicator/heading-bug-deg</property>
 			</binding>
 			<binding>
 				<condition>
@@ -320,7 +320,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>card.knob</object-name>
-		<property>it-stec55x/input/hdg</property>
+		<property>instrumentation/heading-indicator/heading-bug-deg</property>
 		<factor>6</factor>
 		<axis>
 			<x>-1</x>

@@ -273,7 +273,7 @@
 			</condition>
 			<property>/it-stec55x/custom-nav/nav-course-2</property>
 		</input>
-		<input>/it-stec55x/input/hdg</input>
+		<input>/instrumentation/heading-indicator/heading-bug-deg</input>
 		<output>/it-stec55x/nav/nav-course</output>
 	</filter>
 	
@@ -808,6 +808,10 @@
 						<property>/it-stec55x/settings/use-controls-flight</property>
 						<value>1</value>
 					</equals>
+					<equals>
+						<property>/options/autopilot</property>
+						<value>S-TEC-55X</value>
+					</equals>
 				</and>
 			</condition>
 		</enable>
@@ -1237,6 +1241,10 @@
 						<property>/it-stec55x/settings/use-controls-flight</property>
 						<value>1</value>
 					</equals>
+					<equals>
+						<property>/options/autopilot</property>
+						<value>S-TEC-55X</value>
+					</equals>
 				</and>
 			</condition>
 		</enable>
@@ -1287,6 +1295,10 @@
 							<value>1</value>
 						</equals>
 					</or>
+					<equals>
+						<property>/options/autopilot</property>
+						<value>S-TEC-55X</value>
+					</equals>
 				</and>
 			</condition>
 		</enable>
@@ -1339,6 +1351,10 @@
 							<value>1</value>
 						</equals>
 					</or>
+					<equals>
+						<property>/options/autopilot</property>
+						<value>S-TEC-55X</value>
+					</equals>
 				</and>
 			</condition>
 		</enable>
@@ -1446,6 +1462,10 @@
 					<equals>
 						<property>/it-stec55x/settings/use-controls-flight</property>
 						<value>1</value>
+					</equals>
+					<equals>
+						<property>/options/autopilot</property>
+						<value>S-TEC-55X</value>
 					</equals>
 				</and>
 			</condition>

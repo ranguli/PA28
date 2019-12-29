@@ -84,7 +84,7 @@ var renderingSettings = {
 	},
 };
 
-var options = [ "show-l-yoke", "show-r-yoke", "panel", "attitude-indicator", "radio-setup", "attitude-indicator", "adf-equipped", "mini-panel" ];
+var options = [ "show-l-yoke", "show-r-yoke", "panel", "attitude-indicator", "radio-setup", "attitude-indicator", "adf-equipped", "mini-panel", "autopilot" ];
 
 var readSettings = func {
 	io.read_properties(getprop("/sim/fg-home") ~ "/Export/PA28-config.xml", "/systems/acconfig/options");

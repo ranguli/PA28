@@ -209,9 +209,12 @@
 				<path></path>
 			</electrical>
 			<autopilot n="0">
-				<path>Aircraft/PA28/Systems/stec-55x.xml</path>
+				<path>Aircraft/PA28/Systems/Autopilot/stec-55x.xml</path>
 			</autopilot>
 			<autopilot n="1">
+				<path>Aircraft/PA28/Systems/Autopilot/KAP140.xml</path>
+			</autopilot>
+			<autopilot n="2">
 				<path>Aircraft/PA28/Systems/libraries.xml</path>
 			</autopilot>
 		</systems>
@@ -842,8 +845,11 @@
 			<file>Aircraft/PA28/Nasal/systems.nas</file>
 		</systems>
 		<stec55x>
-			<file>Aircraft/PA28/Nasal/stec-55x.nas</file>
+			<file>Aircraft/PA28/Nasal/Autopilot/stec-55x.nas</file>
 		</stec55x>
+		<kap140>
+			<file>Aircraft/Generic/kap140.nas</file>
+		</kap140>
 		<gtx327>
 			<file>Aircraft/PA28/Nasal/gtx-327.nas</file>
 		</gtx327>
