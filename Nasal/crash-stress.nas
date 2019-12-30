@@ -76,7 +76,7 @@ setlistener("/gear/gear[9]/wow", func {
 	if (pts.Gear.wow[9].getBoolValue() and loaded) {
 		damagedHappened = 1;
 		pts.Fdm.Jsbsim.CrashStress.noseDamaged.setBoolValue(1);
-		damage_message(nose);
+		damage_message("nose");
 		pts.Fdm.Jsbsim.Contact.posNorm[9].setValue(0);
 		pts.Fdm.Jsbsim.Gear.posNorm[0].setValue(0); # Nose Gear
 		damage_message("nosegear");
