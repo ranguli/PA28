@@ -536,7 +536,7 @@
 					<value>0</value>
 				</equals>
 			</condition>
-			<property>/it-stec55x/input/hdg</property>
+			<property>/instrumentation/heading-indicator/heading-bug-deg</property>
 			<offset>
 				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
 				<scale>-1.0</scale>
@@ -575,7 +575,7 @@
 			</condition>
 			<expression>
 				<sum>
-					<property>/it-stec55x/input/hdg</property>
+					<property>/instrumentation/heading-indicator/heading-bug-deg</property>
 					<product>
 						<property>/it-stec55x/internal/intercept-angle</property>
 						<value>-1.0</value>
