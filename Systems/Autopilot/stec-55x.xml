@@ -789,46 +789,6 @@
 		<max-rate-of-change>10</max-rate-of-change>
 	</filter>
 	
-	<filter>
-		<name>IT-CONTROLLER: ROLL OUTPUT GENERIC</name>
-		<debug>false</debug>
-		<type>noise-spike</type>
-		<enable>
-			<condition>
-				<and>
-					<greater-than>
-						<property>/it-stec55x/output/roll</property>
-						<value>-1</value>
-					</greater-than>
-					<equals>
-						<property>/it-stec55x/internal/servo-roll-power</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-stec55x/settings/use-controls-flight</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/options/autopilot</property>
-						<value>S-TEC-55X</value>
-					</equals>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<product>
-					<sum>
-						<property>/it-stec55x/internal/aileron-pi</property>
-						<property>/it-stec55x/internal/aileron-d</property>
-					</sum>
-					<property>/it-stec55x/settings/gain-roll</property>
-				</product>
-			</expression>
-		</input>
-		<output>/controls/flight/aileron</output>
-		<max-rate-of-change>0.5</max-rate-of-change>
-	</filter>
 	
 	<!-- Pitch Axis -->
 	
@@ -1220,44 +1180,6 @@
 			<value>0.5</value>
 		</max-rate-of-change>
 		<max-rate-of-change>10</max-rate-of-change>
-	</filter>
-	
-	<filter>
-		<name>IT-CONTROLLER: PITCH OUTPUT GENERIC</name>
-		<debug>false</debug>
-		<type>noise-spike</type>
-		<enable>
-			<condition>
-				<and>
-					<greater-than>
-						<property>/it-stec55x/output/pitch</property>
-						<value>-1</value>
-					</greater-than>
-					<equals>
-						<property>/it-stec55x/internal/servo-pitch-power</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-stec55x/settings/use-controls-flight</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/options/autopilot</property>
-						<value>S-TEC-55X</value>
-					</equals>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<product>
-					<property>/it-stec55x/internal/elevator-pi</property>
-					<property>/it-stec55x/settings/gain-pitch</property>
-				</product>
-			</expression>
-		</input>
-		<output>/controls/flight/elevator</output>
-		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 	
 	<filter>

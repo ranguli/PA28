@@ -48,6 +48,9 @@
 		</hud>
 		<menubar>
 			<default>
+				<menu n="3">
+					<enabled type="bool">true</enabled>
+				</menu>
 				<menu n="100">
 					<label>|</label>
 					<enabled type="bool">false</enabled>
@@ -208,13 +211,16 @@
 			<electrical>
 				<path></path>
 			</electrical>
-			<autopilot n="0">
+			<autopilot n="100">
 				<path>Aircraft/PA28/Systems/Autopilot/stec-55x.xml</path>
 			</autopilot>
-			<autopilot n="1">
+			<autopilot n="101">
 				<path>Aircraft/PA28/Systems/Autopilot/KAP140.xml</path>
 			</autopilot>
-			<autopilot n="2">
+			<autopilot n="102">
+				<path>Aircraft/PA28/Systems/Autopilot/autopilot.xml</path>
+			</autopilot>
+			<autopilot n="103">
 				<path>Aircraft/PA28/Systems/libraries.xml</path>
 			</autopilot>
 		</systems>
@@ -322,6 +328,27 @@
 			<start-offset-m>20</start-offset-m>
 		</runways>
 	</airport>
+	
+	<KAP140>
+		<locks>
+			<nav-hold type="bool">0</nav-hold>
+			<apr-hold type="bool">0</apr-hold>
+			<rev-hold type="bool">0</rev-hold>
+			<alt-hold type="bool">0</alt-hold>
+			<gs-hold type="bool">0</gs-hold>
+		</locks>
+		<settings>
+			<target-intercept-angle-nav type="double">0.0</target-intercept-angle-nav>
+			<target-intercept-angle-apr type="double">0.0</target-intercept-angle-apr>
+			<target-intercept-angle-rev type="double">0.0</target-intercept-angle-rev>
+			<target-intercept-angle type="double">0.0</target-intercept-angle>
+			<target-pressure-rate-alt type="double">0.0</target-pressure-rate-alt>
+			<target-pressure-rate-gs type="double">0.0</target-pressure-rate-gs>
+			<target-pressure-rate type="double">0.0</target-pressure-rate>
+		</settings>
+		<aileron-cmd type="double">0.0</aileron-cmd>
+		<elevator-cmd type="double">0.0</elevator-cmd>
+	</KAP140>
 	
 	<consumables>
 		<fuel>
@@ -848,7 +875,7 @@
 			<file>Aircraft/PA28/Nasal/Autopilot/stec-55x.nas</file>
 		</stec55x>
 		<kap140>
-			<file>Aircraft/Generic/kap140.nas</file>
+			<file>Aircraft/PA28/Nasal/Autopilot/kap140.nas</file>
 		</kap140>
 		<gtx327>
 			<file>Aircraft/PA28/Nasal/gtx-327.nas</file>
