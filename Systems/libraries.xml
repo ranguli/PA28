@@ -379,14 +379,6 @@
 		<max>1800</max>
 	</filter>
 	
-	<!-- Pass heading bug setting to /autopilot/settings/heading-bug-deg, so that SurferTim's air manager works (https://forum.flightgear.org/viewtopic.php?f=25&t=36560) -->
-	<filter>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>/instrumentation/heading-indicator/heading-bug-deg</input>
-		<output>/autopilot/settings/heading-bug-deg</output>
-	</filter>
-	
 	<!-- Sounds -->
 	<filter>
 		<name>Avionics Fan lowpass</name>

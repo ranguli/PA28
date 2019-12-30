@@ -273,7 +273,7 @@
 			</condition>
 			<property>/it-stec55x/custom-nav/nav-course-2</property>
 		</input>
-		<input>/instrumentation/heading-indicator/heading-bug-deg</input>
+		<input>/autopilot/settings/heading-bug-deg</input>
 		<output>/it-stec55x/nav/nav-course</output>
 	</filter>
 	
@@ -536,7 +536,7 @@
 					<value>0</value>
 				</equals>
 			</condition>
-			<property>/instrumentation/heading-indicator/heading-bug-deg</property>
+			<property>/autopilot/settings/heading-bug-deg</property>
 			<offset>
 				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
 				<scale>-1.0</scale>
@@ -575,7 +575,7 @@
 			</condition>
 			<expression>
 				<sum>
-					<property>/instrumentation/heading-indicator/heading-bug-deg</property>
+					<property>/autopilot/settings/heading-bug-deg</property>
 					<product>
 						<property>/it-stec55x/internal/intercept-angle</property>
 						<value>-1.0</value>
