@@ -102,6 +102,12 @@
 				<command>nasal</command>
 				<script>stec55x.button.DISC();</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>if( getprop("/KAP140/locks/roll-mode") != 0 and getprop("/KAP140/locks/pitch-mode") != 0 ) {
+						kap140.apButton();
+					}</script>
+			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>

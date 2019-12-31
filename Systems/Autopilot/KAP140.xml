@@ -153,6 +153,11 @@
 	<pid-controller>
 		<name>Heading Select (HDG) Mode</name>
 		<debug>false</debug>
+		<enable>
+			<condition>
+				<property>/KAP140/locks/hdg-hold</property>
+			</condition>
+		</enable>
 		<input>
 			<property>/autopilot/internal/heading-bug-error-deg</property>
 		</input>
@@ -190,8 +195,12 @@
 			<property>/instrumentation/turn-indicator/indicated-turn-rate</property>
 		</input>
 		<reference>
+			<condition>
+				<property>/KAP140/locks/hdg-hold</property>
+			</condition>
 			<property>/KAP140/settings/target-turn-rate</property>
 		</reference>
+		<reference>0</reference>
 		<output>
 			<property>/KAP140/aileron-cmd</property>
 		</output>

@@ -260,6 +260,17 @@
 				<factor>0.60</factor>
 			</volume>
 		</switch>
+		
+		<!-- KAP140 Autopilot -->
+		<kap140beep>
+			<name>KAP140Beep</name>
+			<type>avionics</type>
+			<mode>looped</mode>
+			<path>Sounds/stall.wav</path>
+			<condition>
+				<property>autopilot/KAP140/annunciators/beep/state</property>
+			</condition>
+		</kap140beep>
 	
 	</fx>
 
