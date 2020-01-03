@@ -222,6 +222,18 @@
 
 			<hrule/>
 			
+			<checkbox>
+				<halign>center</halign>
+				<label>Garmin 196 GPS</label>
+				<property>/options/garmin196</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<hrule/>
+			
 			<text>
 				<halign>left</halign>
 				<label>Autopilot:</label>

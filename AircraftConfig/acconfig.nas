@@ -39,6 +39,7 @@ setprop("/systems/acconfig/options/adf-equipped", 0);
 setprop("/systems/acconfig/options/show-l-yoke", 1);
 setprop("/systems/acconfig/options/show-r-yoke", 1);
 setprop("/systems/acconfig/options/mini-panel", 0);
+setprop("/systems/acconfig/options/garmin196", 0);
 setprop("/systems/acconfig/options/no-rendering-warn", 0);
 var main_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/main/dialog", "Aircraft/PA28//AircraftConfig/main.xml");
 var welcome_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/welcome/dialog", "Aircraft/PA28//AircraftConfig/welcome.xml");
@@ -84,7 +85,7 @@ var renderingSettings = {
 	},
 };
 
-var options = [ "show-l-yoke", "show-r-yoke", "panel", "attitude-indicator", "radio-setup", "attitude-indicator", "adf-equipped", "mini-panel", "autopilot" ];
+var options = [ "show-l-yoke", "show-r-yoke", "panel", "attitude-indicator", "radio-setup", "attitude-indicator", "adf-equipped", "mini-panel", "autopilot", "garmin196" ];
 
 var readSettings = func {
 	io.read_properties(getprop("/sim/fg-home") ~ "/Export/PA28-config.xml", "/systems/acconfig/options");

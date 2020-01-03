@@ -893,7 +893,10 @@
 		</HobbsMeter>
 		<controls>
 			<file>Aircraft/PA28/Nasal/controls_override.nas</file>
-		</controls>
+		</controls>      
+		<garmin196>
+			<file>Aircraft/Instruments-3d/garmin196/garmin196.nas</file>
+		</garmin196>
 	</nasal>
 
 </PropertyList>

@@ -1214,6 +1214,21 @@
 		</offsets>
 	</model>
 	
+	<model>
+		<name>Garmin196</name>
+		<condition>
+			<property>options/garmin196</property>
+		</condition>
+		<path>Aircraft/Instruments-3d/garmin196/garmin196.xml</path>
+		<offsets>
+			<heading-deg>-15</heading-deg>
+			<pitch-deg>-5</pitch-deg>
+			<x-m>-1.58</x-m>
+			<y-m>0.05</y-m>
+			<z-m>0.39</z-m>
+		</offsets>
+	</model>
+	
 	<animation>
 		<name>InstrumentGroup</name>
 		<object-name>ASI</object-name>
