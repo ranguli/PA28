@@ -777,6 +777,7 @@
 		<panel type="string">HSI Panel</panel>
 		<attitude-indicator type="string">standard</attitude-indicator>
 		<radio-setup type="string">traditional</radio-setup>
+		<garmin196 type="bool">0</garmin196>
 		<adf-equipped type="bool">0</adf-equipped>
 		<show-l-yoke type="bool">1</show-l-yoke>
 		<show-r-yoke type="bool">1</show-r-yoke>
