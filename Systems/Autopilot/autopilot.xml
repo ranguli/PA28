@@ -26,11 +26,15 @@
 						</equals>
 					</and>
 					<and>
-						<property>/KAP140/locks/roll-axis</property>
 						<equals>
 							<property>/options/autopilot</property>
 							<value>KAP140</value>
 						</equals>
+						<equals>
+							<property>autopilot/kap140/panel/state</property>
+							<value>6</value>
+						</equals>
+						<not><property>autopilot/kap140/settings/cws</property></not>
 					</and>
 				</or>
 			</condition>
@@ -69,14 +73,18 @@
 		<input>
 			<condition>
 				<and>
-					<property>/KAP140/locks/roll-axis</property>
 					<equals>
 						<property>/options/autopilot</property>
 						<value>KAP140</value>
 					</equals>
+					<greater-than>
+						<property>autopilot/kap140/settings/lateral-mode</property>
+						<value>0</value>
+					</greater-than>
+					<not><property>autopilot/kap140/settings/cws</property></not>
 				</and>
 			</condition>
-			<property>/KAP140/aileron-cmd</property>
+			<property>autopilot/kap140/servo/aileron</property>
 		</input>
 		<output>/controls/flight/aileron</output>
 		<max-rate-of-change>0.5</max-rate-of-change>
@@ -107,11 +115,15 @@
 						</equals>
 					</and>
 					<and>
-						<property>/KAP140/locks/pitch-axis</property>
 						<equals>
 							<property>/options/autopilot</property>
 							<value>KAP140</value>
 						</equals>
+						<greater-than>
+							<property>autopilot/kap140/settings/vertical-mode</property>
+							<value>0</value>
+						</greater-than>
+						<not><property>autopilot/kap140/settings/cws</property></not>
 					</and>
 				</or>
 			</condition>
@@ -147,14 +159,18 @@
 		<input>
 			<condition>
 				<and>
-					<property>/KAP140/locks/pitch-axis</property>
 					<equals>
 						<property>/options/autopilot</property>
 						<value>KAP140</value>
 					</equals>
+					<greater-than>
+						<property>autopilot/kap140/settings/vertical-mode</property>
+						<value>0</value>
+					</greater-than>
+					<not><property>autopilot/kap140/settings/cws</property></not>
 				</and>
 			</condition>
-			<property>/KAP140/elevator-cmd</property>
+			<property>autopilot/kap140/servo/elevator</property>
 		</input>
 		<output>/controls/flight/elevator</output>
 		<max-rate-of-change>0.5</max-rate-of-change>

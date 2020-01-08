@@ -103,15 +103,36 @@
 				<script>stec55x.button.DISC();</script>
 			</binding>
 			<binding>
-				<command>nasal</command>
-				<script>if( getprop("/KAP140/locks/roll-mode") != 0 and getprop("/KAP140/locks/pitch-mode") != 0 ) {
-						kap140.apButton();
-					}</script>
+				<condition>
+					<equals>
+						<property>autopilot/kap140/panel/state</property>
+						<value>6</value>
+					</equals>
+				</condition>
+				<command>property-assign</command>
+				<property>autopilot/kap140/panel/button-ap</property>
+				<value>0.000001</value>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>autopilot/kap140/panel/state</property>
+						<value>6</value>
+					</equals>
+				</condition>
+				<command>property-assign</command>
+				<property>autopilot/kap140/panel/state-old</property>
+				<property>autopilot/kap140/panel/state</property>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
 					<property>/it-stec55x/input/disc</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>property-assign</command>
+					<property>autopilot/kap140/panel/button-ap</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -143,10 +164,20 @@
 				<command>nasal</command>
 				<script>stec55x.button.CWS(1);</script>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>autopilot/kap140/settings/cws</property>
+				<value>1</value>
+			</binding>
 			<mod-up>
 				<binding>
 					<command>nasal</command>
 					<script>stec55x.button.CWS(0);</script>
+				</binding>
+				<binding>
+					<command>property-assign</command>
+					<property>autopilot/kap140/settings/cws</property>
+					<value>0</value>
 				</binding>
 			</mod-up>
 		</action>

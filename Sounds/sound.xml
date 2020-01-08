@@ -262,15 +262,39 @@
 		</switch>
 		
 		<!-- KAP140 Autopilot -->
-		<kap140beep>
-			<name>KAP140Beep</name>
-			<type>avionics</type>
-			<mode>looped</mode>
-			<path>Sounds/stall.wav</path>
+		<kap140-disengage>
+			<name>KAP140 disengage</name>
+			<path>kap140-disengage.wav</path>
 			<condition>
-				<property>autopilot/KAP140/annunciators/beep/state</property>
+				<or>
+					<equals>
+						<property>autopilot/kap140/panel/state</property>
+						<value>3</value>
+					</equals>
+					<property>autopilot/kap140/panel/ap-timer</property>
+				</or>
 			</condition>
-		</kap140beep>
+			<volume><factor>0.3</factor></volume>
+			<position>
+				<x>-1.7430</x>
+				<y> 0.1067</y>
+				<z> 0.1376</z>
+			</position>
+		</kap140-disengage>
+
+		<kap140-alert>
+			<name>KAP140 altitude alerter</name>
+			<path>kap140-alert.wav</path>
+			<condition>
+				<property>autopilot/kap140/panel/alt-alert-sound</property>
+			</condition>
+			<volume><factor>0.3</factor></volume>
+			<position>
+				<x>-1.7430</x>
+				<y> 0.1067</y>
+				<z> 0.1376</z>
+			</position>
+		</kap140-alert>
 	
 	</fx>
 

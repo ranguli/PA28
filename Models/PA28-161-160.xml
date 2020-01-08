@@ -190,6 +190,8 @@
 		<object-name>propblur</object-name>
 		<object-name>propdisc</object-name>
 		<object-name>placards_transparent</object-name>
+		<object-name>placards_transparent.kap</object-name>
+		<object-name>placards_transparent.stec</object-name>
 		<object-name>tailnav.glass</object-name>
 		<object-name>beacon.glass</object-name>
 		<object-name>windows</object-name>
@@ -225,6 +227,8 @@
 		<object-name>panel.quadrant</object-name>
 		<object-name>panel.console</object-name>
 		<object-name>placards_transparent</object-name>
+		<object-name>placards_transparent.kap</object-name>
+		<object-name>placards_transparent.stec</object-name>
 		<object-name>annun.base</object-name>
 		<emission>
 			<red>0.1</red>
@@ -826,11 +830,21 @@
 	<model>
 		<name>APSW</name>
 		<path>ap-sw.xml</path>
+		<condition>
+			<equals>
+				<property>options/autopilot</property>
+				<value>S-TEC-55X</value>
+			</equals>
+		</condition>
 	</model>
 	<animation>
 		<type>select</type>
 		<object-name>AP.placard</object-name>
 		<condition>
+			<equals>
+				<property>options/autopilot</property>
+				<value>S-TEC-55X</value>
+			</equals>
 			<not-equals>
 				<property>it-stec55x/settings/fd-equipped</property>
 				<value>1</value>
@@ -842,6 +856,10 @@
 		<type>select</type>
 		<object-name>APFD.placard</object-name>
 		<condition>
+			<equals>
+				<property>options/autopilot</property>
+				<value>S-TEC-55X</value>
+			</equals>
 			<equals>
 				<property>it-stec55x/settings/fd-equipped</property>
 				<value>1</value>
@@ -895,14 +913,65 @@
 	</animation>
 	
 	<model>
-		<name>NAVSW</name>
-		<path>Instruments/nav-src-sw/nav-src-sw.xml</path>
+		<name>DMESW</name>
+		<path>Instruments/switch/dme_switch.xml</path>
 		<offsets>
 			<x-m>-1.73095</x-m>
 			<y-m>0.221189</y-m>
 			<z-m>0.276444</z-m>
 		</offsets>
 	</model>
+	
+	<model>
+		<name>NAVSW_STEC</name>
+ 		<condition>
+ 			<equals>
+ 				<property>options/autopilot</property>
+ 				<value>S-TEC-55X</value>
+			</equals>
+		</condition>
+		<path>Instruments/switch/navsrc_stec55x.xml</path>
+		<offsets>
+			<x-m>-1.73095</x-m>
+			<y-m>0.399156</y-m>
+			<z-m>0.235709</z-m>
+		</offsets>
+	</model>
+	<animation>
+		<type>select</type>
+ 		<condition>
+ 			<equals>
+ 				<property>options/autopilot</property>
+ 				<value>S-TEC-55X</value>
+			</equals>
+		</condition>
+		<object-name>placards_transparent.navsrc.stec</object-name>
+	</animation>
+	<model>
+		<name>NAVSW_KAP</name>
+ 		<condition>
+ 			<equals>
+ 				<property>options/autopilot</property>
+ 				<value>KAP140</value>
+			</equals>
+		</condition>
+		<path>Instruments/switch/navsrc_kap140.xml</path>
+		<offsets>
+			<x-m>-1.73095</x-m>
+			<y-m>0.399156</y-m>
+			<z-m>0.235709</z-m>
+		</offsets>
+	</model>
+	<animation>
+		<type>select</type>
+ 		<condition>
+ 			<equals>
+ 				<property>options/autopilot</property>
+ 				<value>KAP140</value>
+			</equals>
+		</condition>
+		<object-name>placards_transparent.navsrc.kap</object-name>
+	</animation>
 	
 	<model>
 		<name>TC</name>
@@ -1076,11 +1145,11 @@
 	
 	<model>
 		<name>KAP140</name>
-		<path>Instruments/kap140/KAP140TwoAxisAlt.xml</path>
+		<path>Instruments/kap140/kap140.xml</path>
 		<offsets>
-			<x-m>-1.73</x-m>
-			<y-m>0.10665</y-m>
-			<z-m>0.137551</z-m>
+			<x-m>-1.7430</x-m>
+			<y-m>0.1067</y-m>
+			<z-m>0.1376</z-m>
 		</offsets>
 	</model>
 	

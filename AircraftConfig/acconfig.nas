@@ -106,9 +106,17 @@ var writeSettings = func {
 var autopilotSettings = func {
 	if (getprop("/options/panel") == "HSI Panel") {
 		setprop("/it-stec55x/settings/hsi-equipped-1", 1);
+		setprop("/autopilot/kap140/config/hsi-installed", 1);
 	} else {
 		setprop("/it-stec55x/settings/hsi-equipped-1", 0);
+		setprop("/autopilot/kap140/config/hsi-installed", 0);
 	}
+	
+	if (getprop("/options/attitude-indicator") == "standard") {
+		setprop("/autopilot/kap140/config/baro-tied", 0);
+	} else {
+		setprop("/autopilot/kap140/config/baro-tied", 1);
+ 	}
 }
 
 ################
