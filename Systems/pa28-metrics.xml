@@ -8,8 +8,9 @@
 	<wingarea unit="FT2">170</wingarea>
 	<wingspan unit="FT">35</wingspan>
 	<chord unit="FT">5.25</chord>
-	<htailarea unit="FT2">37.18</htailarea>
-	<vtailarea unit="FT2">28.6</vtailarea>
+	<htailarea unit="FT2">24.4</htailarea>
+	<vtailarea unit="FT2">11.6</vtailarea>
+	<wing_incidence unit="DEG">3.62</wing_incidence> <!-- 2.62 deg at tip, 4.62 deg at root -->
 	
 	<location name="AERORP" unit="M">
 		<x>-1.07567</x>

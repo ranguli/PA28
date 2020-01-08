@@ -2,6 +2,17 @@
 
 <!-- Piper PA28 Aerodynamics -->
 <!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Reworked 2020 by Benedikt Wolf (D-ECHO) with help by Jonathan Redpath (legoboyvdlp) -->
+
+<!-- References:
+	1) 	IRA H. ABBOTT, ALBERT E. VON DOENHOFF, and LOUIS S. STIVERS, Jr.: SUMMARY OF AIRFOIL DATA 
+			https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19930090976.pdf
+			especially page 219 (217 printed) about NACA 652-415 Cl and Cd
+	2)	E.G.TULAPURKARA, S.ANANTH, TEJAS M. KULKARNI: PERFORMANCE ANALYSIS OF A PISTON ENGINED AIRPLANE - PIPER CHEROKEE PA-28-180
+			http://www.engbrasil.eng.br/artigos/art105.pdf
+	3)	W. F. Phillips and D. F. Hunsaker: Lifting-Line Predictions for Induced Drag and Lift in Ground Effect
+			https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=1086&context=mae_facpub
+-->
 
 <aerodynamics>
 	
@@ -10,22 +21,32 @@
 		<table>
 			<independentVar lookup="row">aero/h_b-mac-ft</independentVar>
 			<tableData>
-				0.0000  0.4800
-				0.1000  0.5150
-				0.1500  0.6290
-				0.2000  0.7090
-				0.3000  0.8150
-				0.4000  0.8820
-				0.5000  0.9280
-				0.6000  0.9620
-				0.7000  0.9880
-				0.8000  1.0000
-				0.9000  1.0000
-				1.0000  1.0000
-				1.1000  1.0000
+				<!-- Ref 3 (Figure 3) -->
+				0.00	0.320
+				0.10	0.520
+				0.20	0.695
+				0.50	0.900
+				1.00	0.990
+				2.00	1.000
 			  </tableData>
 		</table>
 	</function>
+	<function name="aero/function/kCLge">
+		<description>Change in drag due to ground effect</description>
+		<table>
+			<independentVar lookup="row">aero/h_b-mac-ft</independentVar>
+			<tableData>
+				<!-- Ref 3 (Figure 5) (Aspect ratio 5.63) -->
+				0.00	1.220
+				0.10	1.160
+				0.20	1.080
+				0.50	1.025
+				1.00	1.012
+				2.00	1.000
+			  </tableData>
+		</table>
+	</function>
+	
 	
 	<function name="aero/function/qbar-propwash-psf">
 		<description>Q bar due to the propeller induced velocity</description>
@@ -35,6 +56,12 @@
 			<property>atmosphere/rho-slugs_ft3</property>
 			<value>0.5</value>
 		</product>
+	</function>
+	
+	<function name="aero/alpha-wing-deg">
+		<todegrees>
+			<property>aero/alpha-wing-rad</property>
+		</todegrees>
 	</function>
 	
 	<axis name="LIFT">
@@ -59,39 +86,44 @@
 			</product>
 		</function>
 		
+		<!--According to Ref 2, page 22 (21 printed), Clmax is 1.33 at flaps 0, 1.42 at flaps 10, 1.70 at flaps 25 and 1.86 at flaps 40 -->
 		<function name="aero/coefficient/CLalpha">
 			<description>Lift due to alpha</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<value>1.0328138</value> <!-- Tuning factor -->
+				<property>aero/function/kCLge</property>
+				<value>0.8581</value> <!-- Factor to reach Clalpha,max=1.33 -->
 				<table>
-					<independentVar lookup="row">aero/alpha-rad</independentVar>
-					<independentVar lookup="column">aero/stall-hyst-norm</independentVar>
+					<independentVar>aero/alpha-wing-deg</independentVar>
 					<tableData>
-						       0     1
-						-0.09 -0.05 -0.05
-						 0.00  0.37  0.37
-						 0.09  0.91  0.91
-						 0.10  1.03  0.98
-						 0.12  1.12  0.99
-						 0.14  1.22  1.01
-						 0.16  1.28  1.02
-						 0.17  1.33  1.03
-						 0.19  1.39  1.05
-						 0.21  1.45  1.06
-						 0.24  1.55  1.08
-						 0.26  1.64  1.10
-						 0.28  1.67  1.12
-						 0.30  1.63  1.15
-						 0.32  1.58  1.19
-						 0.34  1.50  1.25
-						 0.36  1.35  1.35
-						 0.52  1.47  1.47
-						 0.70  1.55  1.65
-						 0.87  1.57  1.47
-						 1.05  1.27  1.17
-						 1.57  0.05  0.05
+						-90	0
+						<!-- begin diagram data, from ref. 1-->
+						-18	-0.55
+						-16	-0.45
+						-14	-0.70
+						-13	-1.05
+						-12	-1.00
+						-10	-0.80
+						-8	-0.58
+						-6	-0.39
+						-4	-0.13
+						-2	0.10
+						0	0.30
+						2	0.54
+						4	0.74
+						6	0.90
+						8	1.13
+						10	1.30
+						12	1.42
+						14	1.52
+						16	1.55
+						18	1.53
+						20	1.45
+						22	1.13
+						24	1.03
+						<!--end of diagram data-->
+						90	0
 					</tableData>   
 				</table>
 				<property>crash-stress/wing-factor</property>
@@ -122,13 +154,21 @@
 			</product>
 		</function>
 		
+		<!-- offset to reach Clmax as described above -->
 		<function name="aero/coefficient/CLflap">
 			<description>Lift due to flaps</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<property>fcs/flap-pos-deg</property>
-				<value>0.00521</value>
+				<table>
+					<independentVar>fcs/flap-pos-deg</independentVar>
+					<tableData>
+						0	0
+						10	0.09
+						25	0.37
+						40	0.53
+					</tableData>
+				</table>
 				<property>crash-stress/wing-factor</property>
 			</product>
 		</function>
@@ -147,13 +187,13 @@
 	</axis>
 	
 	<axis name="DRAG">
-		
+		<!-- See Ref 2 -->
 		<function name="aero/coefficient/CD0">
 			<description>Minimum drag</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<value>0.035313</value>
+				<value>0.0244</value>
 			</product>
 		</function>
 		
@@ -167,35 +207,35 @@
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
 					<tableData>
-						         0       10      25      40
-						-0.0873  0.0041  0.0000  0.0005  0.0008
-						-0.0698  0.0013  0.0004  0.0025  0.0036
-						-0.0524  0.0001  0.0023  0.0059  0.0078
-						-0.0349  0.0003  0.0057  0.0108  0.0135
-						-0.0175  0.0020  0.0105  0.0172  0.0207
-						 0.0000  0.0052  0.0168  0.0251  0.0295
-						 0.0175  0.0099  0.0248  0.0346  0.0398
-						 0.0349  0.0162  0.0342  0.0457  0.0518
-						 0.0524  0.0240  0.0452  0.0583  0.0652
-						 0.0698  0.0334  0.0577  0.0724  0.0802
-						 0.0873  0.0442  0.0718  0.0881  0.0968
-						 0.1047  0.0566  0.0874  0.1053  0.1148
-						 0.1222  0.0706  0.1045  0.1240  0.1343
-						 0.1396  0.0860  0.1232  0.1442  0.1554
-						 0.1571  0.0962  0.1353  0.1573  0.1690
-						 0.1745  0.1069  0.1479  0.1708  0.1830
-						 0.1920  0.1180  0.1610  0.1849  0.1975
-						 0.2094  0.1298  0.1746  0.1995  0.2126
-						 0.2269  0.1424  0.1892  0.2151  0.2286
-						 0.2443  0.1565  0.2054  0.2323  0.2464
-						 0.3491  0.2537  0.3298  0.3755  0.3983
-						 0.5236  0.4500  0.5850  0.6660  0.7065
-						 0.6981  0.7000  0.9100  1.0360  1.0990
-						 0.8727  1.0000  1.3000  1.4800  1.5700
-						 1.0472  1.3500  1.7550  1.9980  2.1195
-						 1.2217  1.5000  1.9500  2.2200  2.3550
-						 1.3963  1.5700  2.0410  2.3236  2.4649
-						 1.5710  1.6000  2.0800  2.3680  2.5120
+							0	65
+						-90	2	2
+						<!-- begin diagram data, from ref. 1-->
+						-18	0.0082	0.021
+						-16	0.0077	0.0158
+						-14	0.0095	0.030 <!-- guess for flaps extended -->
+						-13	0.013	0.050 <!-- guess for both -->
+						-12	0.0122	0.045 <!-- guess for both -->
+						-10	0.0105	0.035 <!-- guess for flaps extended -->
+						-8	0.0085	0.028 <!-- guess for flaps extended -->
+						-6	0.0073	0.0144
+						-4	0.0064	0.011
+						-2	0.0048	0.0102
+						0	0.0041	0.0101
+						2	0.0042	0.0112
+						4	0.0060	0.0132
+						6	0.009	0.016
+						8	0.0111	0.024 <!-- guess for flaps extended -->
+						10	0.014 	0.035 <!-- guess for flaps extended -->
+						12	0.016	0.045 <!-- guess for flaps extended -->
+						<!--from here guesses -->
+						14	0.020	0.048
+						16	0.030	0.055
+						18	0.045	0.060
+						20	0.030	0.050
+						22	0.0145	0.027
+						24	0.0128	0.021
+						<!--end of diagram data-->
+						90	2	2
 					  </tableData>
 				</table>
 				<property>crash-stress/wing-factor</property>
@@ -209,7 +249,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>aero/function/kCDge</property>
 				<property>aero/cl-squared</property>
-				<value>0.002298</value>
+				<value>0.0696</value> <!-- induced drag coefficient K according to ref 2 -->
 			</product>
 		</function>
 		
