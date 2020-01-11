@@ -87,7 +87,7 @@
 			<property>autopilot/kap140/servo/aileron</property>
 		</input>
 		<output>/controls/flight/aileron</output>
-		<max-rate-of-change>0.5</max-rate-of-change>
+		<max-rate-of-change>0.1</max-rate-of-change>
 	</filter>
 	<filter>
 		<name>ELEVATOR OUTPUT</name>
@@ -173,6 +173,6 @@
 			<property>autopilot/kap140/servo/elevator</property>
 		</input>
 		<output>/controls/flight/elevator</output>
-		<max-rate-of-change>0.5</max-rate-of-change>
+		<max-rate-of-change>0.1</max-rate-of-change>
 	</filter>
 </PropertyList>

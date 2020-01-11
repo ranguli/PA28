@@ -1670,10 +1670,10 @@
 
       <binding>
         <condition>
-          <not-equals>
+          <equals>
             <property>autopilot/kap140/settings/vertical-arm</property>
-            <value>0</value>
-          </not-equals>
+            <value>1</value>
+          </equals>
           <equals>
             <property>autopilot/kap140/settings/vertical-mode</property>
             <value>2</value>
@@ -1896,6 +1896,14 @@
             <property>autopilot/kap140/panel/state</property>
             <value>6</value>
           </equals>
+          <less-than>
+            <property>autopilot/kap140/settings/vertical-mode</property>
+            <value>3</value>
+          </less-than>
+          <less-than>
+            <property>autopilot/kap140/settings/vertical-arm</property>
+            <value>2</value>
+          </less-than>
         </condition>
         <command>property-toggle</command>
         <property>autopilot/kap140/settings/vertical-arm</property>
@@ -1977,6 +1985,14 @@
           <equals>
             <property>autopilot/kap140/panel/digit-mode</property>
             <value>1</value>
+          </equals>
+          <less-than>
+            <property>autopilot/kap140/settings/vertical-mode</property>
+            <value>3</value>
+          </less-than>
+          <equals>
+            <property>autopilot/kap140/settings/vertical-arm</property>
+            <value>0</value>
           </equals>
         </condition>
         <command>property-assign</command>
@@ -2110,6 +2126,14 @@
             <property>autopilot/kap140/panel/digit-mode</property>
             <value>1</value>
           </equals>
+          <less-than>
+            <property>autopilot/kap140/settings/vertical-mode</property>
+            <value>3</value>
+          </less-than>
+          <equals>
+            <property>autopilot/kap140/settings/vertical-arm</property>
+            <value>0</value>
+          </equals>
         </condition>
         <command>property-assign</command>
         <property>autopilot/kap140/settings/vertical-arm</property>
@@ -2205,10 +2229,6 @@
 
     </action>
   </animation>
-
-
-
-
 
   <animation>
     <type>rotate</type>

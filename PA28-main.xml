@@ -840,6 +840,13 @@
 			<course-error type="double">0.0</course-error>
 		</nav-source>
 		<!-- nav-selector end -->
+		<gps>
+			<config>
+				<cdi-max-deflection-nm type="double">1.25</cdi-max-deflection-nm>
+				<over-flight-distance-nm type="double">0.5</over-flight-distance-nm>
+				<turn-anticipation type="bool">false</turn-anticipation>
+			</config>
+		</gps>
 	</instrumentation>
 	
 	<it-stec55x n="0"> <!-- S-TEC 55X Settings -->

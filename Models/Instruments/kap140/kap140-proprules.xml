@@ -544,6 +544,10 @@
                             <property alias="../../../../../../../params/model"/>
                             <value>3</value>
                         </equals>
+                        <less-than>
+                            <property>autopilot/kap140/settings/vertical-mode</property>
+                            <value>3</value>
+                        </less-than>
                         <greater-than>
                             <expression>
                                 <sum>
