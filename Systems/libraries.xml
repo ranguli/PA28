@@ -398,6 +398,54 @@
 		<output>/controls/lighting/panel-norm</output>
 		<filter-time>0.64</filter-time>
 	</filter>
+	
+	
+	<!-- Residual ambience (ALS) -->
+	<filter>
+		<name>RGB Red Factor combined</name>
+		<type>gain</type>
+		<input>
+			<expression>
+				<sum>
+					<property>/controls/lighting/panel-norm</property>
+				</sum>
+			</expression>
+		</input>
+		<gain>0.1</gain>
+		<output>
+			<property>/sim/model/pa28/lighting/rgb-ra-r-factor</property>
+		</output>
+	</filter>
+	<filter>
+		<name>RGB Green Factor combined</name>
+		<type>gain</type>
+		<input>
+			<expression>
+				<sum>
+					<property>/controls/lighting/panel-norm</property>
+				</sum>
+			</expression>
+		</input>
+		<gain>0.1</gain>
+		<output>
+			<property>/sim/model/pa28/lighting/rgb-ra-g-factor</property>
+		</output>
+	</filter>
+	<filter>
+		<name>RGB Blue Factor combined</name>
+		<type>gain</type>
+		<input>
+			<expression>
+				<sum>
+					<property>/controls/lighting/panel-norm</property>
+				</sum>
+			</expression>
+		</input>
+		<gain>0.1</gain>
+		<output>
+			<property>/sim/model/pa28/lighting/rgb-ra-b-factor</property>
+		</output>
+	</filter>
 
 </PropertyList>
 

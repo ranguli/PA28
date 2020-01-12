@@ -201,6 +201,7 @@
 	<effect>
 		<inherits-from>Effects/fuselage</inherits-from>
 		<object-name>Fuselage</object-name>
+		<object-name>LandingLight</object-name>
 		<object-name>VTail</object-name>
 		<object-name>Rudder</object-name>
 		<object-name>wing.L</object-name>
@@ -219,24 +220,47 @@
 		<object-name>VHFAntenna.2</object-name>
 		<object-name>doorF</object-name>
 		<object-name>doorB</object-name>
+		<object-name>WheelN</object-name>
+		<object-name>gear.F.low</object-name>
+		<object-name>gear.F.scissor1</object-name>
+		<object-name>gear.F.scissor2</object-name>
+		<object-name>gear.F.oleo</object-name>
+		<object-name>gear.F.high</object-name>
+		<object-name>WheelL</object-name>
+		<object-name>gear.low.L</object-name>
+		<object-name>gear.high.L</object-name>
+		<object-name>gear.oleo.L</object-name>
+		<object-name>gear.high.L</object-name>
+		<object-name>gear.low.scissor.L</object-name>
+		<object-name>gear.high.scissor.L</object-name>
+		<object-name>gear.fairing.L</object-name>
+		<object-name>WheelR</object-name>
+		<object-name>gear.low.R</object-name>
+		<object-name>gear.high.R</object-name>
+		<object-name>gear.oleo.R</object-name>
+		<object-name>gear.high.R</object-name>
+		<object-name>gear.low.scissor.R</object-name>
+		<object-name>gear.high.scissor.R</object-name>
+		<object-name>gear.fairing.R</object-name>
 	</effect>
 	
-	<animation>
-		<type>material</type>
+	<effect>
+		<inherits-from>Effects/interior-radiance</inherits-from>
 		<object-name>panel.main</object-name>
+		<object-name>seats</object-name>
+		<object-name>interior</object-name>
 		<object-name>panel.quadrant</object-name>
 		<object-name>panel.console</object-name>
 		<object-name>placards_transparent</object-name>
 		<object-name>placards_transparent.kap</object-name>
 		<object-name>placards_transparent.stec</object-name>
 		<object-name>annun.base</object-name>
-		<emission>
-			<red>0.1</red>
-			<green>0.1</green>
-			<blue>0.1</blue>
-			<factor-prop>controls/lighting/panel-norm</factor-prop>
-		</emission>
-	</animation>
+		<object-name>doorFint</object-name>
+		<object-name>fuel selector</object-name>
+		<object-name>FLAP-TRIM</object-name>
+		<object-name>throttle.lever</object-name>
+		<object-name>annun.test.btn</object-name>
+	</effect>
 	
 	<animation>
 		<type>material</type>
