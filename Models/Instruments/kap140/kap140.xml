@@ -2396,7 +2396,7 @@
     <type>material</type>
     <object-name>buttons</object-name>
     <emission>
-      <factor-prop>systems/electrical/outputs/instrument-lights-norm</factor-prop>
+      <factor-prop>controls/lighting/panel-norm</factor-prop>
       <red>  0.50</red>
       <green>0.40</green>
       <blue> 0.30</blue>
@@ -2412,7 +2412,7 @@
     <object-name>knob-outer</object-name>
     <object-name>display-frame</object-name>
     <emission>
-      <factor-prop>systems/electrical/outputs/instrument-lights-norm</factor-prop>
+      <factor-prop>scontrols/lighting/panel-norm</factor-prop>
       <red>  0.05</red>
       <green>0.04</green>
       <blue> 0.03</blue>
