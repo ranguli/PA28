@@ -129,6 +129,12 @@
 			</function>
 		</fcs_function>
 		
+		<pure_gain>
+			<input>/controls/lighting/panel-norm</input>
+			<gain>0.7</gain>
+			<output>/instrumentation/garmin196/light</output>
+		</pure_gain>
+		
 		<pure_gain name="/systems/electrical/outputs/pitot-heat">
 			<input>/systems/electrical/bus/main</input>
 			<gain>/controls/switches/pitot-heat</gain>
