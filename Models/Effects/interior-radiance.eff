@@ -17,7 +17,7 @@
 		</texture>
 		<light-filter-one type="vec3d">0.5 0.5 0.5</light-filter-one>
 		<light-filter-two type="vec3d">0.9 0.2 0.2</light-filter-two>
-		<light-radius type="float">13</light-radius>
+		<light-radius type="float">18</light-radius>
 		<irradiance-map-type type="int">2</irradiance-map-type>
 		<irradiance-map-strength type="float">.2</irradiance-map-strength>
 		<residual-ambience-r type="float"><use>/sim/model/pa28/lighting/rgb-ra-r-factor</use></residual-ambience-r>
