@@ -172,14 +172,17 @@ var MISC = {
 
 var dme_ext_src = 	props.globals.getNode("instrumentation/dme/nav-selector", 1);
 var dme_src	=	props.globals.getNode("instrumentation/dme/frequencies/source", 1);
-setlistener("/instrumentation/dme/kn62a-mode", func ( i ) {
-	if ( i.getValue() == 0 ) { # External
+
+var set_dme = func {
+	if ( getprop("/instrumentation/dme/kn62a-mode") == 0 ) { # External
 		dme_src.setValue("/instrumentation/nav["~dme_ext_src.getIntValue()~"]/frequencies/selected-mhz");
-	} else if ( i.getValue() == 1 ) { # Internal
+	} else { # Internal
 		dme_src.setValue("/instrumentation/dme/frequencies/selected-mhz");
 	}
-});
+};
 
+setlistener("/instrumentation/dme/kn62a-mode"  , func { set_dme() } );
+setlistener("/instrumentation/dme/nav-selector", func { set_dme() } );
 
 setlistener("/options/panel", func(i) {
 	if(i.getValue() != "HSI Panel" and getprop("/options/adf-equipped") == 1){
