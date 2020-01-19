@@ -5,7 +5,7 @@
 <PropertyList>
 	
 	<sim>
-		<author>Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp), Benedikt Wolf (D-ECHO), Sascha Reißner, Based on IDG-PA28</author>
+		<author>Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp), Benedikt Wolf (D-ECHO), Sascha Reißner (WoodSTokk), Based on IDG-PA28</author>
 		<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
 		<model>
 			<fallback-model-index type="int">11</fallback-model-index>
@@ -221,16 +221,20 @@
 			<electrical>
 				<path></path>
 			</electrical>
-			<autopilot n="100">
+			<autopilot n="0">
+				<name>S-TEC-55X</name>
 				<path>Aircraft/PA28/Systems/Autopilot/stec-55x.xml</path>
 			</autopilot>
-			<autopilot n="101">
+			<autopilot n="1">
+				<name>KAP140</name>
 				<path>Aircraft/PA28/Systems/Autopilot/kap140-autopilot.xml</path>
 			</autopilot>
-			<autopilot n="102">
+			<autopilot n="2">
+				<name>Autopilot Join</name>
 				<path>Aircraft/PA28/Systems/Autopilot/autopilot.xml</path>
 			</autopilot>
-			<autopilot n="103">
+			<autopilot n="3">
+				<name>System Libraries</name>
 				<path>Aircraft/PA28/Systems/libraries.xml</path>
 			</autopilot>
 			<property-rule n="100">
