@@ -180,7 +180,7 @@ var canvas_G5_only = {
 			me["asi.tape"].setTranslation(0,airspeed*4);
 		}
 		
-		var altitude = alt_ft.getValue();
+		var altitude = alt_ft.getValue() or 0;
 		me["altBig2"].setText(sprintf("%2d", math.floor((altitude+200)/1000)));
 		me["altBig1"].setText(sprintf("%2d", math.floor((altitude+100)/1000)));
 		me["altBig0"].setText(sprintf("%2d", math.floor((altitude)/1000)));
