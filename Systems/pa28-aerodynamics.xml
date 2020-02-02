@@ -2,7 +2,7 @@
 
 <!-- Piper PA28 Aerodynamics -->
 <!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
-<!-- Reworked 2020 by Benedikt Wolf (D-ECHO) with help by Jonathan Redpath (legoboyvdlp) -->
+<!-- Reworked 2020 by Benedikt Wolf (D-ECHO) with help by Jonathan Redpath (legoboyvdlp) and Niels Krenz (Knüppelrührer)-->
 
 <!-- References:
 	1) 	IRA H. ABBOTT, ALBERT E. VON DOENHOFF, and LOUIS S. STIVERS, Jr.: SUMMARY OF AIRFOIL DATA 
@@ -95,7 +95,7 @@
 				<property>aero/function/kCLge</property>
 				<value>0.8581</value> <!-- Factor to reach Clalpha,max=1.33 -->
 				<table>
-					<independentVar>aero/alpha-wing-deg</independentVar>
+					<independentVar>aero/alpha-deg</independentVar>
 					<tableData>
 						-90	0
 						<!-- begin diagram data, from ref. 1-->
