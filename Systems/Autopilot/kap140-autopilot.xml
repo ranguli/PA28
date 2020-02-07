@@ -243,7 +243,6 @@
 		<output>
 			<property>autopilot/internal/target-turn-rate</property>
 		</output>
-
 	</filter>
 
 <!-- Heading Select (HDG) Mode -->
@@ -258,7 +257,6 @@
 				</greater-than>
 			</condition>
 		</enable>
-
 		<input>
 			<condition>
 				<equals>
@@ -278,7 +276,6 @@
 			</condition>
 			<property>autopilot/internal/heading-bug-error-deg</property>
 		</input>
-
 		<input>
 			<condition>
 				<greater-than>
@@ -288,7 +285,6 @@
 			</condition>
 			<property>instrumentation/nav-source/course-error</property>
 		</input>
-
 		<reference>
 			<property>autopilot/internal/target-intercept-angle</property>
 		</reference>
@@ -297,48 +293,54 @@
 		</output>
 		<config>
 			<Kp>-0.05</Kp>
-
 			<beta>1.0</beta>
-
 			<alpha>0.1</alpha>
-
 			<gamma>0.0</gamma>
-
-
 			<Ti>15.0</Ti>
-
 			<Td>0.0</Td>
-
 			<u_min>-1.0</u_min>
-
 			<u_max>1.0</u_max>
-
 		</config>
 	</pid-controller>
 
-<!-- Wing leveler (ROL) Mode -->
-	<pid-controller>
-		<name>Roll / Bank</name>
+	<filter>
+		<name>ref-lateral</name>
 		<debug>false</debug>
-		<enable>
+		<type>noise-spike</type>
+		<max-rate-of-change>0.4</max-rate-of-change>
+		<input>
 			<condition>
 				<greater-than>
 					<property>autopilot/kap140/settings/lateral-mode</property>
 					<value>0</value>
 				</greater-than>
+				<not><property>autopilot/kap140/settings/cws</property></not>
 			</condition>
-		</enable>
+			<property>autopilot/internal/target-turn-rate</property>
+		</input>
+		<input>
+			<property>instrumentation/turn-indicator/indicated-turn-rate</property>
+		</input>
+		<output>
+			<property>autopilot/internal/ref-lateral</property>
+		</output>
+	</filter>
+
+<!-- Wing leveler (ROL) Mode -->
+	<pid-controller>
+		<name>Roll / Bank</name>
+		<debug>false</debug>
 		<input>
 			<property>instrumentation/turn-indicator/indicated-turn-rate</property>
 		</input>
 		<reference>
-			<property>autopilot/internal/target-turn-rate</property>
+			<property>autopilot/internal/ref-lateral</property>
 		</reference>
 		<output>
 			<property>autopilot/kap140/servo/aileron</property>
 		</output>
 		<config>
-			<Kp>0.15</Kp>
+			<Kp>0.20</Kp>
 			<!-- proportional gain -->
 			<beta>1.0</beta>
 			<!-- input value weighing factor -->
@@ -349,7 +351,7 @@
 			<!-- unfiltered derivative error -->
 			<Ti>10.0</Ti>
 			<!-- integrator time -->
-			<Td>0.0</Td>
+			<Td>0.5</Td>
 			<!-- derivator time -->
 			<u_min>-0.25</u_min>
 			<!-- minimum output clamp -->
@@ -498,38 +500,55 @@
 		<output>autopilot/internal/target-climb-rate</output>
 	</filter>
 
+	<filter>
+		<name>ref-vertical</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<max-rate-of-change>100</max-rate-of-change>
+		<input>
+			<condition>
+				<greater-than>
+					<property>autopilot/kap140/settings/vertical-mode</property>
+					<value>0</value>
+				</greater-than>
+				<not><property>autopilot/kap140/settings/cws</property></not>
+			</condition>
+			<property>autopilot/internal/target-climb-rate</property>
+		</input>
+		<input>
+			<property>autopilot/internal/vert-speed-fpm</property>
+		</input>
+		<output>
+			<property>autopilot/internal/ref-vertical</property>
+		</output>
+	</filter>
+
 <!-- Vertical Speed (VS) Mode -->
 	<pid-controller>
 		<name>Vertical Speed (VS) Mode</name>
 		<debug>false</debug>
-		<condition>
-			<greater-than>
-				<property>autopilot/kap140/settings/vertical-mode</property>
-				<value>0</value>
-			</greater-than>
-		</condition>
 		<input>
 			<property>autopilot/internal/vert-speed-fpm</property>
 		</input>
 		<reference>
-			<property>autopilot/internal/target-climb-rate</property>
+			<property>autopilot/internal/ref-vertical</property>
 		</reference>
 		<output>
 			<property>autopilot/kap140/servo/elevator</property>
 		</output>
 		<config>
-			<Kp>-0.0002</Kp> <!-- 5.0 -->
+			<Kp>-0.0002</Kp>
 			<!-- proportional gain -->
 			<beta>1.0</beta>
 			<!-- input value weighing factor -->
 			<alpha>0.1</alpha>
 			<!-- low pass filter weighing factor -->
-			<gamma>0.0</gamma>
+			<gamma>0.5</gamma>
 			<!-- input value weighing factor for -->
 			<!-- unfiltered derivative error -->
-			<Ti>4.0</Ti>
+			<Ti>5.0</Ti>
 			<!-- integrator time -->
-			<Td>0.0</Td>
+			<Td>0.5</Td>
 			<!-- derivator time -->
 			<u_min>-0.5</u_min>
 			<!-- minimum output clamp -->

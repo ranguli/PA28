@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 <!-- This autopilot file switches between S-TEC-55X and KAP140 -->
 <PropertyList>
+
 	<filter>
-		<name>AILERON OUTPUT</name>
-		<type>noise-spike</type>
-		<enable>
+		<name>max-rate</name>
+		<type>gain</type>
+		<input>
 			<condition>
 				<or>
 					<and>
@@ -38,8 +39,18 @@
 					</and>
 				</or>
 			</condition>
-		</enable>
+			<value>0.1</value>
+		</input>
 		<input>
+			<value>100.0</value>
+		</input>
+		<output>autopilot/internal/max-rate-of-change</output>
+	</filter>
+
+	<filter>
+		<name>AILERON OUTPUT S-TEC-55X</name>
+		<type>noise-spike</type>
+		<enable>
 			<condition>
 				<and>
 					<greater-than>
@@ -60,6 +71,8 @@
 					</equals>
 				</and>
 			</condition>
+		</enable>
+		<input>
 			<expression>
 				<product>
 					<sum>
@@ -70,65 +83,43 @@
 				</product>
 			</expression>
 		</input>
-		<input>
-			<condition>
-				<and>
-					<equals>
-						<property>/options/autopilot</property>
-						<value>KAP140</value>
-					</equals>
-					<greater-than>
-						<property>autopilot/kap140/settings/lateral-mode</property>
-						<value>0</value>
-					</greater-than>
-					<not><property>autopilot/kap140/settings/cws</property></not>
-				</and>
-			</condition>
-			<property>autopilot/kap140/servo/aileron</property>
-		</input>
 		<output>/controls/flight/aileron</output>
-		<max-rate-of-change>0.1</max-rate-of-change>
+		<max-rate-of-change>autopilot/internal/max-rate-of-change</max-rate-of-change>
 	</filter>
+
 	<filter>
-		<name>ELEVATOR OUTPUT</name>
-		<debug>false</debug>
+		<name>AILERON OUTPUT KAP140</name>
 		<type>noise-spike</type>
 		<enable>
 			<condition>
-				<or>
-					<and>
-						<greater-than>
-							<property>/it-stec55x/output/pitch</property>
-							<value>-1</value>
-						</greater-than>
-						<equals>
-							<property>/it-stec55x/internal/servo-pitch-power</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-stec55x/settings/use-controls-flight</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/options/autopilot</property>
-							<value>S-TEC-55X</value>
-						</equals>
-					</and>
-					<and>
-						<equals>
-							<property>/options/autopilot</property>
-							<value>KAP140</value>
-						</equals>
-						<greater-than>
-							<property>autopilot/kap140/settings/vertical-mode</property>
-							<value>0</value>
-						</greater-than>
-						<not><property>autopilot/kap140/settings/cws</property></not>
-					</and>
-				</or>
+				<equals>
+					<property>options/autopilot</property>
+					<value>KAP140</value>
+				</equals>
 			</condition>
 		</enable>
 		<input>
+			<condition>
+				<equals>
+					<property>autopilot/kap140/panel/state</property>
+					<value>6</value>
+				</equals>
+				<not><property>autopilot/kap140/settings/cws</property></not>
+			</condition>
+			<property>autopilot/kap140/servo/aileron</property>
+		</input>
+		<input>
+			<property>controls/flight/aileron</property>
+		</input>
+		<output>controls/flight/aileron</output>
+		<max-rate-of-change>autopilot/internal/max-rate-of-change</max-rate-of-change>
+	</filter>
+
+	<filter>
+		<name>ELEVATOR OUTPUT S-TEC-55X</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<enable>
 			<condition>
 				<and>
 					<greater-than>
@@ -149,6 +140,8 @@
 					</equals>
 				</and>
 			</condition>
+		</enable>
+		<input>
 			<expression>
 				<product>
 					<property>/it-stec55x/internal/elevator-pi</property>
@@ -156,23 +149,35 @@
 				</product>
 			</expression>
 		</input>
+		<output>/controls/flight/elevator</output>
+		<max-rate-of-change>autopilot/internal/max-rate-of-change</max-rate-of-change>
+	</filter>
+
+	<filter>
+		<name>ELEVATOR OUTPUT KAP140</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<enable>
+			<condition>
+				<equals>
+					<property>options/autopilot</property>
+					<value>KAP140</value>
+				</equals>
+			</condition>
+		</enable>
 		<input>
 			<condition>
-				<and>
-					<equals>
-						<property>/options/autopilot</property>
-						<value>KAP140</value>
-					</equals>
-					<greater-than>
-						<property>autopilot/kap140/settings/vertical-mode</property>
-						<value>0</value>
-					</greater-than>
-					<not><property>autopilot/kap140/settings/cws</property></not>
-				</and>
+				<equals>
+					<property>autopilot/kap140/panel/state</property>
+					<value>6</value>
+				</equals>
+				<not><property>autopilot/kap140/settings/cws</property></not>
 			</condition>
 			<property>autopilot/kap140/servo/elevator</property>
 		</input>
-		<output>/controls/flight/elevator</output>
-		<max-rate-of-change>0.1</max-rate-of-change>
+		<input>controls/flight/elevator</input>
+		<output>controls/flight/elevator</output>
+		<max-rate-of-change>autopilot/internal/max-rate-of-change</max-rate-of-change>
 	</filter>
+
 </PropertyList>

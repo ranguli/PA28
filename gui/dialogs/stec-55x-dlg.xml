@@ -5,7 +5,7 @@
 
 <PropertyList>
 
-	<name>autopilot</name>
+	<name>autopilot-stec55x</name>
 	<layout>vbox</layout>
 	
 	<group>
