@@ -32,7 +32,7 @@
 		<checklists include="PA28-Checklists.xml"/>
 		<current-view>
 			<z-offset-default type="float">20.0</z-offset-default>
-			<z-offset-min-m type="float">10.0</z-offset-min-m>
+			<z-offset-min-m type="float">2.5</z-offset-min-m>
 			<z-offset-max-m type="float">200.0</z-offset-max-m>
 		</current-view>
 		<flaps>
