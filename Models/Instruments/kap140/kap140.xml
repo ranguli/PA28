@@ -636,8 +636,8 @@
             <mod>
               <product>
                 <dif>
-                  <property>autopilot/kap140/panel/nav-timer</property>
                   <property>sim/time/elapsed-sec</property>
+                  <property>autopilot/kap140/panel/nav-timer</property>
                 </dif>
                 <value>10</value>
               </product>
@@ -673,8 +673,8 @@
             <mod>
               <product>
                 <dif>
-                  <property>autopilot/kap140/panel/nav-timer</property>
                   <property>sim/time/elapsed-sec</property>
+                  <property>autopilot/kap140/panel/nav-timer</property>
                 </dif>
                 <value>10</value>
               </product>
@@ -710,8 +710,8 @@
             <mod>
               <product>
                 <dif>
-                  <property>autopilot/kap140/panel/nav-timer</property>
                   <property>sim/time/elapsed-sec</property>
+                  <property>autopilot/kap140/panel/nav-timer</property>
                 </dif>
                 <value>10</value>
               </product>
@@ -731,16 +731,10 @@
     <object-name>ann-arm1</object-name>
     <name>ARM1 Anunciator</name>
     <condition>
-      <or>
-        <greater-than>
-          <property>autopilot/kap140/settings/lateral-arm</property>
-          <value>0</value>
-        </greater-than>
-        <equals>
-          <property>autopilot/kap140/settings/vertical-arm</property>
-          <value>2</value>
-        </equals>
-      </or>
+      <greater-than>
+        <property>autopilot/kap140/settings/lateral-arm</property>
+        <value>0</value>
+      </greater-than>
     </condition>
   </animation>
 
@@ -786,8 +780,8 @@
     <name>GS-ARM Anunciator</name>
     <condition>
       <equals>
-        <property>autopilot/kap140/settings/vertical-arm</property>
-        <value>2</value>
+        <property>autopilot/kap140/settings/lateral-arm</property>
+        <value>4</value>
       </equals>
     </condition>
   </animation>
@@ -1320,6 +1314,10 @@
             <property>autopilot/kap140/panel/state</property>
             <value>6</value>
           </equals>
+          <not-equals>
+            <property>autopilot/kap140/settings/lateral-mode</property>
+            <value>3</value>
+          </not-equals>
           <equals>
             <property>autopilot/kap140/settings/lateral-arm</property>
             <value>1</value>
@@ -1335,6 +1333,10 @@
             <property>autopilot/kap140/panel/state</property>
             <value>6</value>
           </equals>
+          <not-equals>
+            <property>autopilot/kap140/settings/lateral-mode</property>
+            <value>3</value>
+          </not-equals>
           <greater-than>
             <property>autopilot/kap140/settings/lateral-arm</property>
             <value>-1</value>
@@ -1350,6 +1352,10 @@
             <property>autopilot/kap140/panel/state</property>
             <value>6</value>
           </equals>
+          <not-equals>
+            <property>autopilot/kap140/settings/lateral-mode</property>
+            <value>3</value>
+          </not-equals>
           <equals>
             <property>autopilot/kap140/settings/lateral-arm</property>
             <value>-1</value>
@@ -1388,6 +1394,11 @@
         </condition>
         <command>property-assign</command>
         <property>autopilot/kap140/panel/hdg-timer</property>
+        <value>0</value>
+      </binding>
+      <binding>
+        <command>property-assign</command>
+        <property>autopilot/kap140/panel/nav-timer</property>
         <value>0</value>
       </binding>
       <mod-up>
@@ -1417,6 +1428,10 @@
             <property>autopilot/kap140/panel/state</property>
             <value>6</value>
           </equals>
+          <not-equals>
+            <property>autopilot/kap140/settings/lateral-mode</property>
+            <value>4</value>
+          </not-equals>
           <equals>
             <property>autopilot/kap140/settings/lateral-arm</property>
             <value>2</value>
@@ -1432,6 +1447,10 @@
             <property>autopilot/kap140/panel/state</property>
             <value>6</value>
           </equals>
+          <not-equals>
+            <property>autopilot/kap140/settings/lateral-mode</property>
+            <value>4</value>
+          </not-equals>
           <greater-than>
             <property>autopilot/kap140/settings/lateral-arm</property>
             <value>-1</value>
@@ -1447,6 +1466,10 @@
             <property>autopilot/kap140/panel/state</property>
             <value>6</value>
           </equals>
+          <not-equals>
+            <property>autopilot/kap140/settings/lateral-mode</property>
+            <value>4</value>
+          </not-equals>
           <equals>
             <property>autopilot/kap140/settings/lateral-arm</property>
             <value>-1</value>
@@ -1485,6 +1508,11 @@
         </condition>
         <command>property-assign</command>
         <property>autopilot/kap140/panel/hdg-timer</property>
+        <value>0</value>
+      </binding>
+      <binding>
+        <command>property-assign</command>
+        <property>autopilot/kap140/panel/nav-timer</property>
         <value>0</value>
       </binding>
       <mod-up>
@@ -1514,6 +1542,10 @@
             <property>autopilot/kap140/panel/state</property>
             <value>6</value>
           </equals>
+          <not-equals>
+            <property>autopilot/kap140/settings/lateral-mode</property>
+            <value>5</value>
+          </not-equals>
           <equals>
             <property>autopilot/kap140/settings/lateral-arm</property>
             <value>3</value>
@@ -1529,6 +1561,10 @@
             <property>autopilot/kap140/panel/state</property>
             <value>6</value>
           </equals>
+          <not-equals>
+            <property>autopilot/kap140/settings/lateral-mode</property>
+            <value>5</value>
+          </not-equals>
           <greater-than>
             <property>autopilot/kap140/settings/lateral-arm</property>
             <value>-1</value>
@@ -1544,6 +1580,10 @@
             <property>autopilot/kap140/panel/state</property>
             <value>6</value>
           </equals>
+          <not-equals>
+            <property>autopilot/kap140/settings/lateral-mode</property>
+            <value>5</value>
+          </not-equals>
           <equals>
             <property>autopilot/kap140/settings/lateral-arm</property>
             <value>-1</value>
@@ -1584,6 +1624,11 @@
         <property>autopilot/kap140/panel/hdg-timer</property>
         <value>0</value>
       </binding>
+      <binding>
+        <command>property-assign</command>
+        <property>autopilot/kap140/panel/nav-timer</property>
+        <value>0</value>
+      </binding>
       <mod-up>
         <binding>
           <command>property-assign</command>
@@ -1607,10 +1652,10 @@
       </binding>
       <binding>
         <condition>
-          <equals>
+          <greater-than>
             <property>autopilot/kap140/settings/vertical-mode</property>
-            <value>2</value>
-          </equals>
+            <value>1</value>
+          </greater-than>
         </condition>
         <command>property-assign</command>
         <property>autopilot/kap140/settings/vertical-mode</property>
@@ -1666,22 +1711,6 @@
         <command>property-assign</command>
         <property>autopilot/internal/target-pressure</property>
         <property>environment/pressure-inhg</property>
-      </binding>
-
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-arm</property>
-            <value>1</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-mode</property>
-            <value>2</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/vertical-arm</property>
-        <value>0</value>
       </binding>
 
       <mod-up>

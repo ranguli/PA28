@@ -509,10 +509,10 @@
         <type>gain</type>
         <enable>
             <condition>
-                <equals>
+                <greater-than>
                     <property>autopilot/kap140/settings/vertical-mode</property>
-                    <value>2</value>
-                </equals>
+                    <value>1</value>
+                </greater-than>
             </condition>
         </enable>
         <input>0</input>
@@ -825,16 +825,6 @@
                     <property>autopilot/kap140/pitch-axis-fail</property>
                     <property>autopilot/kap140/roll-axis-fail</property>
                     <and>
-                        <greater-than>
-                            <property>autopilot/kap140/panel/nav-timer</property>
-                            <value>1</value>
-                        </greater-than>
-                        <greater-than>
-                            <property>sim/time/elapsed-sec</property>
-                            <property>autopilot/kap140/panel/nav-timer</property>
-                        </greater-than>
-                    </and>
-                    <and>
                         <equals>
                             <property>autopilot/kap140/panel/state</property>
                             <property>autopilot/kap140/panel/state-old</property>
@@ -936,6 +926,10 @@
                     <property>autopilot/kap140/settings/vertical-mode</property>
                     <value>0</value>
                 </equals>
+                <greater-than>
+                    <property alias="../../../../../params/model"/>
+                    <value>1</value>
+                </greater-than>
             </condition>
         </enable>
         <input>autopilot/internal/vert-speed-fpm</input>
@@ -1151,9 +1145,9 @@
         <max>2000</max>
     </filter>
 
-<!-- reverence altitude -->
+<!-- reference altitude -->
     <filter>
-        <name>reverence altitude up</name>
+        <name>reference altitude up</name>
         <type>gain</type>
         <debug>false</debug>
         <enable>
@@ -1186,7 +1180,7 @@
     </filter>
 
     <filter>
-        <name>reverence altitude down</name>
+        <name>reference altitude down</name>
         <type>gain</type>
         <debug>false</debug>
         <enable>
@@ -1218,9 +1212,9 @@
         <output>autopilot/internal/target-climb-rate</output>
     </filter>
 
-<!-- take over actual climb rare if we are in VS HOLD and CWS is active -->
+<!-- take over actual climb rare if we are in VS and CWS is active -->
     <filter>
-        <name>set-vs</name>
+        <name>CWS target-climb-rate</name>
         <type>gain</type>
         <debug>false</debug>
         <enable>
@@ -1240,9 +1234,9 @@
         <output>autopilot/internal/target-climb-rate</output>
     </filter>
 
-<!-- set FPM rounded to next 100 ft -->
+<!-- set rounded FPM to next 100 ft -->
     <filter>
-        <name>init-vs</name>
+        <name>round target-climb-rate</name>
         <type>gain</type>
         <debug>false</debug>
         <enable>
@@ -1288,9 +1282,9 @@
         <output>autopilot/internal/target-climb-rate</output>
     </filter>
 
-<!-- take over actual pressure if we are in ALT HOLD and CWS is active -->
+<!-- take over actual pressure if we are in ALT and CWS is active -->
     <filter>
-        <name>set-alt-hold</name>
+        <name>CWS target-pressure</name>
         <type>gain</type>
         <debug>false</debug>
         <enable>
@@ -1419,6 +1413,10 @@
                     <property>autopilot/kap140/settings/lateral-arm</property>
                     <value>0</value>
                 </greater-than>
+                <less-than>
+                    <property>autopilot/kap140/settings/lateral-arm</property>
+                    <value>4</value>
+                </less-than>
                 <property>instrumentation/nav-source/in-range</property>
                 <less-than>
                     <expression>
@@ -1444,26 +1442,36 @@
     </filter>
 
     <filter>
-        <name>nav-beam recapture</name>
+        <name>signal lost</name>
         <type>gain</type>
         <debug>false</debug>
         <enable>
             <condition>
                 <greater-than>
-                    <property>autopilot/kap140/panel/nav-timer</property>
-                    <value>1</value>
-                </greater-than>
-                <greater-than>
                     <property>autopilot/kap140/settings/lateral-mode</property>
                     <value>2</value>
                 </greater-than>
-                <property>instrumentation/nav-source/in-range</property>
+                <not><property>instrumentation/nav-source/in-range</property></not>
+            </condition>
+        </enable>
+        <input>1</input>
+        <output>autopilot/kap140/settings/lateral-mode</output>
+    </filter>
+
+    <filter>
+        <name>cancel nav-timer in ROL or HDG mode</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
                 <less-than>
-                    <expression>
-                        <abs><property>instrumentation/nav-source/heading-needle-deflection-norm</property></abs>
-                    </expression>
-                    <value>0.6</value>
+                    <property>autopilot/kap140/settings/lateral-mode</property>
+                    <value>3</value>
                 </less-than>
+                <greater-than>
+                    <property>autopilot/kap140/panel/nav-timer</property>
+                    <value>1</value>
+                </greater-than>
             </condition>
         </enable>
         <input>0</input>
@@ -1471,60 +1479,32 @@
     </filter>
 
     <filter>
-        <name>nav-beam lost</name>
+        <name>ROL mode after 30sec signal lost</name>
         <type>gain</type>
         <debug>false</debug>
         <enable>
             <condition>
-                <less-than>
-                    <property>autopilot/kap140/panel/nav-timer</property>
-                    <value>1</value>
-                </less-than>
                 <greater-than>
                     <property>autopilot/kap140/settings/lateral-mode</property>
                     <value>2</value>
                 </greater-than>
-                <or>
-                    <not><property>instrumentation/nav-source/in-range</property></not>
-                    <greater-than>
-                        <expression>
-                            <abs><property>instrumentation/nav-source/heading-needle-deflection-norm</property></abs>
-                        </expression>
-                        <value>0.6</value>
-                    </greater-than>
-                </or>
-            </condition>
-        </enable>
-        <input>
-            <expression>
-                <sum>
-                    <property>sim/time/elapsed-sec</property>
-                    <value>30</value>
-                </sum>
-            </expression>
-        </input>
-        <output>autopilot/kap140/panel/nav-timer</output>
-    </filter>
-
-<!-- arm GS -->
-    <filter>
-        <name>set GS arm if we go to APR mode</name>
-        <type>gain</type>
-        <debug>false</debug>
-        <enable>
-            <condition>
-                <equals>
-                    <property>autopilot/kap140/settings/lateral-arm</property>
-                    <value>-2</value>
-                </equals>
                 <greater-than>
-                    <property alias="../../../../../params/model"/>
+                    <property>autopilot/kap140/panel/nav-timer</property>
                     <value>1</value>
+                </greater-than>
+                <greater-than>
+                    <property>sim/time/elapsed-sec</property>
+                    <expression>
+                        <sum>
+                            <property>autopilot/kap140/panel/nav-timer</property>
+                            <value>30</value>
+                        </sum>
+                    </expression>
                 </greater-than>
             </condition>
         </enable>
-        <input>2</input>
-        <output>autopilot/kap140/settings/vertical-arm</output>
+        <input>1</input>
+        <output>autopilot/kap140/settings/lateral-mode</output>
     </filter>
 
 <!-- set NAV/APR/REV -->
@@ -1554,6 +1534,77 @@
         <output>autopilot/kap140/settings/lateral-mode</output>
     </filter>
 
+<!-- arm GS -->
+    <filter>
+        <name>set GS-arm</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <greater-than>
+                    <property alias="../../../../../params/model"/>
+                    <value>1</value>
+                </greater-than>
+                <equals>
+                    <property>autopilot/kap140/settings/lateral-mode</property>
+                    <value>4</value>
+                </equals>
+                <less-than>
+                    <property>autopilot/kap140/panel/nav-timer</property>
+                    <value>1</value>
+                </less-than>
+            </condition>
+        </enable>
+        <input>
+            <condition>
+                <equals>
+                    <property>instrumentation/nav-source/has-gs</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+            <value>4</value>
+        </input>
+        <input>0</input>
+        <output>autopilot/kap140/settings/lateral-arm</output>
+    </filter>
+
+<!-- disarm GS -->
+    <filter>
+        <name>clear GS-arm</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <greater-than>
+                    <property alias="../../../../../params/model"/>
+                    <value>1</value>
+                </greater-than>
+                <equals>
+                    <property>autopilot/kap140/settings/lateral-arm</property>
+                    <value>4</value>
+                </equals>
+                <or>
+                    <and>
+                        <equals>
+                            <property>autopilot/kap140/settings/lateral-mode</property>
+                            <value>4</value>
+                        </equals>
+                        <greater-than>
+                            <property>autopilot/kap140/panel/nav-timer</property>
+                            <value>1</value>
+                        </greater-than>
+                    </and>
+                    <not-equals>
+                        <property>autopilot/kap140/settings/lateral-mode</property>
+                        <value>4</value>
+                    </not-equals>
+                </or>
+            </condition>
+        </enable>
+        <input>0</input>
+        <output>autopilot/kap140/settings/lateral-arm</output>
+    </filter>
+
 <!-- clear lateral arm -->
     <filter>
         <name>clear lateral arm</name>
@@ -1573,16 +1624,16 @@
         <output>autopilot/internal/target-roll-deg</output>
     </filter>
 
-<!-- trigger GS -->
+<!-- capture GS -->
     <filter>
-        <name>capture gs-beam</name>
+        <name>capture GS</name>
         <type>gain</type>
         <debug>false</debug>
         <enable>
             <condition>
                 <equals>
-                    <property>autopilot/kap140/settings/vertical-arm</property>
-                    <value>2</value>
+                    <property>autopilot/kap140/settings/lateral-arm</property>
+                    <value>4</value>
                 </equals>
                 <less-than>
                     <property>instrumentation/nav-source/gs-needle-deflection</property>
@@ -1594,15 +1645,30 @@
                 </greater-than>
             </condition>
         </enable>
-        <input>
-            <expression>
-                <product>
-                    <property>autopilot/kap140/settings/vertical-arm</property>
-                    <value>-1</value>
-                </product>
-            </expression>
-        </input>
-        <output>autopilot/kap140/settings/vertical-arm</output>
+        <input>3</input>
+        <output>autopilot/kap140/settings/vertical-mode</output>
+    </filter>
+
+<!-- clear GS-arm and target pressure -->
+    <filter>
+        <name>clear GS-arm</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <equals>
+                    <property>autopilot/kap140/settings/lateral-arm</property>
+                    <value>4</value>
+                </equals>
+                <equals>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
+                    <value>3</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>0</input>
+        <output>autopilot/kap140/settings/lateral-arm</output>
+        <output>autopilot/internal/target-pressure</output>
     </filter>
 
 <!-- set target-pressure -->
@@ -1637,7 +1703,7 @@
         <output>autopilot/internal/target-pressure</output>
     </filter>
 
-<!-- capture altitude -->
+<!-- signal ALT capture -->
     <filter>
         <name>capture ALT</name>
         <debug>false</debug>
@@ -1662,9 +1728,9 @@
         <output>autopilot/kap140/settings/vertical-arm</output>
     </filter>
 
-<!-- set vertical mode -->
+<!-- set ALT -->
     <filter>
-        <name>set vertical mode to ALT</name>
+        <name>set ALT</name>
         <debug>false</debug>
         <type>gain</type>
         <enable>
@@ -1679,26 +1745,9 @@
         <output>autopilot/kap140/settings/vertical-mode</output>
     </filter>
 
+<!-- clear ALT-arm -->
     <filter>
-        <name>set vertical mode GS</name>
-        <type>gain</type>
-        <debug>false</debug>
-        <enable>
-            <condition>
-                <equals>
-                    <property>autopilot/kap140/settings/vertical-arm</property>
-                    <value>-2</value>
-                </equals>
-                <property>instrumentation/nav-source/gs-in-range</property>
-            </condition>
-        </enable>
-        <input>3</input>
-        <output>autopilot/kap140/settings/vertical-mode</output>
-    </filter>
-
-<!-- clear vertical arm -->
-    <filter>
-        <name>clear vertical arm ALT</name>
+        <name>clear ALT-arm</name>
         <debug>false</debug>
         <type>gain</type>
         <enable>
@@ -1717,62 +1766,21 @@
         <output>autopilot/kap140/settings/vertical-arm</output>
     </filter>
 
+<!-- fallback to VS -->
     <filter>
-        <name>clear vertical arm GS</name>
-        <type>gain</type>
+        <name>fallback to VS</name>
         <debug>false</debug>
+        <type>gain</type>
         <enable>
             <condition>
-                <equals>
-                    <property>autopilot/kap140/settings/vertical-arm</property>
-                    <value>-2</value>
-                </equals>
                 <equals>
                     <property>autopilot/kap140/settings/vertical-mode</property>
                     <value>3</value>
                 </equals>
-            </condition>
-        </enable>
-        <input>0</input>
-        <output>autopilot/kap140/settings/vertical-arm</output>
-        <output>autopilot/internal/target-pressure</output>
-    </filter>
-
-<!-- cancel/disable GS if we are not in APR mode -->
-    <filter>
-        <name>cancel GS</name>
-        <debug>false</debug>
-        <type>gain</type>
-        <enable>
-            <condition>
                 <not-equals>
                     <property>autopilot/kap140/settings/lateral-mode</property>
                     <value>4</value>
                 </not-equals>
-                <equals>
-                    <property>autopilot/kap140/settings/vertical-arm</property>
-                    <value>2</value>
-                </equals>
-            </condition>
-        </enable>
-        <input>0</input>
-        <output>autopilot/kap140/settings/vertical-arm</output>
-    </filter>
-
-    <filter>
-        <name>disable GS</name>
-        <debug>false</debug>
-        <type>gain</type>
-        <enable>
-            <condition>
-                <not-equals>
-                    <property>autopilot/kap140/settings/lateral-mode</property>
-                    <value>4</value>
-                </not-equals>
-                <equals>
-                    <property>autopilot/kap140/settings/vertical-mode</property>
-                    <value>3</value>
-                </equals>
             </condition>
         </enable>
         <input>1</input>

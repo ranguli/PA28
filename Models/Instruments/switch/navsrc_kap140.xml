@@ -29,6 +29,11 @@
 				<value>2</value>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>autopilot/kap140/panel/nav-timer</property>
+				<property>sim/time/elapsed-sec</property>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>setprop("/sim/sounde/switch1", 1);</script>
 			</binding>
@@ -42,6 +47,11 @@
 				<value>0</value>
 				<value>2</value>
 				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>autopilot/kap140/panel/nav-timer</property>
+				<property>sim/time/elapsed-sec</property>
 			</binding>
 			<binding>
 				<command>nasal</command>

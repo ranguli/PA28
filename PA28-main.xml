@@ -225,15 +225,15 @@
 				<name>Autopilot Join</name>
 				<path>Aircraft/PA28/Systems/Autopilot/autopilot.xml</path>
 			</autopilot>
-			<autopilot n="100">
+			<autopilot n="1">
 				<name>System Libraries</name>
 				<path>Aircraft/PA28/Systems/libraries.xml</path>
 			</autopilot>
-			<autopilot n="101">
+			<autopilot n="2">
 				<name>S-TEC-55X</name>
 				<path>Aircraft/PA28/Systems/Autopilot/stec-55x.xml</path>
 			</autopilot>
-			<autopilot n="102">
+			<autopilot n="3">
 				<name>KAP140</name>
 				<path>Aircraft/PA28/Systems/Autopilot/kap140-autopilot.xml</path>
 			</autopilot>
@@ -401,6 +401,7 @@
 				<digit-timer type="double">0.0</digit-timer>
 				<fpm-timer type="double">0.0</fpm-timer>
 				<hdg-timer type="double">0.0</hdg-timer>
+				<nav-timer type="double">0.0</nav-timer>
 				<pft-1 type="double">0.0</pft-1>
 				<pft-2 type="double">0.0</pft-2>
 				<pft-3 type="double">0.0</pft-3>

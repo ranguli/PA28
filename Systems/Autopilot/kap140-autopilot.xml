@@ -23,6 +23,14 @@
 		<gain>1.0</gain>
 	</filter>
 
+	<filter>
+		<name>vertical speed fpm</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<input>instrumentation/vertical-speed-indicator/indicated-speed-fpm-lowpass</input>
+		<output>autopilot/internal/vert-speed-fpm</output>
+	</filter>
+
 <!-- =============================================================== -->
 <!-- Roll Axis Modes                                                 -->
 <!-- =============================================================== -->
@@ -38,6 +46,10 @@
 					<property>autopilot/kap140/settings/lateral-mode</property>
 					<value>3</value>
 				</equals>
+				<less-than>
+					<property>autopilot/kap140/panel/nav-timer</property>
+					<value>1</value>
+				</less-than>
 			</condition>
 		</enable>
 		<input>
@@ -81,6 +93,10 @@
 					<property>autopilot/kap140/settings/lateral-mode</property>
 					<value>4</value>
 				</equals>
+				<less-than>
+					<property>autopilot/kap140/panel/nav-timer</property>
+					<value>1</value>
+				</less-than>
 			</condition>
 		</enable>
 		<input>
@@ -124,6 +140,10 @@
 					<property>autopilot/kap140/settings/lateral-mode</property>
 					<value>5</value>
 				</equals>
+				<less-than>
+					<property>autopilot/kap140/panel/nav-timer</property>
+					<value>1</value>
+				</less-than>
 			</condition>
 		</enable>
 		<input>
@@ -231,10 +251,22 @@
 		<type>gain</type>
 		<enable>
 			<condition>
-				<equals>
-					<property>autopilot/kap140/settings/lateral-mode</property>
-					<value>1</value>
-				</equals>
+				<or>
+					<equals>
+						<property>autopilot/kap140/settings/lateral-mode</property>
+						<value>1</value>
+					</equals>
+					<and>
+						<greater-than>
+							<property>autopilot/kap140/settings/lateral-mode</property>
+							<value>2</value>
+						</greater-than>
+						<greater-than>
+							<property>autopilot/kap140/panel/nav-timer</property>
+							<value>1</value>
+						</greater-than>
+					</and>
+				</or>
 			</condition>
 		</enable>
 		<input>
@@ -251,10 +283,22 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<greater-than>
-					<property>autopilot/kap140/settings/lateral-mode</property>
-					<value>1</value>
-				</greater-than>
+				<or>
+					<equals>
+						<property>autopilot/kap140/settings/lateral-mode</property>
+						<value>2</value>
+					</equals>
+					<and>
+						<greater-than>
+							<property>autopilot/kap140/settings/lateral-mode</property>
+							<value>2</value>
+						</greater-than>
+						<less-than>
+							<property>autopilot/kap140/panel/nav-timer</property>
+							<value>1</value>
+						</less-than>
+					</and>
+				</or>
 			</condition>
 		</enable>
 		<input>
@@ -303,6 +347,7 @@
 		</config>
 	</pid-controller>
 
+<!-- lateral reference to avoid jerking -->
 	<filter>
 		<name>ref-lateral</name>
 		<debug>false</debug>
@@ -500,6 +545,7 @@
 		<output>autopilot/internal/target-climb-rate</output>
 	</filter>
 
+<!-- vertical reference to avoid jerking -->
 	<filter>
 		<name>ref-vertical</name>
 		<debug>false</debug>
@@ -543,7 +589,7 @@
 			<!-- input value weighing factor -->
 			<alpha>0.1</alpha>
 			<!-- low pass filter weighing factor -->
-			<gamma>0.5</gamma>
+			<gamma>0.0</gamma>
 			<!-- input value weighing factor for -->
 			<!-- unfiltered derivative error -->
 			<Ti>5.0</Ti>
