@@ -5,7 +5,7 @@
 <PropertyList>
 	
 	<sim>
-		<author>Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp), Benedikt Wolf (D-ECHO), Sascha Reißner (WoodSTokk), Based on IDG-PA28</author>
+		<author>Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp), Benedikt Wolf (D-ECHO), Sascha Reißner (WoodSTokk), Niels Krenz (Knüppelrührer), Based on IDG-PA28</author>
 		<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
 		<model>
 			<fallback-model-index type="int">11</fallback-model-index>
@@ -335,7 +335,20 @@
 				<default-field-of-view-deg type="double">70</default-field-of-view-deg>
 			</config>
 		</view>
-		
+		<view n="105">
+			<name>turn final view</name>
+			<type>lookfrom</type>
+			<internal archive="y">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<x-offset-m archive="y">-0.36</x-offset-m>
+				<y-offset-m archive="y">0.41</y-offset-m>
+				<z-offset-m archive="y">-1.1</z-offset-m>
+				<pitch-offset-deg>7.1</pitch-offset-deg>
+				<heading-offset-deg>36</heading-offset-deg>
+				<default-field-of-view-deg type="double">85</default-field-of-view-deg>
+			</config>
+		</view>
 		<aircraft-data>
 			<path>/instrumentation/it-gtx327/factory-vfr-code</path>
 			<path>/instrumentation/transponder/inputs/knob-mode</path>
