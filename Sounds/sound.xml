@@ -296,6 +296,29 @@
 			</position>
 		</kap140-alert>
 	
+		<stall-warning>
+			<name>stall warning</name>
+			<path>stall.wav</path>
+			<mode>looped</mode>
+			<condition>
+				<and>
+					<greater-than>
+						<property>/fdm/jsbsim/aero/alpha-deg</property>
+						<value>6.3</value>
+					</greater-than>
+					<less-than>
+						<property>/fdm/jsbsim/aero/alpha-deg</property>
+						<value>90</value>
+					</less-than>
+				</and>
+			</condition>
+			<volume><factor>0.3</factor></volume>
+			<position>
+				<x>-1.7430</x>
+				<y> 0.1067</y>
+				<z> 0.1376</z>
+			</position>
+		</stall-warning>
 	</fx>
 
 </PropertyList>
