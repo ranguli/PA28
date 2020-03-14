@@ -243,6 +243,9 @@
 			<property-rule n="101">
 				<path>Aircraft/PA28/Models/Instruments/kap140/nav-selector.xml</path>
 			</property-rule>
+			<property-rule n="102">
+				<path>Aircraft/PA28/Systems/glass-rain.xml</path> <!-- rain vector system by wlbragg from the Cessna 172P -->
+			</property-rule>
 		</systems>
 		<tags>
 			<tag>ga</tag>

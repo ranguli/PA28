@@ -199,7 +199,17 @@
 	</effect>
 	
 	<effect>
-		<inherits-from>Effects/fuselage</inherits-from>
+		<inherits-from>Aircraft/PA28/Models/Effects/Glass/interior_glass_front</inherits-from>
+		<object-name>window.front.int</object-name>
+	</effect>
+	<effect>
+		<inherits-from>Aircraft/PA28/Models/Effects/Glass/interior_glass</inherits-from>
+		<object-name>windows.int</object-name>
+		<object-name>window.doorF.int</object-name>
+	</effect>
+	
+	<effect>
+		<inherits-from>Aircraft/PA28/Models/Effects/fuselage</inherits-from>
 		<object-name>Fuselage</object-name>
 		<object-name>LandingLight</object-name>
 		<object-name>VTail</object-name>
