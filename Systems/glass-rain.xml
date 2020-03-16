@@ -172,4 +172,83 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</output>
 	</filter>
 	
+	<!-- Calculate emission ambient light for glass effect -->
+	<filter>
+		<update-interval-secs type="double">0.1</update-interval-secs>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<name>Garmin G5 Emission</name>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/attitude-indicator</property>
+					<value>Garmin G5</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/instrumentation/G5/start</property>
+					<entry><ind>0.0</ind><dep>0.0</dep></entry>
+					<entry><ind>0.01</ind><dep>0.1</dep></entry>
+					<entry><ind>0.99</ind><dep>0.1</dep></entry>
+					<entry><ind>1.0</ind><dep>0.3</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<not-equals>
+					<property>/options/attitude-indicator</property>
+					<value>Garmin G5</value>
+				</not-equals>
+			</condition>
+			<value>0</value>
+		</input>
+		<output>
+			<property>/sim/model/G5-emission</property>
+		</output>
+	</filter>
+	<filter>
+		<update-interval-secs type="double">0.1</update-interval-secs>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<product>
+					<sum>
+						<property>/controls/lighting/panel-norm</property>
+						<property>/sim/model/G5-emission</property>
+					
+					</sum>
+					<value>0.7</value>
+				</product>
+			</expression>
+			<min>0.0</min>
+			<max>1.0</max>
+		</input>
+		<output>/sim/model/emission-strength</output>
+	</filter>
+	<filter>
+		<update-interval-secs type="double">0.1</update-interval-secs>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<!-- adapted from Cessna 172p -->
+		<input>
+			<expression>
+				<sum>
+					<table>
+						<property>/sim/model/emission-strength</property>
+						<entry><ind>0.0</ind><dep>0.01</dep></entry>
+						<entry><ind>0.3</ind><dep>0.2</dep></entry>
+						<entry><ind>1.0</ind><dep>0.9</dep></entry>
+					</table>
+					<property>/rendering/scene/diffuse/red</property>
+				</sum>
+			</expression>
+			<min>0.01</min>
+			<max>0.9</max>
+		</input>
+		<output>/sim/model/reflection-emission-strength</output>
+	</filter>
+	
 </PropertyList>
