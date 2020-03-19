@@ -550,7 +550,7 @@
 		<name>ref-vertical</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
-		<max-rate-of-change>100</max-rate-of-change>
+		<max-rate-of-change>50</max-rate-of-change>
 		<input>
 			<condition>
 				<greater-than>
@@ -583,7 +583,7 @@
 			<property>autopilot/kap140/servo/elevator</property>
 		</output>
 		<config>
-			<Kp>-0.0002</Kp>
+			<Kp>-0.0001</Kp>
 			<!-- proportional gain -->
 			<beta>1.0</beta>
 			<!-- input value weighing factor -->
@@ -592,9 +592,9 @@
 			<gamma>0.0</gamma>
 			<!-- input value weighing factor for -->
 			<!-- unfiltered derivative error -->
-			<Ti>5.0</Ti>
+			<Ti>10.0</Ti>
 			<!-- integrator time -->
-			<Td>0.5</Td>
+			<Td>0.0</Td>
 			<!-- derivator time -->
 			<u_min>-0.5</u_min>
 			<!-- minimum output clamp -->
