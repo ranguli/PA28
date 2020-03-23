@@ -77,10 +77,10 @@
 					<property>/engines/engine[0]/rpm</property>
 					<value>10</value>
 				</greater-than>
-			</condition>
+			</condition><!--
 			<volume>
 				<property>/sim/sound/volume-ramp-engine-start</property>
-			</volume>
+			</volume>-->
 			<volume>
 				<property>/engines/engine[0]/rpm</property>
 				<factor>0.001176472</factor>
@@ -197,8 +197,8 @@
 			<path>rain.wav</path>
 			<volume>
 				<property>/environment/rain-norm</property>
-				<factor>1.2</factor>
-				<max>0.8</max>
+				<factor>1.0</factor>
+				<max>0.6</max>
 			</volume>
 			<volume>
 				<property>sim/current-view/internal</property>

@@ -339,7 +339,7 @@
 			<z-m>-0.034725</z-m>
 		</center>
 	</animation>
-	
+	<!--
 	<animation>
 		<type>translate</type>
 		<object-name>card.knob</object-name>
@@ -350,7 +350,7 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
-	</animation>
+	</animation>-->
 	
 	<!-- Course control -->
 	<animation>

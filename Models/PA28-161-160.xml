@@ -1792,7 +1792,10 @@
 		<type>rotate</type>
 		<object-name>AntiServoTab</object-name>
 		<property>surface-positions/speedbrake-pos-norm</property>
-		<factor>1</factor>
+		<interpolation>
+			<entry><ind>-2</ind><dep>-2</dep></entry>
+			<entry><ind>14</ind><dep>14</dep></entry>
+		</interpolation>
 		<center>
 			<x-m>3.39382</x-m>
 			<y-m>0.0</y-m>
