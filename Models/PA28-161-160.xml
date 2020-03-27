@@ -1903,6 +1903,7 @@
 		<object-name>doorF</object-name>
 		<object-name>doorFint</object-name>
 		<object-name>window.doorF</object-name>
+		<object-name>window.doorF.int</object-name>
 		<property>sim/multiplay/generic/float[4]</property>
 		<factor>70</factor>
 		<axis>
