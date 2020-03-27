@@ -88,7 +88,7 @@ var light_manager = {
 		# lights ########
 		# offsets to aircraft center
  
-		me.light1_xpos =  34.0;
+		me.light1_xpos =  150.0;
 		me.light1_ypos =  0.0;
 		me.light1_zpos =  2.0;
 		
@@ -119,7 +119,8 @@ var light_manager = {
 		me.light4_b = 0.0;
 
 		# spot size
-		me.light1_size = 5.5;
+		#me.light1_size = 5.5;
+		me.light1_size = 23;
 		me.light1_stretch = 6;
 		me.light2_size = 1.5;
 		me.light3_size = 1.5;
@@ -177,7 +178,7 @@ var light_manager = {
 
 			var sh = math.sin(heading);
 			var ch = math.cos(heading);
-			
+		
 			if (land != 0) {
 				me.light1_ypos =  0.0;
 				me.light1_on();
