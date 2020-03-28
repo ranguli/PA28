@@ -14,9 +14,6 @@
 		<model>
 			<path type="string">Aircraft/PA28/Models/PA28-161-160.xml</path>
 		</model>
-		<instrumentation>
-			<path>Systems/instrumentation.xml</path>
-		</instrumentation>
 	</sim>
 
 </PropertyList>

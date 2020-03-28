@@ -357,6 +357,9 @@
 			<path>/instrumentation/transponder/inputs/knob-mode</path>
 			<path>/instrumentation/transponder/id-code</path>
 		</aircraft-data>
+		<instrumentation>
+			<path>Systems/instrumentation.xml</path>
+		</instrumentation>
 	</sim>
 	
 	<airport>
