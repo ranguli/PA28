@@ -301,7 +301,7 @@
 				<command>set-tooltip</command>
 				<tooltip-id>nsa360-offset</tooltip-id>
 				<mapping>heading</mapping>
-				<label>Card Offset: %3d</label>
+				<label>Card Offset</label>
 				<property>instrumentation/heading-indicator/offset-deg</property>
 			</binding>
 		</hovered>
