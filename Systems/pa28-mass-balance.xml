@@ -5,9 +5,9 @@
 
 <mass_balance>
 	
-	<ixx unit="SLUG*FT2">170</ixx>
+	<ixx unit="SLUG*FT2">1070</ixx>
 	<iyy unit="SLUG*FT2">1249</iyy>
-	<izz unit="SLUG*FT2">1312</izz>
+	<izz unit="SLUG*FT2">2312</izz>
 	<ixy unit="SLUG*FT2">0</ixy>
 	<ixz unit="SLUG*FT2">0</ixz>
 	<iyz unit="SLUG*FT2">0</iyz>
