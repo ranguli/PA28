@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <!-- PA28-161 Aircraft Config Dialog -->
 
@@ -34,34 +34,22 @@
 		
 		<text>
 			<halign>left</halign>
-			<label>Piper PA28 Model</label>
-		</text>
-		<text>
-			<halign>left</halign>
-			<label>Joshua Davidson (Octal450), Jonanthan Redpath (legoboyvdlp)</label>
+			<label>Piper PA28-161</label>
 		</text>
 		
 		<hrule/>
 		
 		<text>
 			<halign>left</halign>
-			<label>FDM: Joshua Davidson (Octal450)</label>
+			<label>FDM: Josh Davidson (Octal450), Niels Krenz (Knüppelrührer), Benedikt Wolf (D-ECHO)</label>
 		</text>
 		<text>
 			<halign>left</halign>
-			<label>Systems: Joshua Davidson (Octal450)</label>
+			<label>Systems: Josh Davidson (Octal450)</label>
 		</text>
 		<text>
 			<halign>left</halign>
-			<label>Cockpit: D-ECHO, Joshua Davidson (Octal450)</label>
-		</text>
-		<text>
-			<halign>left</halign>
-			<label>Instruments: D-ECHO, Joshua Davidson (Octal450), c172p-team</label>
-		</text>
-		<text>
-			<halign>left</halign>
-			<label>Maintained by Benedikt Wolf (D-ECHO) on FGAddon.</label>
+			<label>3D/Textures: Benedikt Wolf (D-ECHO)</label>
 		</text>
 		
 	</group>

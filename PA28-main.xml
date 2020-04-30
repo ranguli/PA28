@@ -1,34 +1,12 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <PropertyList>
 	
 	<sim>
-		<author>Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp), Benedikt Wolf (D-ECHO), Sascha Reißner (WoodSTokk), Niels Krenz (Knüppelrührer), Based on IDG-PA28</author>
+		<author>Josh Davidson/Octal450 (FDM, Systems), Niels Krenz/Knüppelrührer (FDM), Benedikt Wolf/D-ECHO (FDM, 3D, Textures), Sascha Reißner/WoodSTokk (KAP140)</author>
 		<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
-		<model>
-			<fallback-model-index type="int">11</fallback-model-index>
-			<!-- Lighting used by model and ALS -->
-			<!--<lighting>
-				<taxi type="bool">false</taxi>
-				<landing type="bool">false</landing>
-				<ra-r-p type="double">.05</ra-r-p>
-				<ra-g-p type="double">.05</ra-g-p>
-				<ra-b-p type="double">.03</ra-b-p>
-				<ra-r-r type="double">0.05</ra-r-r>
-				<ra-g-r type="double">0.025</ra-g-r>
-				<ra-b-r type="double">0.025</ra-b-r>
-				<ra-r type="double">0.0</ra-r>
-				<ra-g type="double">0.0</ra-g>
-				<ra-b type="double">0.0</ra-b>
-				<dome-norm type="float">0</dome-norm>
-				<gps-norm type="float">0</gps-norm>
-				<courtesy-lights>
-					<courtesy-on type="bool">false</courtesy-on>
-				</courtesy-lights>
-			</lighting>-->
-		</model>
 		<checklists include="PA28-Checklists.xml"/>
 		<current-view>
 			<z-offset-default type="float">20.0</z-offset-default>
@@ -162,6 +140,28 @@
 				</menu>
 			</default>
 		</menubar>
+		<model>
+			<fallback-model-index type="int">11</fallback-model-index>
+			<!-- Lighting used by model and ALS -->
+			<!--<lighting>
+				<taxi type="bool">false</taxi>
+				<landing type="bool">false</landing>
+				<ra-r-p type="double">.05</ra-r-p>
+				<ra-g-p type="double">.05</ra-g-p>
+				<ra-b-p type="double">.03</ra-b-p>
+				<ra-r-r type="double">0.05</ra-r-r>
+				<ra-g-r type="double">0.025</ra-g-r>
+				<ra-b-r type="double">0.025</ra-b-r>
+				<ra-r type="double">0.0</ra-r>
+				<ra-g type="double">0.0</ra-g>
+				<ra-b type="double">0.0</ra-b>
+				<dome-norm type="float">0</dome-norm>
+				<gps-norm type="float">0</gps-norm>
+				<courtesy-lights>
+					<courtesy-on type="bool">false</courtesy-on>
+				</courtesy-lights>
+			</lighting>-->
+		</model>
 		<multiplay>
 			<generic>
 				<int n="0" alias="/fdm/jsbsim/crash-stress/nose-damaged"/>
@@ -230,7 +230,7 @@
 				<path>Aircraft/PA28/Systems/libraries.xml</path>
 			</autopilot>
 			<autopilot n="2">
-				<name>S-TEC-55X</name>
+				<name>S-TEC 55X</name>
 				<path>Aircraft/PA28/Systems/Autopilot/stec-55x.xml</path>
 			</autopilot>
 			<autopilot n="3">
@@ -491,7 +491,7 @@
 			</engine>
 		</engines>
 		<flight n="0">
-			<elevator-trim type="double">0.11</elevator-trim>
+			<elevator-trim type="double">0.015</elevator-trim>
 		</flight>
 		<fuel n="0">
 			<switches n="0">
@@ -723,6 +723,14 @@
 					<script>libraries.fovZoom(-1);</script>
 				</binding>
 			</key>
+			<key n="267">
+				<name>F11</name>
+				<desc>Open AP Dialog</desc>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.openAPDialog();</script>
+				</binding>
+			</key>
 			<key n="362">
 				<name>Home</name>
 				<desc>Elevator Trim Down</desc>
@@ -911,13 +919,14 @@
 	</it-stec55x>
 	
 	<options n="0">
+		<adf-equipped type="bool">0</adf-equipped>
+		<attitude-indicator type="string">standard</attitude-indicator>
+		<autopilot type="string">S-TEC 55X</autopilot>
+		<garmin196 type="bool">0</garmin196>
 		<mini-panel type="bool">0</mini-panel>
 		<nav-source type="int">1</nav-source>
 		<panel type="string">HSI Panel</panel>
-		<attitude-indicator type="string">standard</attitude-indicator>
 		<radio-setup type="string">traditional</radio-setup>
-		<garmin196 type="bool">0</garmin196>
-		<adf-equipped type="bool">0</adf-equipped>
 		<show-l-yoke type="bool">1</show-l-yoke>
 		<show-r-yoke type="bool">1</show-r-yoke>
 		<wip type="bool">0</wip> <!-- Enable the WIP instruments -->

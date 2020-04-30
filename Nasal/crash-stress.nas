@@ -1,5 +1,5 @@
 # Crash and Stress
-# Copyright (c) 2019 Joshua Davidson (Octal450)
+# Copyright (c) 2020 Josh Davidson (Octal450)
 
 var loaded = 0;
 var damagedHappened = 0;

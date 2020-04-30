@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <PropertyList>
 
@@ -867,7 +867,7 @@
 		<condition>
 			<equals>
 				<property>options/autopilot</property>
-				<value>S-TEC-55X</value>
+				<value>S-TEC 55X</value>
 			</equals>
 		</condition>
 	</model>
@@ -877,7 +877,7 @@
 		<condition>
 			<equals>
 				<property>options/autopilot</property>
-				<value>S-TEC-55X</value>
+				<value>S-TEC 55X</value>
 			</equals>
 			<not-equals>
 				<property>it-stec55x/settings/fd-equipped</property>
@@ -892,7 +892,7 @@
 		<condition>
 			<equals>
 				<property>options/autopilot</property>
-				<value>S-TEC-55X</value>
+				<value>S-TEC 55X</value>
 			</equals>
 			<equals>
 				<property>it-stec55x/settings/fd-equipped</property>
@@ -961,7 +961,7 @@
  		<condition>
  			<equals>
  				<property>options/autopilot</property>
- 				<value>S-TEC-55X</value>
+ 				<value>S-TEC 55X</value>
 			</equals>
 		</condition>
 		<path>Instruments/switch/navsrc_stec55x.xml</path>
@@ -976,7 +976,7 @@
  		<condition>
  			<equals>
  				<property>options/autopilot</property>
- 				<value>S-TEC-55X</value>
+ 				<value>S-TEC 55X</value>
 			</equals>
 		</condition>
 		<object-name>placards_transparent.navsrc.stec</object-name>
@@ -1193,7 +1193,7 @@
 		<condition>
 			<equals>
 				<property>options/autopilot</property>
-				<value>S-TEC-55X</value>
+				<value>S-TEC 55X</value>
 			</equals>
 		</condition>
 	</animation>

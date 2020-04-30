@@ -1,7 +1,7 @@
 # Garmin G5 by D-ECHO based on
 
 # A3XX Lower ECAM Canvas
-# Joshua Davidson (it0uchpods)
+# Josh Davidson (it0uchpods)
 #######################################
 
 var G5_only = nil;

@@ -1,9 +1,9 @@
 # PA28 Libraries
-# Joshua Davidson (Octal450)
+# Josh Davidson (Octal450)
 
-print("-----------------------------------------------------------------------------");
-print("Copyright (c) 2017-2019 Joshua Davidson (Octal450)");
-print("-----------------------------------------------------------------------------");
+print("------------------------------------------------");
+print("Copyright (c) 2017-2020 Josh Davidson (Octal450)");
+print("------------------------------------------------");
 
 setprop("/sim/menubar/default/menu[2]/item[2]/enabled", 0);
 setprop("/sim/menubar/default/menu[5]/item[9]/enabled", 0);

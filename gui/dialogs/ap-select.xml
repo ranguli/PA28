@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!-- autopilot dialog selector -->
-<!-- Copyright (c) 2020 Sascha Reißner (WoodSTokk) -->
+<!-- Copyright (c) 2020 Sascha Reißner (WoodSTokk), Josh Davidson (Octal450) -->
 
 <PropertyList>
 
@@ -15,13 +15,7 @@
 
 	<nasal>
 		<open>
-			var ap = getprop("/options/autopilot");
-			if (ap == "KAP140") {
-				fgcommand("dialog-show", props.Node.new({"dialog-name": "autopilot-kap140"}));
-			}
-			else if (ap == "S-TEC-55X") {
-				fgcommand("dialog-show", props.Node.new({"dialog-name": "autopilot-stec55x"}));
-			}
+			acconfig.openAPDialog();
 			var dialog = props.Node.new( { "dialog-name" : "autopilot" } );
 			settimer( func{ fgcommand("dialog-close", dialog); }, 0.01);
 		</open>

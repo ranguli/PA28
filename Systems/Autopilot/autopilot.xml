@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- This autopilot file switches between S-TEC-55X and KAP140 -->
+<!-- This autopilot file switches between S-TEC 55X and KAP140 -->
 <PropertyList>
 
 	<filter>
@@ -23,7 +23,7 @@
 						</equals>
 						<equals>
 							<property>/options/autopilot</property>
-							<value>S-TEC-55X</value>
+							<value>S-TEC 55X</value>
 						</equals>
 					</and>
 					<and>
@@ -48,7 +48,7 @@
 	</filter>
 
 	<filter>
-		<name>AILERON OUTPUT S-TEC-55X</name>
+		<name>AILERON OUTPUT S-TEC 55X</name>
 		<type>noise-spike</type>
 		<enable>
 			<condition>
@@ -67,7 +67,7 @@
 					</equals>
 					<equals>
 						<property>/options/autopilot</property>
-						<value>S-TEC-55X</value>
+						<value>S-TEC 55X</value>
 					</equals>
 				</and>
 			</condition>
@@ -116,7 +116,7 @@
 	</filter>
 
 	<filter>
-		<name>ELEVATOR OUTPUT S-TEC-55X</name>
+		<name>ELEVATOR OUTPUT S-TEC 55X</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<enable>
@@ -136,7 +136,7 @@
 					</equals>
 					<equals>
 						<property>/options/autopilot</property>
-						<value>S-TEC-55X</value>
+						<value>S-TEC 55X</value>
 					</equals>
 				</and>
 			</condition>

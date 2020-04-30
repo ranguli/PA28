@@ -1,5 +1,5 @@
 # Aircraft Config Center
-# Copyright (c) 2019 Joshua Davidson (Octal450)
+# Copyright (c) 2020 Josh Davidson (Octal450)
 
 var spinning = maketimer(0.05, func {
 	var spinning = getprop("/systems/acconfig/spinning");
@@ -24,6 +24,26 @@ var failReset = func {
 	systems.FUEL.resetFail();
 }
 
+var stec55x_dlg = gui.Dialog.new("sim/gui/dialogs/stec55x/dialog", "Aircraft/PA28/gui/dialogs/ap/stec-55x-dlg.xml");
+var kap140_dlg = gui.Dialog.new("sim/gui/dialogs/kap140/dialog", "Aircraft/PA28/gui/dialogs/ap/kap140-dlg.xml");
+var openAPDialog = func {
+	if (getprop("/options/autopilot") == "KAP140") {
+		kap140_dlg.open();
+	} else {
+		stec55x_dlg.open();
+	}
+}
+
+setlistener("/options/autopilot", func {
+	if (getprop("/options/autopilot") != "S-TEC 55X") {
+		stec55x.ITAF.init();
+		stec55x_dlg.close();
+	}
+	if (getprop("/options/autopilot") != "KAP140") {
+		kap140_dlg.close();
+	}
+}, 0, 0);
+
 setlistener("/systems/failures/misc/stec-55x", func {
 	setprop("/it-stec55x/serviceable", !getprop("/systems/failures/stec-55x"));
 });
@@ -32,6 +52,7 @@ setprop("/systems/acconfig/autoconfig-running", 0);
 setprop("/systems/acconfig/spinning", 0);
 setprop("/systems/acconfig/spin", "-");
 setprop("/systems/acconfig/options/welcome-skip", 0);
+setprop("/systems/acconfig/options/autopilot", "S-TEC 55X");
 setprop("/systems/acconfig/options/panel", "HSI Panel");
 setprop("/systems/acconfig/options/attitude-indicator", "standard");
 setprop("/systems/acconfig/options/radio-setup", "traditional");
@@ -41,17 +62,17 @@ setprop("/systems/acconfig/options/show-r-yoke", 1);
 setprop("/systems/acconfig/options/mini-panel", 0);
 setprop("/systems/acconfig/options/garmin196", 0);
 setprop("/systems/acconfig/options/no-rendering-warn", 0);
-var main_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/main/dialog", "Aircraft/PA28//AircraftConfig/main.xml");
-var welcome_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/welcome/dialog", "Aircraft/PA28//AircraftConfig/welcome.xml");
-var ps_load_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psload/dialog", "Aircraft/PA28//AircraftConfig/psload.xml");
-var ps_loaded_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psloaded/dialog", "Aircraft/PA28//AircraftConfig/psloaded.xml");
-var init_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/init/dialog", "Aircraft/PA28//AircraftConfig/ac_init.xml");
-var help_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/help/dialog", "Aircraft/PA28//AircraftConfig/help.xml");
-var about_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/about/dialog", "Aircraft/PA28//AircraftConfig/about.xml");
-var fail_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/fail/dialog", "Aircraft/PA28//AircraftConfig/fail.xml");
-var controlpanel_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/controlpanel/dialog", "Aircraft/PA28//AircraftConfig/control-panel.xml");
-var minipanel_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/minipanel/dialog", "Aircraft/PA28//AircraftConfig/mini-panel.xml");
-var rendering_dlg = gui.Dialog.new("sim/gui/dialogs/rendering/dialog", "Aircraft/PA28//AircraftConfig/rendering.xml");
+var main_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/main/dialog", "Aircraft/PA28/AircraftConfig/main.xml");
+var welcome_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/welcome/dialog", "Aircraft/PA28/AircraftConfig/welcome.xml");
+var ps_load_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psload/dialog", "Aircraft/PA28/AircraftConfig/psload.xml");
+var ps_loaded_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psloaded/dialog", "Aircraft/PA28/AircraftConfig/psloaded.xml");
+var init_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/init/dialog", "Aircraft/PA28/AircraftConfig/ac_init.xml");
+var help_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/help/dialog", "Aircraft/PA28/AircraftConfig/help.xml");
+var about_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/about/dialog", "Aircraft/PA28/AircraftConfig/about.xml");
+var fail_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/fail/dialog", "Aircraft/PA28/AircraftConfig/fail.xml");
+var controlpanel_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/controlpanel/dialog", "Aircraft/PA28/AircraftConfig/control-panel.xml");
+var minipanel_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/minipanel/dialog", "Aircraft/PA28/AircraftConfig/mini-panel.xml");
+var rendering_dlg = gui.Dialog.new("sim/gui/dialogs/rendering/dialog", "Aircraft/PA28/AircraftConfig/rendering.xml");
 spinning.start();
 init_dlg.open();
 
@@ -132,7 +153,7 @@ var colddark = func {
 	libraries.crashStress.reset();
 	# Initial shutdown, and reinitialization.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0.11);
+	setprop("/controls/flight/elevator-trim", 0.015);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
 	if (getprop("/engines/engine[0]/rpm") < 421) {
@@ -163,7 +184,7 @@ var beforestart = func {
 	libraries.crashStress.reset();
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0.11);
+	setprop("/controls/flight/elevator-trim", 0.015);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
 	
@@ -189,7 +210,7 @@ var taxi = func {
 	libraries.crashStress.reset();
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0.11);
+	setprop("/controls/flight/elevator-trim", 0.015);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
 	
