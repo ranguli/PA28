@@ -60,7 +60,7 @@
 			<visible>
 				<not-equals>
 					<property>/options/autopilot</property>
-					<value>S-TEC-55X</value>
+					<value>S-TEC 55X</value>
 				</not-equals>
 			</visible>
 		</text>
