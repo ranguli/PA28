@@ -23,16 +23,12 @@ var failReset = func {
 	systems.ENG.resetFail();
 	systems.FUEL.resetFail();
 }
-# 
-# var stec55x_dlg = gui.Dialog.new("sim/gui/dialogs/stec55x/dialog", "Aircraft/PA28/gui/dialogs/stec-55x-dlg.xml");
-# var kap140_dlg = gui.Dialog.new("sim/gui/dialogs/kap140/dialog", "Aircraft/PA28/gui/dialogs/kap140-dlg.xml");
+
 var openAPDialog = func {
 	if (getprop("/options/autopilot") == "KAP140") {
 		gui.showDialog("autopilot-kap140");
-		#kap140_dlg.open();
 	} else {
 		gui.showDialog("autopilot-stec55x");
-		#stec55x_dlg.open();
 	}
 }
 
@@ -40,11 +36,9 @@ setlistener("/options/autopilot", func {
 	if (getprop("/options/autopilot") != "S-TEC 55X") {
 		stec55x.ITAF.init();
 		fgcommand("dialog-close", props.Node.new({ "dialog-name" : "autopilot-stec55x" }));
-		#stec55x_dlg.close();
 	}
 	if (getprop("/options/autopilot") != "KAP140") {
 		fgcommand("dialog-close", props.Node.new({ "dialog-name" : "autopilot-kap140" }));
-		#kap140_dlg.close();
 	}
 }, 0, 0);
 
