@@ -310,6 +310,14 @@
 						<property>/fdm/jsbsim/aero/alpha-deg</property>
 						<value>90</value>
 					</less-than>
+					<greater-than>
+						<property>/fdm/jsbsim/velocities/vc-kts</property>
+						<value>20</value>
+					</greater-than>
+					<greater-than>
+						<property>/systems/electrical/bus/main</property>
+						<value>8</value>
+					</greater-than>
 				</and>
 			</condition>
 			<volume><factor>0.3</factor></volume>
