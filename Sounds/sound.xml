@@ -124,6 +124,7 @@
 			<name>wind</name>
 			<mode>looped</mode>
 			<path>Sounds/wind.wav</path>
+			<property>velocities/airspeed-kt</property>
 			<volume>
 				<property>velocities/airspeed-kt</property>
 				<factor>0.0005</factor>
@@ -167,6 +168,7 @@
 			<name>avfan</name>
 			<mode>looped</mode>
 			<path>avfan.wav</path>
+			<property>/fdm/jsbsim/libraries/av-fan-rpm</property>
 			<volume>
 				<property>/fdm/jsbsim/libraries/av-fan-rpm</property>
 				<factor>0.00001089</factor>
@@ -195,6 +197,7 @@
 			<name>rain</name>
 			<mode>looped</mode>
 			<path>rain.wav</path>
+			<property>/environment/rain-norm</property>
 			<volume>
 				<property>/environment/rain-norm</property>
 				<factor>1.0</factor>

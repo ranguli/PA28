@@ -8,7 +8,7 @@ OBJECT poly
 name "APBase"
 loc -1.7335635 0.0863407 0.4177107
 crease 35.0
-texture "panel.png"
+texture "panel-white.png"
 texrep 1 1
 numvert 280
 0.0000000 0.0006341 -0.0038664
@@ -2035,7 +2035,7 @@ OBJECT poly
 name "APFDBase"
 loc -1.7335635 0.0863407 0.4177107
 crease 35.0
-texture "panel.png"
+texture "panel-white.png"
 texrep 1 1
 numvert 280
 0.0000000 0.0006341 -0.0038664
@@ -4062,7 +4062,7 @@ OBJECT poly
 name "APFDSW"
 loc -1.7327758 0.0863513 0.4177641
 crease 35.0
-texture "panel.png"
+texture "panel-white.png"
 texrep 1 1
 numvert 97
 0.0000000 0.0000000 -0.0007479
@@ -4824,7 +4824,7 @@ OBJECT poly
 name "APSW"
 loc -1.7327758 0.0863513 0.4177641
 crease 35.0
-texture "panel.png"
+texture "panel-white.png"
 texrep 1 1
 numvert 97
 0.0000000 0.0000000 -0.0007479
@@ -5586,7 +5586,7 @@ OBJECT poly
 name "TrimBase"
 loc -1.7335635 0.0863407 0.4303193
 crease 35.0
-texture "panel.png"
+texture "panel-white.png"
 texrep 1 1
 numvert 280
 0.0000000 -0.0007410 -0.0038473
@@ -7613,7 +7613,7 @@ OBJECT poly
 name "TrimSW"
 loc -1.7327800 0.0863520 0.4303728
 crease 35.0
-texture "panel.png"
+texture "panel-white.png"
 texrep 1 1
 numvert 97
 0.0000000 0.0000000 -0.0007479

@@ -7,7 +7,7 @@ kids 2
 OBJECT poly
 name "Base"
 crease 35.0
-texture "../../panel.png"
+texture "../../panel-white.png"
 texrep 1 1
 numvert 280
 0.0000000 -0.0000000 -0.0039180
@@ -2033,7 +2033,7 @@ kids 0
 OBJECT poly
 name "Switch"
 crease 35.0
-texture "../../panel.png"
+texture "../../panel-white.png"
 texrep 1 1
 numvert 97
 0.0000000 0.0000000 -0.0007478
