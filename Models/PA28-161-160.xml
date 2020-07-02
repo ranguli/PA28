@@ -34,6 +34,14 @@
 		</unload>
 	</nasal>
 	
+	<!-- Panel texture -->
+	<animation>
+		<type>material</type>
+		<object-name>panel.main</object-name>
+		<texture-prop>options/panel-texture-path</texture-prop>
+		<texture>panel-white.png</texture>
+	</animation>
+	
 	<!-- Define Parts for Crash and Stress -->
 	<animation>
 		<name>NoseGear</name>

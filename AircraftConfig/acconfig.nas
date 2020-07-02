@@ -52,6 +52,7 @@ setprop("/systems/acconfig/spin", "-");
 setprop("/systems/acconfig/options/welcome-skip", 0);
 setprop("/systems/acconfig/options/autopilot", "S-TEC 55X");
 setprop("/systems/acconfig/options/panel", "HSI Panel");
+setprop("/systems/acconfig/options/panel-texture", "white");
 setprop("/systems/acconfig/options/attitude-indicator", "standard");
 setprop("/systems/acconfig/options/radio-setup", "traditional");
 setprop("/systems/acconfig/options/adf-equipped", 0);
@@ -104,13 +105,14 @@ var renderingSettings = {
 	},
 };
 
-var options = [ "show-l-yoke", "show-r-yoke", "panel", "attitude-indicator", "radio-setup", "attitude-indicator", "adf-equipped", "mini-panel", "autopilot", "garmin196" ];
+var options = [ "show-l-yoke", "show-r-yoke", "panel", "panel-texture", "attitude-indicator", "radio-setup", "adf-equipped", "mini-panel", "autopilot", "garmin196" ];
 
 var readSettings = func {
 	io.read_properties(getprop("/sim/fg-home") ~ "/Export/PA28-config.xml", "/systems/acconfig/options");
 	foreach(var key; options){
 		setprop("/options/"~key, getprop("/systems/acconfig/options/"~key));
 	}
+	setprop("/options/panel-texture-path", "panel-" ~ getprop("/systems/acconfig/options/"~key) ~ ".png");
 	autopilotSettings();
 }
 
@@ -137,6 +139,10 @@ var autopilotSettings = func {
 		setprop("/autopilot/kap140/config/baro-tied", 1);
  	}
 }
+
+setlistener("/options/panel-texture", func( i ) {
+	setprop("/options/panel-texture-path", "panel-"~i.getValue()~".png");
+});
 
 ################
 # Panel States #

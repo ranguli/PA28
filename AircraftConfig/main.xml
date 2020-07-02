@@ -204,6 +204,32 @@
 				</binding>
 			</button>
 			
+			<hrule/>
+			
+			<text>
+				<halign>left</halign>
+				<label>Panel Texture</label>
+			</text>
+			
+			<combo>
+				<halign>right</halign>
+				<pref-width>150</pref-width>
+				<property>/options/panel-texture</property>
+				<value>white</value>
+				<value>wood</value>
+				<value>leather</value>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.writeSettings();</script>
+				</binding>
+				<live>true</live>
+			</combo>
+			
+			<hrule/>
+			
 			<text>
 				<halign>left</halign>
 				<label>Factory-set VFR Transponder Code:</label>
