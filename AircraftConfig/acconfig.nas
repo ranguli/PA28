@@ -112,7 +112,7 @@ var readSettings = func {
 	foreach(var key; options){
 		setprop("/options/"~key, getprop("/systems/acconfig/options/"~key));
 	}
-	setprop("/options/panel-texture-path", "panel-" ~ getprop("/systems/acconfig/options/"~key) ~ ".png");
+	setprop("/options/panel-texture-path", "panel-" ~ getprop("/systems/acconfig/options/panel-texture") ~ ".png");
 	autopilotSettings();
 }
 
