@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 	original livery by Sven Seipp (D-SVEN)
+	vectorised by Benedikt Wolf (D-ECHO) based on https://cdn.jetphotos.com/full/6/74660_1553985248.jpg and original livery -->
+<PropertyList>
+	<sim>
+		<model>
+			<livery>
+				<name>D-ELCX</name>
+				<texture>Liveries/D-ELCX.png</texture>
+			</livery>
+		</model>
+	</sim>
+</PropertyList>
+ 
