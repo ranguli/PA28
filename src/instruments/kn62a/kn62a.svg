@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg2"
+   width="1024"
+   height="512"
+   viewBox="0 0 1024 512"
+   sodipodi:docname="kn62a.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:export-filename="/home/delta/Aircraft/PA28/Models/Instruments/kn62a/kn62a.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <metadata
+     id="metadata8">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     pagecolor="#252525"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="1135"
+     id="namedview4"
+     showgrid="false"
+     inkscape:pagecheckerboard="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:zoom="0.31127932"
+     inkscape:cx="213.68733"
+     inkscape:cy="132.21984"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2">
+    <sodipodi:guide
+       position="1024,512"
+       orientation="1,0"
+       id="guide817"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+  </sodipodi:namedview>
+  <rect
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect1081"
+     width="1001.933"
+     height="196.25415"
+     x="12.493883"
+     y="15.084205"
+     rx="8.5333328"
+     ry="8.5333328" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20.13281441px;line-height:100%;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.50332034px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="699.28589"
+     y="43.221386"
+     id="text1085"
+     transform="scale(0.9278562,1.0777532)"><tspan
+       sodipodi:role="line"
+       id="tspan1083"
+       x="699.28589"
+       y="43.221386"
+       style="stroke-width:0.50332034px">RMT</tspan></text>
+  <text
+     transform="scale(0.92785621,1.0777532)"
+     id="text1089"
+     y="43.221386"
+     x="768.09979"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20.13281441px;line-height:100%;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.50332034px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     xml:space="preserve"><tspan
+       style="stroke-width:0.50332034px"
+       y="43.221386"
+       x="768.09979"
+       id="tspan1087"
+       sodipodi:role="line">FREQ</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20.13281441px;line-height:100%;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.50332034px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="834.5083"
+     y="43.221386"
+     id="text1093"
+     transform="scale(0.92785621,1.0777532)"><tspan
+       sodipodi:role="line"
+       id="tspan1091"
+       x="834.5083"
+       y="43.221386"
+       style="stroke-width:0.50332034px">GS/T</tspan></text>
+  <text
+     transform="scale(0.92785621,1.0777532)"
+     id="text1097"
+     y="162.992"
+     x="683.14471"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.29225731px;line-height:100%;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.45730641px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     xml:space="preserve"><tspan
+       style="stroke-width:0.45730641px"
+       y="162.992"
+       x="683.14471"
+       id="tspan1095"
+       sodipodi:role="line">OFF</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.1994648px;line-height:100%;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold Italic';text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.40498659px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+     x="129.95348"
+     y="184.33778"
+     id="text1101"
+     transform="scale(0.89466358,1.1177386)"><tspan
+       sodipodi:role="line"
+       id="tspan1099"
+       x="129.95348"
+       y="184.33778"
+       style="stroke-width:0.40498659px;fill:#ffffff;fill-opacity:1;">BENDIX/KING</tspan></text>
+  <text
+     transform="scale(0.94195435,1.0616226)"
+     id="text1105"
+     y="41.065327"
+     x="1063.775"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.12426567px;line-height:100%;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.45310658px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     xml:space="preserve"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.45310658px"
+       y="41.065327"
+       x="1063.775"
+       id="tspan1103"
+       sodipodi:role="line">KN 62A DME</tspan></text>
+</svg>
