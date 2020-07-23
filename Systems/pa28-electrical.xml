@@ -281,6 +281,41 @@
 	
 	</channel>
 	
+	<channel name="Radio" execrate="8">
+		
+		<switch>
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/outputs/comm[0] ge 9
+			</test>
+			<output>/instrumentation/comm[0]/serviceable</output>
+		</switch>
+		<switch>
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/outputs/comm[1] ge 9
+			</test>
+			<output>/instrumentation/comm[0]/serviceable</output>
+		</switch>
+		<switch>
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/outputs/nav[0] ge 9
+			</test>
+			<output>/instrumentation/nav[0]/serviceable</output>
+		</switch>
+		<switch>
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/outputs/nav[1] ge 9
+			</test>
+			<output>/instrumentation/nav[0]/serviceable</output>
+		</switch>
+		
+	</channel>
+	
+	
+	
 	<channel name="DME" execrate="8">
 		<!--
 		<switch name="/instrumentation/dme/frequencies/source">
