@@ -36,23 +36,8 @@
 			</test>
 		</switch>
 		
-		<fcs_function>
-			<function>
-				<table>
-					<independentVar lookup="column">fcs/aileron-switch</independentVar>
-					<independentVar lookup="row">fcs/roll-trim-cmd-norm</independentVar>
-					<tableData>
-							-1	0	1
-						-1	-1	-0.5	1
-						1	-1	0.5	1
-					</tableData>
-				</table>
-			</function>
-			<output>fcs/aileron-switch-trim</output>
-		</fcs_function>
-		
 		<lag_filter name="fcs/aileron-yoke">
-			<input>fcs/aileron-switch-trim</input>
+			<input>fcs/aileron-switch</input>
 			<c1>20</c1>
 		</lag_filter>
 		
