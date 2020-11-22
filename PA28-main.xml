@@ -888,7 +888,7 @@
 		<gps>
 			<config>
 				<cdi-max-deflection-nm type="double">1.25</cdi-max-deflection-nm>
-				<over-flight-distance-nm type="double">1.25</over-flight-distance-nm>
+				<over-flight-distance-nm type="double">0.5</over-flight-distance-nm>
 				<turn-anticipation type="bool">false</turn-anticipation>
 			</config>
 		</gps>
