@@ -530,6 +530,17 @@
 	</model>
 	
 	<animation>
+		<type>noshadow</type>
+		<object-name>Green nav light ALS</object-name>
+		<object-name>Red nav light ALS</object-name>
+		<object-name>White nav light ALS</object-name>
+		<object-name>Left Strobe light ALS</object-name>
+		<object-name>Right Strobe light ALS</object-name>
+		<object-name>LandingLight-ALS</object-name>
+		<object-name>Beacon light ALS</object-name>
+	</animation>
+	
+	<animation>
 		<type>select</type>
 		<object-name>Green nav light</object-name>
 		<object-name>Red nav light</object-name>
