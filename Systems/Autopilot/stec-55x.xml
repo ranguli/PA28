@@ -782,7 +782,7 @@
 					</equals>
 				</and>
 			</condition>
-			<value>0.5</value>
+			<value>0.09</value>
 		</max-rate-of-change>
 		<max-rate-of-change>10</max-rate-of-change>
 	</filter>
@@ -821,7 +821,7 @@
 			</expression>
 		</input>
 		<output>/controls/flight/aileron</output>
-		<max-rate-of-change>0.5</max-rate-of-change>
+		<max-rate-of-change>0.09</max-rate-of-change>
 	</filter>
 	
 	<!-- Pitch Axis -->
@@ -1210,7 +1210,7 @@
 					</equals>
 				</and>
 			</condition>
-			<value>0.5</value>
+			<value>0.09</value>
 		</max-rate-of-change>
 		<max-rate-of-change>10</max-rate-of-change>
 	</filter>
@@ -1246,7 +1246,7 @@
 			</expression>
 		</input>
 		<output>/controls/flight/elevator</output>
-		<max-rate-of-change>0.5</max-rate-of-change>
+		<max-rate-of-change>0.09</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -1423,7 +1423,7 @@
 					<value>-1</value>
 				</greater-than>
 			</condition>
-			<value>0.5</value>
+			<value>0.09</value>
 		</max-rate-of-change>
 		<max-rate-of-change>10</max-rate-of-change>
 	</filter>
@@ -1461,7 +1461,7 @@
 			</expression>
 		</input>
 		<output>/controls/flight/rudder</output>
-		<max-rate-of-change>0.5</max-rate-of-change>
+		<max-rate-of-change>0.09</max-rate-of-change>
 	</filter>
 	
 	<!-- Flight Director -->
@@ -1505,10 +1505,13 @@
 			<expression>
 				<product>
 					<difference>
-						<property>/it-stec55x/internal/predicted-vertical-speed</property>
+						<product>
+							<property>/it-stec55x/internal/pressure-rate</property>
+							<value>-58000</value>
+						</product>
 						<property>/it-stec55x/internal/vs</property>
 					</difference>
-					<value>0.006</value>
+					<value>0.003</value>
 				</product>
 			</expression>
 		</input>
