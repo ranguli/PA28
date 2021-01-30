@@ -18,7 +18,7 @@ var volts = props.globals.getNode("/instrumentation/G5/electrical/instrument-vol
 # Used properties
 var alt_qnh	=	props.globals.getNode("/instrumentation/altimeter[1]/setting-inhg",			1);
 var alt_ft	=	props.globals.getNode("/instrumentation/altimeter[1]/indicated-altitude-ft",		1);
-var hdg		=	props.globals.getNode("/orientation/heading-deg",					1);
+var hdg		=	props.globals.getNode("/orientation/heading-magnetic-deg",					1);
 var slipskid	=	props.globals.getNode("/instrumentation/slip-skid-ball/indicated-slip-skid",		1);
 var gr_speed	=	props.globals.getNode("/velocities/groundspeed-kt",					1);
 var ai_roll	=	props.globals.getNode("/orientation/roll-deg",						1);

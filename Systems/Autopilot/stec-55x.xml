@@ -1306,7 +1306,15 @@
 			<value>-1</value>
 		</input>
 		<output>/controls/flight/elevator-trim</output>
-		<max-rate-of-change>0.01</max-rate-of-change>
+		<max-rate-of-change>
+			<expression>
+				<table>
+					<abs><property>/it-stec55x/internal/elevator</property></abs>
+					<entry><ind>0.025</ind><dep>0.005</dep></entry>
+					<entry><ind>0.100</ind><dep>0.060</dep></entry>
+				</table>
+			</expression>
+		</max-rate-of-change>
 	</filter>
 	
 	<filter>
