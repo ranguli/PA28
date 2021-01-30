@@ -1,14 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- S-TEC Fifty Five X Autopilot System -->
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
 <PropertyList>
 	
 	<!-- NAV Switching -->
-	
 	<logic>
-		<name>HSI EQUIPPED</name> <!-- Goes to true for custom sources -->
+		<name>HSI Equipped</name> <!-- Goes to true for custom sources -->
 		<input>
 			<or>
 				<and>
@@ -45,7 +44,7 @@
 	</logic>
 	
 	<filter>
-		<name>NAV NEEDLE DEFLECTION</name>
+		<name>Nav Needle Deflection</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -89,7 +88,7 @@
 	</filter>
 	
 	<filter>
-		<name>GS NEEDLE DEFLECTION</name>
+		<name>G/S Needle Deflection</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -115,7 +114,7 @@
 	</filter>
 	
 	<logic>
-		<name>NAV IN RANGE</name>
+		<name>Nav In Range</name>
 		<input>
 			<or>
 				<and>
@@ -164,7 +163,7 @@
 	</logic>
 	
 	<logic>
-		<name>NAV IS LOC</name>
+		<name>Nav Is LOC</name>
 		<input>
 			<or>
 				<and>
@@ -193,7 +192,7 @@
 	</logic>
 	
 	<logic>
-		<name>NAV HAS GS</name>
+		<name>Nav Has G/S</name>
 		<input>
 			<or>
 				<and>
@@ -222,7 +221,7 @@
 	</logic>
 	
 	<filter>
-		<name>NAV COURSE</name>
+		<name>Nav Course</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -273,12 +272,12 @@
 			</condition>
 			<property>/it-stec55x/custom-nav/nav-course-2</property>
 		</input>
-		<input>/autopilot/settings/heading-bug-deg</input>
+		<input>/it-stec55x/input/hdg</input>
 		<output>/it-stec55x/nav/nav-course</output>
 	</filter>
 	
 	<filter>
-		<name>NAV COURSE RECIPROCAL STAGE 1</name>
+		<name>Nav Course Reciprocal Stage 1</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -294,7 +293,7 @@
 	</filter>
 	
 	<filter>
-		<name>NAV COURSE RECIPROCAL STATE 2</name>
+		<name>Nav Course Reciprocal State 2</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -331,7 +330,7 @@
 	</filter>
 	
 	<filter>
-		<name>NAV COURSE ERROR</name>
+		<name>Nav Course Error</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -387,9 +386,8 @@
 	</filter>
 	
 	<!-- Roll Axis -->
-	
 	<filter>
-		<name>TARGET INTERCEPT ANGLE P</name>
+		<name>Target Intercept Angle P</name>
 		<type>gain</type>
 		<gain>12.5</gain>
 		<input>
@@ -406,7 +404,7 @@
 	</filter>
 	
 	<filter>
-		<name>TARGET INTERCEPT ANGLE I</name> <!-- Integrate to cancel steady state error only if stabilized and captured -->
+		<name>Target Intercept Angle I</name> <!-- Integrate to cancel steady state error only if stabilized and captured -->
 		<type>integrator</type>
 		<gain>0.05</gain>
 		<input>
@@ -461,7 +459,7 @@
 	</filter>
 	
 	<filter>
-		<name>TARGET INTERCEPT ANGLE D</name>
+		<name>Target Intercept Angle D</name>
 		<type>derivative</type>
 		<input>
 			<expression>
@@ -479,7 +477,7 @@
 	</filter>
 	
 	<filter>
-		<name>TARGET INTERCEPT ANGLE</name> <!-- Sum the above 3 controllers to make a manual PID controller -->
+		<name>Target Intercept Angle</name> <!-- Sum the above 3 controllers to make a manual PID controller -->
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -498,7 +496,7 @@
 	</filter>
 	
 	<filter> <!-- GPS would provides this, not the autopilot, but lets leave it in this file for ease of implementation -->
-		<name>GPS ERROR DEG</name>
+		<name>GPS Error Deg</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -525,7 +523,7 @@
 	</filter>
 	
 	<filter>
-		<name>HDG/NAV ERROR DEG</name>
+		<name>Heading/Nav Error Deg</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -536,7 +534,7 @@
 					<value>0</value>
 				</equals>
 			</condition>
-			<property>/autopilot/settings/heading-bug-deg</property>
+			<property>/it-stec55x/input/hdg</property>
 			<offset>
 				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
 				<scale>-1.0</scale>
@@ -575,7 +573,7 @@
 			</condition>
 			<expression>
 				<sum>
-					<property>/autopilot/settings/heading-bug-deg</property>
+					<property>/it-stec55x/input/hdg</property>
 					<product>
 						<property>/it-stec55x/internal/intercept-angle</property>
 						<value>-1.0</value>
@@ -632,7 +630,7 @@
 	</filter>
 	
 	<filter>
-		<name>TARGET TURN RATE</name>
+		<name>IT-CONTROLLER: Target Turn Rate</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -668,7 +666,7 @@
 	</filter>
 	
 	<predict-simple>
-		<name>TURN RATE PREDICTOR</name>
+		<name>Turn Rate Predictor</name>
 		<debug>false</debug>
 		<input>/instrumentation/turn-indicator/indicated-turn-rate</input>
 		<output>/it-stec55x/internal/predicted-turn-rate</output>
@@ -677,7 +675,7 @@
 	</predict-simple>
 	
 	<filter>
-		<name>IT-CONTROLLER: TARGET TURN RATE FILTER</name>
+		<name>System Command: Target Turn Rate Filter</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<input>
@@ -704,7 +702,7 @@
 	</filter>
 	
 	<pi-simple-controller>
-		<name>IT-CONTROLLER: ROLL PI</name>
+		<name>System Command: Roll PI</name>
 		<debug>false</debug>
 		<enable>
 			<condition>
@@ -732,7 +730,7 @@
 	</pi-simple-controller>
 	
 	<filter>
-		<name>IT-CONTROLLER: ROLL D</name>
+		<name>System Command: Roll D</name>
 		<type>derivative</type>
 		<input>/it-stec55x/internal/predicted-turn-rate</input>
 		<reference>/it-stec55x/internal/turn-rate-cmd</reference>
@@ -743,7 +741,7 @@
 	</filter>
 	
 	<filter>
-		<name>IT-CONTROLLER: ROLL OUTPUT INTERNAL</name>
+		<name>System Command: Roll Output Internal</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<input>
@@ -789,11 +787,46 @@
 		<max-rate-of-change>10</max-rate-of-change>
 	</filter>
 	
+	<filter>
+		<name>System Command: Roll Output Generic</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<enable>
+			<condition>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/roll</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-roll-power</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/use-controls-flight</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<product>
+					<sum>
+						<property>/it-stec55x/internal/aileron-pi</property>
+						<property>/it-stec55x/internal/aileron-d</property>
+					</sum>
+					<property>/it-stec55x/settings/gain-roll</property>
+				</product>
+			</expression>
+		</input>
+		<output>/controls/flight/aileron</output>
+		<max-rate-of-change>0.5</max-rate-of-change>
+	</filter>
 	
 	<!-- Pitch Axis -->
-	
 	<filter>
-		<name>STATIC PRESSURE 20FT DELTA</name>
+		<name>Static Pressure 20FT Delta</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -825,7 +858,7 @@
 	</filter>
 	
 	<filter>
-		<name>PRESSURE RATE COMPUTER</name>
+		<name>Pressure Rate Computer</name>
 		<debug>false</debug>
 		<type>derivative</type>
 		<input>/systems/static[0]/pressure-inhg</input>
@@ -834,7 +867,7 @@
 	</filter>
 
 	<filter>
-		<name>PRESSURE RATE LAG</name>
+		<name>Pressure Rate Lag</name>
 		<debug>false</debug>
 		<type>double-exponential</type>
 		<input>/it-stec55x/internal/pressure-rate-raw</input>
@@ -843,7 +876,7 @@
 	</filter>
 	
 	<predict-simple>
-		<name>VERTICAL SPEED PREDICTOR</name>
+		<name>Vertical Speed Predictor</name>
 		<debug>false</debug>
 		<input>
 			<expression> <!-- Pressure Rate to Vertical Speed FPM -->
@@ -859,7 +892,7 @@
 	</predict-simple>
 	
 	<filter>
-		<name>V/S SYNC</name>
+		<name>Vertical Speed Inactive Sync</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -902,7 +935,7 @@
 	</filter>
 	
 	<filter>
-		<name>V/S ABS</name>
+		<name>Vertical Speed Absolute Value</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -915,7 +948,7 @@
 	</filter>
 	
 	<filter>
-		<name>ALTITUDE CAPTURE/HOLD</name>
+		<name>IT-CONTROLLER: Altitude Capture/Hold</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>3625</gain>
@@ -934,7 +967,7 @@
 	</filter>
 	
 	<filter>
-		<name>V/S GS SYNC</name>
+		<name>Vertical Speed G/S Sync</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -960,7 +993,7 @@
 	</filter>
 	
 	<predict-simple>
-		<name>GS NEEDLE PREDICTOR</name>
+		<name>G/S Needle Predictor</name>
 		<debug>false</debug>
 		<input>/it-stec55x/nav/gs-needle</input>
 		<output>/it-stec55x/internal/predicted-gs-needle</output>
@@ -969,7 +1002,7 @@
 	</predict-simple>
 	
 	<pid-controller>
-		<name>IT-CONTROLLER: GS CONTROL</name>
+		<name>IT-CONTROLLER: G/S</name>
 		<debug>false</debug>
 		<enable>
 			<condition>
@@ -992,7 +1025,7 @@
 	</pid-controller>
 	
 	<filter>
-		<name>VERT SPEED SWITCH</name>
+		<name>IT-CONTROLLER: Vertical Speed Switch</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -1019,7 +1052,7 @@
 	</filter>
 	
 	<filter>
-		<name>VERT SPEED FILTER</name>
+		<name>IT-CONTROLLER: Vertical Speed Filter</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<input>/it-stec55x/internal/vs</input>
@@ -1037,7 +1070,7 @@
 	</filter>
 	
 	<pi-simple-controller>
-		<name>IT-CONTROLLER: ACCEL PI</name>
+		<name>IT-CONTROLLER: Acceleration PI</name>
 		<debug>false</debug>
 		<enable>
 			<condition>
@@ -1065,7 +1098,7 @@
 	</pi-simple-controller>
 	
 	<filter>
-		<name>INTERNAL G ACCEL</name>
+		<name>System Command: Internal G Acceleration</name>
 		<type>double-exponential</type>
 		<input>
 			<expression>
@@ -1083,7 +1116,7 @@
 	</filter>
 	
 	<filter>
-		<name>TARGET ACCEL</name>
+		<name>System Command: Target Acceleration</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -1111,7 +1144,7 @@
 	</filter>
 	
 	<pi-simple-controller>
-		<name>IT-CONTROLLER: PITCH</name>
+		<name>System Command: Elevator PI</name>
 		<debug>false</debug>
 		<enable>
 			<condition>
@@ -1139,7 +1172,7 @@
 	</pi-simple-controller>
 	
 	<filter>
-		<name>IT-CONTROLLER: PITCH OUTPUT INTERNAL</name>
+		<name>System Command: Pitch Output Internal</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<input>
@@ -1183,7 +1216,41 @@
 	</filter>
 	
 	<filter>
-		<name>IT-CONTROLLER: AUTOMATIC PITCH TRIM</name>
+		<name>System Command: Pitch Output Generic</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<enable>
+			<condition>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/use-controls-flight</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<product>
+					<property>/it-stec55x/internal/elevator-pi</property>
+					<property>/it-stec55x/settings/gain-pitch</property>
+				</product>
+			</expression>
+		</input>
+		<output>/controls/flight/elevator</output>
+		<max-rate-of-change>0.5</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>System Command: Automatic Elevator Trim</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
@@ -1217,10 +1284,6 @@
 							<value>1</value>
 						</equals>
 					</or>
-					<equals>
-						<property>/options/autopilot</property>
-						<value>S-TEC 55X</value>
-					</equals>
 				</and>
 			</condition>
 		</enable>
@@ -1247,7 +1310,7 @@
 	</filter>
 	
 	<filter>
-		<name>IT-CONTROLLER: MANUAL PITCH TRIM</name>
+		<name>System Command: Manual Elevator Trim</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
@@ -1273,10 +1336,6 @@
 							<value>1</value>
 						</equals>
 					</or>
-					<equals>
-						<property>/options/autopilot</property>
-						<value>S-TEC 55X</value>
-					</equals>
 				</and>
 			</condition>
 		</enable>
@@ -1303,9 +1362,8 @@
 	</filter>
 	
 	<!-- Yaw Axis (Optional Yaw Damper) -->
-	
 	<filter>
-		<name>INTERNAL YAW RATE SENSOR LOW-PASS</name>
+		<name>Internal Yaw Rate Sensor Low-Pass</name>
 		<debug>false</debug>
 		<type>exponential</type>
 		<input>/orientation/r-body</input>
@@ -1314,7 +1372,7 @@
 	</filter>
 	
 	<filter>
-		<name>INTERNAL YAW RATE SENSOR HIGH-PASS</name>
+		<name>Internal Yaw Rate Sensor High-Pass</name>
 		<debug>false</debug>
 		<type>high-pass</type>
 		<input>/it-stec55x/internal/yaw-rate-low</input>
@@ -1323,7 +1381,7 @@
 	</filter>
 	
 	<filter>
-		<name>IT-CONTROLLER: YAW DAMPER</name>
+		<name>System Command: Yaw Damper</name>
 		<type>gain</type>
 		<gain>7.161975</gain> <!-- RAD2DEG * 0.125 -->
 		<input>/it-stec55x/internal/yaw-rate-high</input>
@@ -1333,7 +1391,7 @@
 	</filter>
 	
 	<filter>
-		<name>IT-CONTROLLER: YAW OUTPUT INTERNAL</name>
+		<name>System Command: Yaw Output Internal</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<input>
@@ -1371,7 +1429,7 @@
 	</filter>
 	
 	<filter>
-		<name>IT-CONTROLLER: YAW OUTPUT GENERIC</name>
+		<name>System Command: Yaw Output Generic</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<enable>
@@ -1384,10 +1442,6 @@
 					<equals>
 						<property>/it-stec55x/settings/use-controls-flight</property>
 						<value>1</value>
-					</equals>
-					<equals>
-						<property>/options/autopilot</property>
-						<value>S-TEC 55X</value>
 					</equals>
 				</and>
 			</condition>
@@ -1411,7 +1465,6 @@
 	</filter>
 	
 	<!-- Flight Director -->
-	
 	<filter>
 		<name>FD: Roll</name>
 		<type>exponential</type>
@@ -1464,22 +1517,6 @@
 		<filter-time>0.08</filter-time>
 		<min>-15</min>
 		<max>15</max>
-	</filter>
-	
-	<!-- Averager for the G5 -->
-	<filter>
-		<enable>
-			<condition>
-				<greater-than>
-					<property>/instrumentation/G5/electrical/load</property>
-					<value>0</value>
-				</greater-than>
-			</condition>
-		</enable>				
-		<type>moving-average</type>
-		<samples>12000</samples>
-		<input>/instrumentation/G5/electrical/load</input>
-		<output>/instrumentation/G5/electrical/load-average</output>
 	</filter>
 
 </PropertyList>

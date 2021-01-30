@@ -1,43 +1,31 @@
 <?xml version="1.0"?>
 <!-- This autopilot file switches between S-TEC 55X and KAP140 -->
 <PropertyList>
-
+	
+	<filter>
+		<name>S-TEC 55X HDG Sync</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/autopilot/settings/heading-bug-deg</input>
+		<output>/it-stec55x/input/hdg</output>
+	</filter>
+	
 	<filter>
 		<name>max-rate</name>
 		<type>gain</type>
 		<input>
 			<condition>
-				<or>
-					<and>
-						<greater-than>
-							<property>/it-stec55x/output/roll</property>
-							<value>-1</value>
-						</greater-than>
-						<equals>
-							<property>/it-stec55x/internal/servo-roll-power</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-stec55x/settings/use-controls-flight</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/options/autopilot</property>
-							<value>S-TEC 55X</value>
-						</equals>
-					</and>
-					<and>
-						<equals>
-							<property>/options/autopilot</property>
-							<value>KAP140</value>
-						</equals>
-						<equals>
-							<property>autopilot/kap140/panel/state</property>
-							<value>6</value>
-						</equals>
-						<not><property>autopilot/kap140/settings/cws</property></not>
-					</and>
-				</or>
+				<and>
+					<equals>
+						<property>/options/autopilot</property>
+						<value>KAP140</value>
+					</equals>
+					<equals>
+						<property>autopilot/kap140/panel/state</property>
+						<value>6</value>
+					</equals>
+					<not><property>autopilot/kap140/settings/cws</property></not>
+				</and>
 			</condition>
 			<value>0.1</value>
 		</input>
@@ -45,46 +33,6 @@
 			<value>100.0</value>
 		</input>
 		<output>autopilot/internal/max-rate-of-change</output>
-	</filter>
-
-	<filter>
-		<name>AILERON OUTPUT S-TEC 55X</name>
-		<type>noise-spike</type>
-		<enable>
-			<condition>
-				<and>
-					<greater-than>
-						<property>/it-stec55x/output/roll</property>
-						<value>-1</value>
-					</greater-than>
-					<equals>
-						<property>/it-stec55x/internal/servo-roll-power</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-stec55x/settings/use-controls-flight</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/options/autopilot</property>
-						<value>S-TEC 55X</value>
-					</equals>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<product>
-					<sum>
-						<property>/it-stec55x/internal/aileron-pi</property>
-						<property>/it-stec55x/internal/aileron-d</property>
-					</sum>
-					<property>/it-stec55x/settings/gain-roll</property>
-				</product>
-			</expression>
-		</input>
-		<output>/controls/flight/aileron</output>
-		<max-rate-of-change>autopilot/internal/max-rate-of-change</max-rate-of-change>
 	</filter>
 
 	<filter>
@@ -112,44 +60,6 @@
 			<property>controls/flight/aileron</property>
 		</input>
 		<output>controls/flight/aileron</output>
-		<max-rate-of-change>autopilot/internal/max-rate-of-change</max-rate-of-change>
-	</filter>
-
-	<filter>
-		<name>ELEVATOR OUTPUT S-TEC 55X</name>
-		<debug>false</debug>
-		<type>noise-spike</type>
-		<enable>
-			<condition>
-				<and>
-					<greater-than>
-						<property>/it-stec55x/output/pitch</property>
-						<value>-1</value>
-					</greater-than>
-					<equals>
-						<property>/it-stec55x/internal/servo-pitch-power</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-stec55x/settings/use-controls-flight</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/options/autopilot</property>
-						<value>S-TEC 55X</value>
-					</equals>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<product>
-					<property>/it-stec55x/internal/elevator-pi</property>
-					<property>/it-stec55x/settings/gain-pitch</property>
-				</product>
-			</expression>
-		</input>
-		<output>/controls/flight/elevator</output>
 		<max-rate-of-change>autopilot/internal/max-rate-of-change</max-rate-of-change>
 	</filter>
 
