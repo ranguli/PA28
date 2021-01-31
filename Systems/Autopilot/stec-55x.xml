@@ -791,6 +791,7 @@
 		<name>System Command: Roll Output Generic</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
+		<initialize-to>output</initialize-to>
 		<enable>
 			<condition>
 				<and>
@@ -1440,6 +1441,7 @@
 		<name>System Command: Yaw Output Generic</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
+		<initialize-to>output</initialize-to>
 		<enable>
 			<condition>
 				<and>
