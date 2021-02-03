@@ -505,8 +505,8 @@
 				<sum>
 					<property>/autopilot/route-manager/wp[0]/true-bearing-deg</property>
 					<difference>
-						<property>/orientation/track-magnetic-deg</property>
 						<property>/orientation/heading-magnetic-deg</property>
+						<property>/orientation/track-magnetic-deg</property>
 					</difference>
 					<product>
 						<property>/orientation/heading-deg</property>
