@@ -15,6 +15,7 @@
 	
 	<animation>
 		<type>material</type>
+		<object-name>ac_symbol</object-name>
 		<object-name>heading.card</object-name>
 		<object-name>heading.bug</object-name>
 		<object-name>hdg.flag</object-name>
