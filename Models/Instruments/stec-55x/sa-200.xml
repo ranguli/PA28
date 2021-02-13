@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+
+<!-- S-TEC Fifty Five X Autopilot System -->
+<!-- SA-200 Altitude Preselector -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
+<!-- 3D and texture by Benedikt Wolf (D-ECHO) -->
+
+<PropertyList>
+	
+    <path>sa-200.ac</path>
+	
+	<params>
+		<button-translate>-0.002</button-translate> <!-- Button translate factor -->
+	</params>
+	
+	<animation>
+		<type>material</type>
+		<object-name>sa200.face</object-name>
+		<object-name>sa200.mute.btn</object-name>
+		<emission>
+			<red>0.1</red>
+			<green>0.1</green>
+			<blue>0.1</blue>
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>sa200.display</object-name>
+		<emission>
+			<red>0.4</red>
+			<green>0.4</green>
+			<blue>0.4</blue>
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>sa200.mute.flag</object-name>
+		<object-name>sa200.alt.10000</object-name>
+		<object-name>sa200.alt.1000</object-name>
+		<object-name>sa200.alt.100</object-name>
+		<object-name>sa200.alt.10</object-name>
+		<object-name>sa200.alt.1</object-name>
+		<condition>
+			<!--	SA200 power condition	-->
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>sa200.mute.flag</object-name>
+		<condition>
+			<!--	SA200 mute condition	-->
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>sa200.alt.10000</object-name>
+		<!--	SA200 altitude property	-->
+		<factor>0.00001</factor>
+		<step>10000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>sa200.alt.1000</object-name>
+		<!--	SA200 altitude property	-->
+		<factor>0.0001</factor>
+		<step>1000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>sa200.alt.100</object-name>
+		<!--	SA200 altitude property	-->
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>sa200.alt.10</object-name>
+		<!--	SA200 altitude property	-->
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>sa200.alt.1</object-name>
+		<!--	SA200 altitude property	-->
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>sa200.alert.lamp</object-name>
+		<!--	SA200 alert lamp active property	-->
+		<factor>0.15</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>sa200.mute.btn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script><!--	SA200 mute binding	--></script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>nasal</command>
+					<script><!--	SA200 mute release binding	--></script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>sa200.mute.btn</object-name>
+		<property><!--	SA200 mute btn pressed	--></property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>knob</type>
+		<object-name>sa200.alt.knob.small</object-name>
+		<property><!--	SA200 alt knob small rotation	--></property>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<y-m> 0.032462</y-m>
+			<z-m>-0.0055  </z-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property><!--	SA200 alt	--></property>
+				<min>0</min>
+				<max>90000</max>	<!-- did not find any reference for the maximum altitude selectable -->
+				<factor>100</factor>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>knob</type>
+		<object-name>sa200.alt.knob.big</object-name>
+		<property><!--	SA200 alt knob big rotation	--></property>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<y-m> 0.032462</y-m>
+			<z-m>-0.0055  </z-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property><!--	SA200 alt	--></property>
+				<min>0</min>
+				<max>90000</max>	<!-- did not find any reference for the maximum altitude selectable -->
+				<factor>1000</factor>
+			</binding>
+		</action>
+	</animation>
+
+</PropertyList>

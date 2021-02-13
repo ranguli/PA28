@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512"
+   height="256"
+   viewBox="0 0 512 256"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.2 (1.0.2+r75+1)"
+   sodipodi:docname="sa200.svg"
+   inkscape:export-filename="/home/delta/Aircraft/PA28/Models/Instruments/stec-55x/sa-200.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1339"
+       x="-0.056217991"
+       width="1.112436"
+       y="-0.056217991"
+       height="1.112436">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.6901192"
+         id="feGaussianBlur1341" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1443"
+       x="-0.080227246"
+       width="1.1604545"
+       y="-0.20584118"
+       height="1.4116824">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="2.2829956"
+         id="feGaussianBlur1445" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1626"
+       x="-0.019622938"
+       width="1.0392459"
+       y="-0.043485911"
+       height="1.0869718">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="3.8894702"
+         id="feGaussianBlur1628" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#636363"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6"
+     inkscape:cx="128.75642"
+     inkscape:cy="113.36376"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     units="px"
+     inkscape:pagecheckerboard="true"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1680"
+     inkscape:window-height="991"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1">
+    <sodipodi:guide
+       position="0,256"
+       orientation="-1,0"
+       id="guide833"
+       inkscape:label=""
+       inkscape:locked="false"
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="512,0"
+       orientation="-1,0"
+       id="guide835"
+       inkscape:label=""
+       inkscape:locked="false"
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="0,256"
+       orientation="0,-1"
+       id="guide837" />
+    <sodipodi:guide
+       position="512,0"
+       orientation="0,1"
+       id="guide839"
+       inkscape:label=""
+       inkscape:locked="false"
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="311.138,116.87834"
+       orientation="0,1"
+       id="guide1632"
+       inkscape:label=""
+       inkscape:locked="false"
+       inkscape:color="rgb(0,0,255)" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="rect1009"
+       style="fill:#1a1a1a;fill-opacity:1;stroke-width:3;stroke-dashoffset:12.6"
+       d="M 0,0 V 256 H 512 V 0 Z M 90.498047,67.464844 H 115.49414 V 125.97656 H 90.498047 Z" />
+    <path
+       id="path1455"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter1626)"
+       d="m 18.111371,71.503394 c 0,0 0.09727,-6.462141 4.260085,-11.355149 4.16281,-4.893009 41.416773,-42.119802 41.416773,-42.119802 0,0 6.638976,-5.210273 12.612915,-5.210273 H 434.37376 c 0,0 8.33478,-0.02188 13.78611,5.441787 5.45132,5.463665 36.84228,37.139329 36.84228,37.139329 0,0 8.81415,6.630455 8.81415,18.919124 v 45.83025 45.83025 c 0,12.28867 -8.81415,18.91912 -8.81415,18.91912 0,0 -31.39096,31.67567 -36.84228,37.13933 -5.45133,5.46369 -13.78611,5.44179 -13.78611,5.44179 H 76.401144 c -5.973939,0 -12.612915,-5.21027 -12.612915,-5.21027 0,0 -37.253963,-37.2268 -41.416773,-42.11981 -4.162815,-4.893 -4.260085,-11.35514 -4.260085,-11.35514 z"
+       sodipodi:nodetypes="cscscscscscscscsc" />
+    <path
+       id="path1630"
+       style="fill:#1a1a1a;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 76.400391,12.818359 c -5.973939,0 -12.611329,5.210938 -12.611329,5.210938 10e-7,0 -37.255158,37.226132 -41.417968,42.119141 -4.162815,4.893007 -4.259766,11.355468 -4.259766,11.355468 v 97.289064 c 0,0 0.09695,6.46247 4.259766,11.35547 4.16281,4.89301 41.417968,42.12109 41.417968,42.12109 10e-7,0 6.63739,5.20899 12.611329,5.20899 H 434.37305 c 0,0 8.33578,0.0223 13.78711,-5.44141 5.45132,-5.46366 36.84179,-37.13867 36.84179,-37.13867 0,0 8.81446,-6.63125 8.81446,-18.91992 V 120.14844 74.318359 c 0,-12.288669 -8.81446,-18.919921 -8.81446,-18.919921 0,0 -31.39047,-31.675007 -36.84179,-37.138672 -5.45133,-5.463667 -13.78711,-5.441407 -13.78711,-5.441407 z M 90.498047,67.464844 H 115.49414 V 125.97656 H 90.498047 Z" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-dashoffset:12.6;stroke-opacity:1;filter:url(#filter1443)"
+       id="rect1349"
+       width="68.295868"
+       height="26.618528"
+       x="296.50052"
+       y="187.48563"
+       rx="7.8413525"
+       ry="7.8413525" />
+    <text
+       xml:space="preserve"
+       style="font-size:16.4291px;line-height:100%;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.513411px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="89.639488"
+       y="33.833549"
+       id="text1175"
+       transform="scale(1.1145154,0.89725092)"><tspan
+         sodipodi:role="line"
+         id="tspan1173"
+         x="89.639488"
+         y="33.833549"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.513411px">S-TEC</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.7648px;line-height:100%;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.492649px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="213.00998"
+       y="190.48915"
+       id="text1183"
+       transform="scale(0.9178879,1.0894577)"><tspan
+         sodipodi:role="line"
+         id="tspan1181"
+         x="213.00998"
+         y="190.48915"
+         style="stroke-width:0.492649px">ALERT</tspan></text>
+    <rect
+       style="fill:#222222;fill-opacity:1;stroke:none;stroke-width:3;stroke-dashoffset:12.6;stroke-opacity:1"
+       id="rect1347"
+       width="68.295868"
+       height="26.618528"
+       x="296.50052"
+       y="187.48563"
+       rx="7.8413525"
+       ry="7.8413525" />
+    <text
+       xml:space="preserve"
+       style="font-size:21.3084px;line-height:100%;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.665885px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="377.11676"
+       y="183.38268"
+       id="text1187"
+       transform="scale(0.87629872,1.1411634)"><tspan
+         sodipodi:role="line"
+         id="tspan1185"
+         x="377.11676"
+         y="183.38268"
+         style="stroke-width:0.665885px">MUTE</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16.578px;line-height:100%;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.51806px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="476.65894"
+       y="102.26018"
+       id="text1191"
+       transform="scale(0.93785661,1.0662611)"><tspan
+         sodipodi:role="line"
+         id="tspan1189"
+         x="476.65894"
+         y="102.26018"
+         style="stroke-width:0.51806px">ALT-SEL</tspan></text>
+    <circle
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.90928;stroke-dashoffset:12.6;stroke-opacity:1;filter:url(#filter1339)"
+       id="path1193"
+       cx="446.88156"
+       cy="152.1216"
+       r="36.076405" />
+    <circle
+       style="fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:2.90928;stroke-dashoffset:12.6;stroke-opacity:1;filter:url(#filter1339)"
+       id="circle1343"
+       cx="446.88156"
+       cy="152.1216"
+       r="36.076405"
+       transform="matrix(1.0131663,0,0,1.0131663,-5.8837978,-2.0028858)" />
+    <rect
+       style="fill:#42483a;fill-opacity:1;stroke:none;stroke-width:2.14576;stroke-dashoffset:12.6;stroke-opacity:1"
+       id="rect1345"
+       width="222.6385"
+       height="64.180214"
+       x="150.12201"
+       y="64.360687" />
+    <circle
+       style="fill:#445c4d;fill-opacity:1;stroke:none;stroke-width:3;stroke-dashoffset:12.6;stroke-opacity:1"
+       id="circle1449"
+       cx="131.92592"
+       cy="80.560478"
+       r="13.747152" />
+    <text
+       xml:space="preserve"
+       style="font-size:20.3259px;line-height:100%;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.635182px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="104.56567"
+       y="-87.077591"
+       id="text1636"
+       transform="matrix(0,0.91865663,-1.088546,0,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan1634"
+         x="104.56567"
+         y="-87.077591"
+         style="fill:#000000;fill-opacity:1;stroke-width:0.635182px">MUTE</tspan></text>
+    <circle
+       style="fill:#00a040;fill-opacity:1;stroke:none;stroke-width:3;stroke-dashoffset:12.6;stroke-opacity:1"
+       id="circle1657"
+       cx="131.92592"
+       cy="118.96048"
+       r="13.747152" />
+  </g>
+</svg>
