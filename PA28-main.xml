@@ -1030,9 +1030,6 @@
 			<file>Aircraft/PA28/Models/Instruments/G5/G5.nas</file>
 			<file>Aircraft/PA28/Models/Instruments/G5/G5_electrical.nas</file>
 		</g5>
-		<lights>
-			<file>Aircraft/PA28/Nasal/light-manager.nas</file>
-		</lights>
 		<HobbsMeter>
 			<file>Aircraft/PA28/Models/Instruments/Hobbs/hobbs.nas</file>
 			<script>HobbsMeter.new(index: 0, switchPath: 'gear/gear/wow', inverted: 1);</script>

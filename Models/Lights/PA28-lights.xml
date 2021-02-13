@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+	<!--	The PA28 is equipped with the following external lights:
+	
+	Navigation Lights	3	wing tips and tail fin
+	Beacon			1	tail fin
+	Strobe Lights		2	wing tips
+	Landing Light		1	nose
+	-->
+	
+	<!--	Attenuation values are based on http://wiki.ogre3d.org/tiki-index.php?page=-Point+Light+Attenuation	-->
+	
+	<!--	NAVIGATION LIGHTS	-->
+	<light>
+		<name>red-navlight</name>
+		<type>spot</type>
+		<position>
+			<x-m>-0.767</x-m>
+			<y-m>-5.36 </y-m>
+			<z-m> 0.189</z-m>
+		</position>
+		<direction>
+			<x>-0.1</x>
+			<y>-1.0</y>
+			<z> 0.0</z>
+		</direction>
+		<ambient>
+			<r>1.0</r>
+			<g>0.1</g>
+			<b>0.1</b>
+			<a>1</a>
+		</ambient>
+		<diffuse>
+			<r>1.0</r>
+			<g>0.1</g>
+			<b>0.1</b>
+			<a>1</a>
+		</diffuse>
+		<specular>
+			<r>1.0</r>
+			<g>0.1</g>
+			<b>0.1</b>
+			<a>1</a>
+		</specular>
+		<attenuation>
+			<c>1.0</c>
+			<l>0.6</l>
+			<q>1.5</q>
+		</attenuation>
+		<spot-exponent>1.0</spot-exponent>
+		<spot-cutoff>89</spot-cutoff>
+		<range-m>10</range-m>
+		<dim-factor>
+			<property>controls/lighting/nav-lights</property>
+		</dim-factor>
+	</light>
+	<light>
+		<name>green-navlight</name>
+		<type>spot</type>
+		<position>
+			<x-m>-0.767</x-m>
+			<y-m> 5.36 </y-m>
+			<z-m> 0.189</z-m>
+		</position>
+		<direction>
+			<x>-0.1</x>
+			<y> 1.0</y>
+			<z> 0.0</z>
+		</direction>
+		<ambient>
+			<r>0.1</r>
+			<g>1.0</g>
+			<b>0.1</b>
+			<a>1</a>
+		</ambient>
+		<diffuse>
+			<r>0.1</r>
+			<g>1.0</g>
+			<b>0.1</b>
+			<a>1</a>
+		</diffuse>
+		<specular>
+			<r>0.1</r>
+			<g>1.0</g>
+			<b>0.1</b>
+			<a>1</a>
+		</specular>
+		<attenuation>
+			<c>1.0</c>
+			<l>0.6</l>
+			<q>1.5</q>
+		</attenuation>
+		<spot-exponent>1.0</spot-exponent>
+		<spot-cutoff>89</spot-cutoff>
+		<range-m>10</range-m>
+		<dim-factor>
+			<property>controls/lighting/nav-lights</property>
+		</dim-factor>
+	</light>
+	<light>
+		<name>tail-navlight</name>
+		<type>spot</type>
+		<position>
+			<x-m> 3.62 </x-m>
+			<y-m>-0.036</y-m>
+			<z-m> 1.39 </z-m>
+		</position>
+		<direction>
+			<x> 1.0</x>
+			<y> 0.0</y>
+			<z> 0.0</z>
+		</direction>
+		<ambient>
+			<r>0.5</r>
+			<g>0.5</g>
+			<b>0.5</b>
+			<a>1</a>
+		</ambient>
+		<diffuse>
+			<r>0.5</r>
+			<g>0.5</g>
+			<b>0.5</b>
+			<a>1</a>
+		</diffuse>
+		<specular>
+			<r>0.5</r>
+			<g>0.5</g>
+			<b>0.5</b>
+			<a>1</a>
+		</specular>
+		<attenuation>
+			<c>1.0</c>
+			<l>0.6</l>
+			<q>1.5</q>
+		</attenuation>
+		<spot-exponent>1.0</spot-exponent>
+		<spot-cutoff>89</spot-cutoff>
+		<range-m>10</range-m>
+		<dim-factor>
+			<property>controls/lighting/nav-lights</property>
+		</dim-factor>
+	</light>
+	
+	<model>
+		<name>Red nav light</name>
+		<path>standard/RedLight.xml</path>
+		<offsets>
+			<x-m>-0.767037</x-m>
+			<y-m>-5.36</y-m>
+			<z-m>0.188891</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>Green nav light</name>
+		<path>standard/GreenLight.xml</path>
+		<offsets>
+			<x-m>-0.767037</x-m>
+			<y-m>5.36</y-m>
+			<z-m>0.188891</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>Red nav light ALS</name>
+		<path>ALS/rednav.xml</path>
+		<offsets>
+			<x-m>-0.767037</x-m>
+			<y-m>-5.36</y-m>
+			<z-m>0.188891</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>Green nav light ALS</name>
+		<path>ALS/greennav.xml</path>
+		<offsets>
+			<x-m>-0.767037</x-m>
+			<y-m>5.36</y-m>
+			<z-m>0.188891</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>White nav light ALS</name>
+		<path>ALS/tailnav.xml</path>
+		<offsets>
+			<x-m>3.62153</x-m>
+			<y-m>-0.0358</y-m>
+			<z-m>1.39111</z-m>
+		</offsets>
+	</model>
+
+	<!--	BEACON	-->
+	<light>
+		<name>beacon</name>
+		<type>point</type>
+		<position>
+			<x-m> 3.19877</x-m>
+			<y-m>-0.036049</y-m>
+			<z-m> 1.56529</z-m>
+		</position>
+		<ambient>
+			<r>1.0</r>
+			<g>0.1</g>
+			<b>0.1</b>
+			<a>1</a>
+		</ambient>
+		<diffuse>
+			<r>1.0</r>
+			<g>0.1</g>
+			<b>0.1</b>
+			<a>1</a>
+		</diffuse>
+		<specular>
+			<r>1.0</r>
+			<g>0.1</g>
+			<b>0.1</b>
+			<a>1</a>
+		</specular>
+		<attenuation>
+			<c>1.0</c>
+			<l>2.0</l>
+			<q>4.0</q>
+		</attenuation>
+		<range-m>5</range-m>
+		<dim-factor>
+			<property>sim/model/lights/beacon/state</property>
+		</dim-factor>
+	</light>
+	<model>
+		<name>Beacon light ALS</name>
+		<path>ALS/beacon.xml</path>
+		<offsets>
+			<x-m>3.19877</x-m>
+			<y-m>-0.036049</y-m>
+			<z-m>1.56529</z-m>
+		</offsets>
+	</model>
+
+	<!--	STROBE	-->
+	<light>
+		<name>left-strobe</name>
+		<type>spot</type>
+		<position>
+			<x-m>-0.767</x-m>
+			<y-m>-5.36 </y-m>
+			<z-m> 0.189</z-m>
+		</position>
+		<direction>
+			<x>-0.1</x>
+			<y>-1.0</y>
+			<z> 0.0</z>
+		</direction>
+		<ambient>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+			<a>1</a>
+		</ambient>
+		<diffuse>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+			<a>1</a>
+		</diffuse>
+		<specular>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+			<a>1</a>
+		</specular>
+		<attenuation>
+			<c>1.0</c>
+			<l>0.4</l>
+			<q>0.5</q>
+		</attenuation>
+		<spot-exponent>1.0</spot-exponent>
+		<spot-cutoff>89</spot-cutoff>
+		<range-m>10</range-m>
+		<dim-factor>
+			<property>sim/model/lights/strobe/state</property>
+		</dim-factor>
+	</light>
+	<light>
+		<name>right-strobe</name>
+		<type>spot</type>
+		<position>
+			<x-m>-0.767</x-m>
+			<y-m> 5.36 </y-m>
+			<z-m> 0.189</z-m>
+		</position>
+		<direction>
+			<x>-0.1</x>
+			<y> 1.0</y>
+			<z> 0.0</z>
+		</direction>
+		<ambient>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+			<a>1</a>
+		</ambient>
+		<diffuse>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+			<a>1</a>
+		</diffuse>
+		<specular>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+			<a>1</a>
+		</specular>
+		<attenuation>
+			<c>1.0</c>
+			<l>0.4</l>
+			<q>0.5</q>
+		</attenuation>
+		<spot-exponent>1.0</spot-exponent>
+		<spot-cutoff>89</spot-cutoff>
+		<range-m>10</range-m>
+		<dim-factor>
+			<property>sim/model/lights/strobe/state</property>
+		</dim-factor>
+	</light>
+	
+	<model>
+		<name>Left Strobe light ALS</name>
+		<path>ALS/left-strobe.xml</path>
+		<offsets>
+			<x-m>-0.767037</x-m>
+			<y-m>-5.36</y-m>
+			<z-m>0.188891</z-m>
+		</offsets>
+	</model>
+
+	<model>
+		<name>Right Strobe light ALS</name>
+		<path>ALS/right-strobe.xml</path>
+		<offsets>
+			<x-m>-0.767037</x-m>
+			<y-m>5.36</y-m>
+			<z-m>0.188891</z-m>
+		</offsets>
+	</model>
+
+	<!--	LANDING LIGHT	-->
+	<light>
+		<name>right-strobe</name>
+		<type>spot</type>
+		<position>
+			<x-m>-3.1 </x-m>
+			<y-m> 0.0 </y-m>
+			<z-m>-0.37</z-m>
+		</position>
+		<direction>
+			<x>-1.0</x>
+			<y> 0.0</y>
+			<z>-0.1</z>
+		</direction>
+		<ambient>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+			<a>1</a>
+		</ambient>
+		<diffuse>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+			<a>1</a>
+		</diffuse>
+		<specular>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+			<a>1</a>
+		</specular>
+		<attenuation>
+			<c>1.0</c>
+			<l>0.005</l>
+			<q>0.001</q>
+		</attenuation>
+		<spot-exponent>25</spot-exponent>
+		<spot-cutoff>35</spot-cutoff>
+		<range-m>100</range-m>
+		<dim-factor>
+			<property>controls/switches/landing-light</property>
+		</dim-factor>
+	</light>
+	<model>
+		<name>LandingLight-ALS</name>
+		<path>ALS/landinglight.xml</path>
+		<offsets>
+		<x-m>-3.09914</x-m>
+		<y-m>0.0</y-m>
+		<z-m>-0.36843</z-m>
+		<pitch-deg>-15.00</pitch-deg>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>LandingLight</name>
+		<path>standard/Landinglight.xml</path>
+		<offsets>
+		<x-m>-3.09914</x-m>
+		<y-m>0.0</y-m>
+		<z-m>-0.36843</z-m>
+		<pitch-deg>-15.00</pitch-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>noshadow</type>
+		<object-name>Green nav light ALS</object-name>
+		<object-name>Red nav light ALS</object-name>
+		<object-name>White nav light ALS</object-name>
+		<object-name>Left Strobe light ALS</object-name>
+		<object-name>Right Strobe light ALS</object-name>
+		<object-name>LandingLight-ALS</object-name>
+		<object-name>Beacon light ALS</object-name>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Green nav light</object-name>
+		<object-name>Red nav light</object-name>
+		<object-name>LandingLight</object-name>
+		<object-name>TailNavLight</object-name> <!-- makes the actual tailnav light look really bad, hide the object. -->
+		<condition>
+			<not>
+				<property>sim/rendering/shaders/skydome</property>
+			</not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Green nav light ALS</object-name>
+		<object-name>Red nav light ALS</object-name>
+		<object-name>White nav light ALS</object-name>
+		<object-name>Left Strobe light ALS</object-name>
+		<object-name>Right Strobe light ALS</object-name>
+		<object-name>LandingLight-ALS</object-name>
+		<object-name>Beacon light ALS</object-name>
+		<condition>
+			<property>sim/rendering/shaders/skydome</property>
+		</condition>
+	</animation>
+	
+</PropertyList>
