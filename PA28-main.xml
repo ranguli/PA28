@@ -169,14 +169,12 @@
 				<int n="2" alias="/fdm/jsbsim/crash-stress/rwing-damaged"/>
 				<int n="3" alias="/fdm/jsbsim/crash-stress/htail-damaged"/>
 				<int n="4" alias="/fdm/jsbsim/crash-stress/vtail-damaged"/>
-				<bool n="0" alias="/options/wheel-fairing"/>
-				<float n="0" alias="/fdm/jsbsim/fcs/aileron-yoke"/>
-				<float n="1" alias="/fdm/jsbsim/fcs/pitch-input"/>
-				<float n="2" alias="/fdm/jsbsim/fcs/yaw-input"/>
-				<float n="3" alias="/fdm/jsbsim/fcs/steer-deg"/>
+				<int n="5" alias="/controls/lighting/landing-light"/>
+				<int n="6" alias="/controls/lighting/nav-lights"/>
+				<int n="7" alias="/sim/model/lights/strobe/state"/>
+				<int n="8" alias="/sim/model/lights/beacon/state"/>
 				<float n="4" alias="/fdm/jsbsim/extra/door-main-norm"/>
 				<float n="5" alias="/fdm/jsbsim/extra/door-baggage-norm"/>
-				<string alias="/sim/multiplay/callsign"/>
 			</generic>
 		</multiplay>
 		<panel>

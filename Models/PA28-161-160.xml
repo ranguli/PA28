@@ -28,9 +28,37 @@
 	<nasal>
 		<load>
 			var livery_update = aircraft.livery_update.new("Aircraft/PA28/Models/Liveries");
+			
+			var rplayer = cmdarg();
+			
+			rplayer.getNode("fdm/jsbsim/crash-stress/nose-damaged",		1).alias(rplayer.getNode("sim/multiplay/generic/int[0]"));
+			rplayer.getNode("fdm/jsbsim/crash-stress/lwing-damaged",	1).alias(rplayer.getNode("sim/multiplay/generic/int[1]"));
+			rplayer.getNode("fdm/jsbsim/crash-stress/rwing-damaged",	1).alias(rplayer.getNode("sim/multiplay/generic/int[2]"));
+			rplayer.getNode("fdm/jsbsim/crash-stress/htail-damaged",	1).alias(rplayer.getNode("sim/multiplay/generic/int[3]"));
+			rplayer.getNode("fdm/jsbsim/crash-stress/vtail-damaged",	1).alias(rplayer.getNode("sim/multiplay/generic/int[4]"));
+			rplayer.getNode("controls/lighting/landing-light",		1).alias(rplayer.getNode("sim/multiplay/generic/int[5]"));
+			rplayer.getNode("controls/lighting/nav-lights",			1).alias(rplayer.getNode("sim/multiplay/generic/int[6]"));
+			rplayer.getNode("sim/model/lights/strobe/state",		1).alias(rplayer.getNode("sim/multiplay/generic/int[7]"));
+			rplayer.getNode("sim/model/lights/beacon/state",		1).alias(rplayer.getNode("sim/multiplay/generic/int[8]"));
+			
+			rplayer.getNode("fdm/jsbsim/extra/door-main-norm",		1).alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
+			rplayer.getNode("fdm/jsbsim/extra/door-baggage-norm",		1).alias(rplayer.getNode("sim/multiplay/generic/float[1]"));
 		</load>
 		<unload>
 			livery_update.stop();
+			
+			rplayer.getNode("fdm/jsbsim/crash-stress/nose-damaged",		1).unalias();
+			rplayer.getNode("fdm/jsbsim/crash-stress/lwing-damaged",	1).unalias();
+			rplayer.getNode("fdm/jsbsim/crash-stress/rwing-damaged",	1).unalias();
+			rplayer.getNode("fdm/jsbsim/crash-stress/htail-damaged",	1).unalias();
+			rplayer.getNode("fdm/jsbsim/crash-stress/vtail-damaged",	1).unalias();
+			rplayer.getNode("controls/lighting/landing-light",		1).unalias();
+			rplayer.getNode("controls/lighting/nav-lights",			1).unalias();
+			rplayer.getNode("sim/model/lights/strobe/state",		1).unalias();
+			rplayer.getNode("sim/model/lights/beacon/state",		1).unalias();
+			
+			rplayer.getNode("fdm/jsbsim/extra/door-main-norm",		1).unalias();
+			rplayer.getNode("fdm/jsbsim/extra/door-baggage-norm",		1).unalias();
 		</unload>
 	</nasal>
 	

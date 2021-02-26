@@ -388,7 +388,7 @@
 		<spot-cutoff>35</spot-cutoff>
 		<range-m>100</range-m>
 		<dim-factor>
-			<property>controls/switches/landing-light</property>
+			<property>controls/lighting/landing-light</property>
 		</dim-factor>
 	</light>
 	<model>
@@ -432,7 +432,7 @@
 		<object-name>TailNavLight</object-name> <!-- makes the actual tailnav light look really bad, hide the object. -->
 		<condition>
 			<not>
-				<property>sim/rendering/shaders/skydome</property>
+				<property>/sim/rendering/shaders/skydome</property>
 			</not>
 		</condition>
 	</animation>
@@ -447,7 +447,7 @@
 		<object-name>LandingLight-ALS</object-name>
 		<object-name>Beacon light ALS</object-name>
 		<condition>
-			<property>sim/rendering/shaders/skydome</property>
+			<property>/sim/rendering/shaders/skydome</property>
 		</condition>
 	</animation>
 	

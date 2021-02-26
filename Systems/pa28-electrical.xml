@@ -106,6 +106,14 @@
 			<output>/controls/lighting/nav-lights</output>
 		</switch>
 		
+		<switch name="rubbish/landing-light">
+			<default value="0"/>
+			<test logic="AND" value="/controls/switches/landing-light">
+				/systems/electrical/bus/main ge 8
+			</test>
+			<output>/controls/lighting/landing-light</output>
+		</switch>
+		
 		<fcs_function name="/controls/lighting/panel-lights-cmd">
 			<function>
 				<ifthen>
