@@ -10,17 +10,19 @@ var vbus_volts = 0.0;
 
 # Properties
 
-var property_base = props.globals.getNode("/instrumentation/G5", 1);
-var electrical_base = property_base.initNode("electrical");
-var start = property_base.initNode("start", 0, "BOOL");					#	0 : switched off; 0-1 : starting up; 1: running
-var bus_volts = props.globals.getNode("/systems/electrical/outputs/G5", 1); 		#	Current supplied by the aircraft's avionics bus
-var ins_volts = electrical_base.initNode("instrument-volts", 0.0, "DOUBLE");		#	voltage fed to the instrument
-var charge = electrical_base.initNode("battery-charge-percent", 1.0, "DOUBLE");		#	internal battery charge
-var load = electrical_base.initNode("load", 0.0, "DOUBLE");				#	internal battery load
-var bus_load = electrical_base.initNode("bus-load", 0.0, "DOUBLE");			#	Load on the avionics bus (from this instrument)
-var ffb = electrical_base.initNode("feed-from-battery", 0, "BOOL");			#	0: fed from avionics bus 1: fed from internal battery (for instrument indication)
-var bc	=	electrical_base.initNode("battery-charging", 0, "BOOL");		#	0: not charging 1: charging
-var option = props.globals.getNode("/options/attitude-indicator", 1);
+var property_base	= props.globals.getNode("/instrumentation/G5", 1);
+var electrical_base	= property_base.initNode("electrical");
+var start		= property_base.initNode("start", 0, "BOOL");				#	0 : switched off; 0-1 : starting up; 1: running
+var bus_volts		= props.globals.getNode("/systems/electrical/outputs/G5", 1); 		#	Current supplied by the aircraft's avionics bus
+var ins_volts		= electrical_base.initNode("instrument-volts", 0.0, "DOUBLE");		#	voltage fed to the instrument
+var charge		= electrical_base.initNode("battery-charge-percent", 1.0, "DOUBLE");	#	internal battery charge
+var load		= electrical_base.initNode("load", 0.0, "DOUBLE");			#	internal battery load
+var bus_load		= electrical_base.initNode("bus-load", 0.0, "DOUBLE");			#	Load on the avionics bus (from this instrument)
+var ffb			= electrical_base.initNode("feed-from-battery", 0, "BOOL");		#	0: fed from avionics bus 1: fed from internal battery (for instrument indication)
+var bc			= electrical_base.initNode("battery-charging", 0, "BOOL");		#	0: not charging 1: charging
+var option		= props.globals.getNode("/options/attitude-indicator", 1);
+
+var replay_state	= props.globals.getNode("/sim/freeze/replay-state",	1);
 
 ##
 # Battery model class.
@@ -45,7 +47,7 @@ var BatteryClass = {
 			
 			var old_charge_percent = charge.getValue();
 
-			if (getprop("/sim/freeze/replay-state"))
+			if ( replay_state.getBoolValue() )
 				return me.amp_hours * old_charge_percent;
 
 			var amphrs_used = amps * dt / 3600.0;
@@ -78,7 +80,7 @@ var internal_battery = BatteryClass.new();
 
 
 var update_electrical = func () {
-	var time = getprop("/sim/time/elapsed-sec");
+	var time = elapsed_sec.getDoubleValue();
 	var dt = time - last_time;
 	last_time = time;
     
@@ -114,10 +116,11 @@ var update_electrical = func () {
 }
 
 
-setlistener("/sim/signals/fdm-initialized", func {
+var elec_ls = setlistener("/sim/signals/fdm-initialized", func {
 	internal_battery.reset_to_full_charge();
-	last_time = getprop("/sim/time/elapsed-sec");
+	last_time = elapsed_sec.getDoubleValue();
 	g5_electrical_loop = maketimer(0.2, update_electrical);
 	g5_electrical_loop.simulatedTime = 1; 
 	g5_electrical_loop.start();
+	removelistener( elec_ls );
 });

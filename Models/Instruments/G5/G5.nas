@@ -4,6 +4,10 @@
 # Josh Davidson (it0uchpods)
 #######################################
 
+#		COMMON PROPERTIES
+#	Properties used in G5.nas (this file) and G5_electrical.nas
+var elapsed_sec		= props.globals.getNode("/sim/time/elapsed-sec",	1);
+
 var G5_only = nil;
 var G5_start = nil;
 var G5_display = nil;
@@ -69,10 +73,7 @@ var canvas_G5_base = {
 
 		var svg_keys = me.getKeys();
 		 
-		foreach(var key; svg_keys) {
-			me[key] = canvas_group.getElementById(key);
-			var svg_keys = me.getKeys();
-			foreach (var key; svg_keys) {
+		foreach (var key; svg_keys) {
 			me[key] = canvas_group.getElementById(key);
 			var clip_el = canvas_group.getElementById(key ~ "_clip");
 			if (clip_el != nil) {
@@ -86,7 +87,6 @@ var canvas_G5_base = {
 				#   coordinates are top,right,bottom,left (ys, xe, ye, xs) ref: l621 of simgear/canvas/CanvasElement.cxx
 				me[key].set("clip", clip_rect);
 				me[key].set("clip-frame", canvas.Element.PARENT);
-			}
 			}
 		}
 		
@@ -117,8 +117,6 @@ var canvas_G5_base = {
 				G5_only.page.hide();
 				G5_start.page.hide();
 			}
-			
-			settimer(func me.update(), 0.02);
 		}
 	},
 };
@@ -264,7 +262,7 @@ var canvas_G5_start = {
 };
 
 
-setlistener("sim/signals/fdm-initialized", func {
+var ls = setlistener("sim/signals/fdm-initialized", func {
 	G5_display = canvas.new({
 		"name": "G5",
 		"size": [320, 240],
@@ -278,8 +276,12 @@ setlistener("sim/signals/fdm-initialized", func {
 	G5_only = canvas_G5_only.new(groupOnly, base_path~"G5.svg");
 	G5_start = canvas_G5_start.new(groupStart, base_path~"G5-start.svg");
 	
-	canvas_G5_base.update();
+	var canvas_G5_updater = maketimer( 0.02, canvas_G5_base.update );
+	canvas_G5_updater.simulatedTime = 1;
 	
+	if( device_av.getValue() == "Garmin G5" ){
+		canvas_G5_updater.start();
+	}
 	
 	setlistener(volts, func {
 		if( volts.getValue() < 9 and getprop(start_prop) != 0){
@@ -289,9 +291,13 @@ setlistener("sim/signals/fdm-initialized", func {
 
 	setlistener(device_av, func {
 		if ( device_av.getValue() == "Garmin G5" ){
-			canvas_G5_base.update();
+			canvas_G5_updater.start();
+		} else {
+			canvas_G5_updater.stop();
 		}
 	});
+	
+	removelistener( ls );
 });
 
 var showG5 = func {
@@ -299,13 +305,13 @@ var showG5 = func {
 	dlg.setCanvas(G5_display);
 }
 
-var pressed_time = getprop("/sim/time/elapsed-sec");
+var pressed_time = elapsed_sec.getDoubleValue();
 
 var power_btn = func (x) {	# 1 = pressed 0 = released
 	if( x == 1 ) {
-		pressed_time = getprop("/sim/time/elapsed-sec");
+		pressed_time = elapsed_sec.getDoubleValue()
 	} else if ( x == 0 ) {
-		var dt = getprop("/sim/time/elapsed-sec") - pressed_time;
+		var dt = elapsed_sec.getDoubleValue() - pressed_time;
 		if ( dt < 1 and getprop(start_prop) == 1 ){
 			if(bat_s.getValue() == 0){
 				bat_s.setValue(1);
