@@ -41,8 +41,12 @@
 			rplayer.getNode("sim/model/lights/strobe/state",		1).alias(rplayer.getNode("sim/multiplay/generic/int[7]"));
 			rplayer.getNode("sim/model/lights/beacon/state",		1).alias(rplayer.getNode("sim/multiplay/generic/int[8]"));
 			
-			rplayer.getNode("fdm/jsbsim/extra/door-main-norm",		1).alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
-			rplayer.getNode("fdm/jsbsim/extra/door-baggage-norm",		1).alias(rplayer.getNode("sim/multiplay/generic/float[1]"));
+			rplayer.getNode("fdm/jsbsim/fcs/aileron-yoke",			1).alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
+			rplayer.getNode("fdm/jsbsim/fcs/pitch-input",			1).alias(rplayer.getNode("sim/multiplay/generic/float[1]"));
+			rplayer.getNode("fdm/jsbsim/fcs/yaw-input",			1).alias(rplayer.getNode("sim/multiplay/generic/float[2]"));
+			rplayer.getNode("fdm/jsbsim/fcs/steer-deg",			1).alias(rplayer.getNode("sim/multiplay/generic/float[3]"));
+			rplayer.getNode("fdm/jsbsim/extra/door-main-norm",		1).alias(rplayer.getNode("sim/multiplay/generic/float[4]"));
+			rplayer.getNode("fdm/jsbsim/extra/door-baggage-norm",		1).alias(rplayer.getNode("sim/multiplay/generic/float[5]"));
 		</load>
 		<unload>
 			livery_update.stop();
@@ -57,6 +61,10 @@
 			rplayer.getNode("sim/model/lights/strobe/state",		1).unalias();
 			rplayer.getNode("sim/model/lights/beacon/state",		1).unalias();
 			
+			rplayer.getNode("fdm/jsbsim/fcs/aileron-yoke",			1).unalias();
+			rplayer.getNode("fdm/jsbsim/fcs/pitch-input",			1).unalias();
+			rplayer.getNode("fdm/jsbsim/fcs/yaw-input",			1).unalias();
+			rplayer.getNode("fdm/jsbsim/fcs/steer-deg",			1).unalias();
 			rplayer.getNode("fdm/jsbsim/extra/door-main-norm",		1).unalias();
 			rplayer.getNode("fdm/jsbsim/extra/door-baggage-norm",		1).unalias();
 		</unload>
