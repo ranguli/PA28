@@ -349,7 +349,7 @@
 
 	<!--	LANDING LIGHT	-->
 	<light>
-		<name>right-strobe</name>
+		<name>landing-light</name>
 		<type>spot</type>
 		<position>
 			<x-m>-3.1 </x-m>
