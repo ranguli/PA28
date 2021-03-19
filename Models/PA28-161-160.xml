@@ -1101,9 +1101,9 @@
 		<name>KAP140</name>
 		<path>Instruments/kap140/kap140.xml</path>
 		<offsets>
-			<x-m>-1.7430</x-m>
-			<y-m>0.1067</y-m>
-			<z-m>0.1376</z-m>
+			<x-m>-1.737</x-m>
+			<y-m>0.10665</y-m>
+			<z-m>0.137551</z-m>
 		</offsets>
 	</model>
 	

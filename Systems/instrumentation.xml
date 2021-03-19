@@ -24,6 +24,13 @@
 		<quantum>0</quantum>
 		<tau>0</tau>
 	</altimeter>
+	<altimeter>
+		<name>altimeter-kap140-internal</name>
+		<number>0</number>
+		<static-pressure>/systems/static/pressure-inhg</static-pressure>
+		<quantum>0</quantum>
+		<tau>0</tau>
+	</altimeter>
 	<attitude-indicator>
 		<name>attitude-indicator</name>
 		<number>0</number>

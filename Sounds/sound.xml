@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-  
+
 <!-- Warrior II Sound Configuration -->
 <!-- Josh Davidson (Octal450) -->
 
@@ -79,7 +79,7 @@
 				</greater-than>
 			</condition><!--
 			<volume>
-				<property>/sim/sound/volume-ramp-engine-start</property>
+			<property>/sim/sound/volume-ramp-engine-start</property>
 			</volume>-->
 			<volume>
 				<property>/engines/engine[0]/rpm</property>
@@ -136,30 +136,30 @@
 		<!-- Touchdown --><!-- Needs a sound file -->
 		
 		<!--wow>
-			<mode>once</mode>
-			<name>wow0</name>
-			<path>Sounds/touch.wav</path>
-			<condition>
-				<property>gear/gear[0]/wow</property>
-			</condition>
+		<mode>once</mode>
+		<name>wow0</name>
+		<path>Sounds/touch.wav</path>
+		<condition>
+		<property>gear/gear[0]/wow</property>
+		</condition>
 		</wow>
 		
 		<wow>
-			<mode>once</mode>
-			<name>wow1</name>
-			<path>Sounds/touch.wav</path>
-			<condition>
-				<property>gear/gear[1]/wow</property>
-			</condition>
+		<mode>once</mode>
+		<name>wow1</name>
+		<path>Sounds/touch.wav</path>
+		<condition>
+		<property>gear/gear[1]/wow</property>
+		</condition>
 		</wow>
 		
 		<wow>
-			<mode>once</mode>
-			<name>wow2</name>
-			<path>Sounds/touch.wav</path>
-			<condition>
-				<property>gear/gear[2]/wow</property>
-			</condition>
+		<mode>once</mode>
+		<name>wow2</name>
+		<path>Sounds/touch.wav</path>
+		<condition>
+		<property>gear/gear[2]/wow</property>
+		</condition>
 		</wow-->
 		
 		<!-- Cockpit -->
@@ -264,7 +264,7 @@
 			</volume>
 		</switch>
 		
-		<!-- KAP140 Autopilot -->
+		<!-- KAP140 Autopilot --> 
 		<kap140-disengage>
 			<name>KAP140 disengage</name>
 			<path>kap140-disengage.wav</path>
@@ -277,28 +277,28 @@
 					<property>autopilot/kap140/panel/ap-timer</property>
 				</or>
 			</condition>
-			<volume><factor>0.3</factor></volume>
+			<volume><factor>0.2</factor></volume>
 			<position>
-				<x>-1.7430</x>
-				<y> 0.1067</y>
-				<z> 0.1376</z>
+				<x>-0.444</x>
+				<y> 0.229</y>
+				<z> 0.312</z>
 			</position>
 		</kap140-disengage>
-
+		
 		<kap140-alert>
 			<name>KAP140 altitude alerter</name>
 			<path>kap140-alert.wav</path>
 			<condition>
 				<property>autopilot/kap140/panel/alt-alert-sound</property>
 			</condition>
-			<volume><factor>0.3</factor></volume>
+			<volume><factor>0.2</factor></volume>
 			<position>
-				<x>-1.7430</x>
-				<y> 0.1067</y>
-				<z> 0.1376</z>
+				<x>-0.444</x>
+				<y> 0.229</y>
+				<z> 0.312</z>
 			</position>
 		</kap140-alert>
-	
+		
 		<stall-warning>
 			<name>stall warning</name>
 			<path>stall.wav</path>
@@ -331,5 +331,5 @@
 			</position>
 		</stall-warning>
 	</fx>
-
+	
 </PropertyList>

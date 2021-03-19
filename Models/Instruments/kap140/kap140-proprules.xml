@@ -1,38 +1,295 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+
+This are the filters to control the actual 'mode' of the KAP 140
+The actual 'control' (the control loops) are in a different xml file.
+
+This filters control the modes and output them in the prop-tree as:
+
+    autopilot/kap140/settings/lateral-mode
+    autopilot/kap140/settings/lateral-arm
+    autopilot/kap140/settings/vertical-mode
+    autopilot/kap140/settings/vertical-arm
+
+The properties with prefix '-mode' reflect what is currently active.
+The properties with prefix '-arm' show what will be active if the conditional are meet.
+
+The numbers of the 'lateral-*' properties has the meaning as followed:
+    0 = off
+    1 = ROL (only in '-mode')
+    2 = HDG (only in '-mode')
+    3 = NAV
+    4 = APR
+    5 = REV
+    6 = GS  (special, only possible in '-arm' if 'lateral-mode' is 4)
+
+The numbers of the 'vertical-*' properties has the meaning as followed:
+    0 = off
+    1 = VS  (only in '-mode')
+    2 = ALT
+    3 = GS  (special, only possible in '-mode' if 'lateral-mode' is 4)
+
+Special behavior of the GS (Glide Slope):
+
+Case 1:
+lateral-mode = 4 (APR)
+lateral-arm  = 6 (GS ARM)
+
+We have captured the localizer and waiting for the GS.
+
+Case 2:
+lateral-mode  = 4 (APR)
+vertical-mode = 3 (GS)
+
+We have captured the localizer and the GS.
+
+-->
+
 <PropertyList include="kap140-config.xml">
 
-<!-- reset if KAP 140 is not choosen -->
+<!-- Servos failure mapping for failure-manager-->
+    <logic>
+        <input>
+            <and>
+                <greater-than>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>2</value>
+                </greater-than>
+                <or>
+                    <not><property>autopilot/kap140/servo/roll-servo/serviceable</property></not>
+                    <greater-than>
+                        <property>autopilot/kap140/servo/roll-servo/check-timer</property>
+                        <value>0</value>
+                    </greater-than>
+                    <and>
+                        <greater-than>
+                            <expression>
+                                <abs><property>autopilot/kap140/servo/roll-servo/force</property></abs>
+                            </expression>
+                            <value alias="/params/roll-servo-force-max"/>
+                        </greater-than>
+                    </and>
+                </or>
+            </and>
+        </input>
+        <output>autopilot/kap140/roll-axis-fail</output>
+    </logic>
+    <logic>
+        <input>
+            <and>
+                <greater-than>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>2</value>
+                </greater-than>
+                <or>
+                    <not><property>autopilot/kap140/servo/pitch-servo/serviceable</property></not>
+                    <not><property>autopilot/kap140/servo/elevator-trim-servo/serviceable</property></not>
+                    <property>autopilot/kap140/sensors/excess-g</property>
+                    <greater-than>
+                        <property>autopilot/kap140/servo/pitch-servo/check-timer</property>
+                        <value>0</value>
+                    </greater-than>
+                    <and>
+                        <greater-than>
+                            <expression>
+                                <abs><property>autopilot/kap140/servo/pitch-servo/force</property></abs>
+                            </expression>
+                            <value alias="/params/pitch-servo-force-max"/>
+                        </greater-than>
+                    </and>
+                </or>
+            </and>
+        </input>
+        <output>autopilot/kap140/pitch-axis-fail</output>
+    </logic>
+
+<!-- Detect servo movement -->
     <filter>
-        <name>unpowered</name>
+        <type>derivative</type>
+        <gain>100</gain>
+        <input>
+            <condition>
+                <greater-than>
+                    <property>autopilot/kap140/settings/lateral-mode</property>
+                    <value>0</value>
+                </greater-than>
+            </condition>
+            <property>controls/flight/aileron</property>
+        </input>
+        <input>0</input>
+        <output>autopilot/kap140/servo/roll-servo/moverate</output>
+        <filter-time>0.5</filter-time>
+    </filter>
+    <filter>
+        <type>derivative</type>
+        <gain>100</gain>
+        <input>
+            <condition>
+                <greater-than>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
+                    <value>0</value>
+                </greater-than>
+            </condition>
+            <property>controls/flight/elevator</property>
+        </input>
+        <input>0</input>
+        <output>autopilot/kap140/servo/pitch-servo/moverate</output>
+        <filter-time>0.5</filter-time>
+    </filter>
+
+<!-- Detect excess g forces (c182s POH p. S15-6); disconnect AP. -->
+<!-- (Note: we want to filter short bursts that can occur during turbolences) -->
+    <logic>
+        <input>
+            <or>
+                <less-than>
+                    <property>accelerations/pilot-gdamped</property>
+                    <value alias="/params/gforce-min"/>
+                </less-than>
+                <greater-than>
+                    <property>accelerations/pilot-gdamped</property>
+                    <value alias="/params/gforce-max"/>
+                </greater-than>
+            </or>
+        </input>
+        <output>autopilot/kap140/sensors/excess-g-raw</output>
+    </logic>
+    <flipflop>
+        <name>Excess G-forces for too long</name>
+        <type>monostable</type>
+        <inverted type="bool">true</inverted>
+        <S> <not> <property>autopilot/kap140/sensors/excess-g-raw</property> </not> </S>
+        <time>
+            <value>1.0</value>
+        </time>
+        <output> <property>autopilot/kap140/sensors/excess-g</property> </output>
+    </flipflop>
+
+<!-- Detect inoperable turn-indicator -->
+    <logic>
+        <input>
+            <and>
+                <property>instrumentation/turn-indicator/serviceable</property>
+                <greater-than>
+                    <property>systems/electrical/outputs/turn-coordinator</property>
+                    <value>12</value>
+                </greater-than>
+            </and>
+        </input>
+        <output>autopilot/kap140/sensors/turn-indicator-operable</output>
+    </logic>
+
+<!-- servo check -->
+
+    <filter>
+        <name>set roll servo check</name>
         <type>gain</type>
         <debug>false</debug>
         <enable>
             <condition>
-                <not>
-                    <equals>
-                        <property>options/autopilot</property>
-                        <value>KAP140</value>
-                    </equals>
-                </not>
+                <property>autopilot/kap140/powered</property>
+                <equals>
+                    <property>autopilot/kap140/servo/roll-servo/check-timer</property>
+                    <value>0.0</value>
+                </equals>
             </condition>
         </enable>
-        <input>0</input>
-        <output>autopilot/kap140/powered</output>
-        <output>autopilot/kap140/bad-condition</output>
-        <output>autopilot/kap140/panel/state</output>
-        <output>autopilot/kap140/panel/state-old</output>
-        <output>autopilot/kap140/sensors/pitch-up</output>
-        <output>autopilot/kap140/sensors/pitch-down</output>
-        <output>autopilot/kap140/panel/pft-1</output>
-        <output>autopilot/kap140/panel/pft-2</output>
-        <output>autopilot/kap140/panel/pft-3</output>
-        <output>autopilot/kap140/panel/digit</output>
-        <output>autopilot/kap140/panel/digit-mode</output>
-        <output>autopilot/kap140/panel/digit-timer</output>
-        <output>autopilot/kap140/panel/baro-mode</output>
-        <output>autopilot/kap140/panel/baro-timer</output>
-        <output>autopilot/kap140/panel/nav-timer</output>
+        <input>
+            <expression>
+                <sum>
+                    <property>autopilot/kap140/panel/pft-1</property>
+                    <value>5.0</value>
+                    <product>
+                        <mod>
+                            <product>
+                                <property>sim/time/elapsed-sec</property>
+                                <value>1.61803398875</value>
+                            </product>
+                            <value>1.0</value>
+                        </mod>
+                        <value>5.0</value>
+                    </product>
+                </sum>
+            </expression>
+        </input>
+        <output>autopilot/kap140/servo/roll-servo/check-timer</output>
+    </filter>
+
+    <filter>
+        <name>clear roll servo check</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <property>autopilot/kap140/powered</property>
+                <greater-than>
+                    <property>autopilot/kap140/servo/roll-servo/check-timer</property>
+                    <value>1.0</value>
+                </greater-than>
+                <greater-than>
+                    <property>sim/time/elapsed-sec</property>
+                    <property>autopilot/kap140/servo/roll-servo/check-timer</property>
+                </greater-than>
+            </condition>
+        </enable>
+        <input>-1.0</input>
+        <output>autopilot/kap140/servo/roll-servo/check-timer</output>
+    </filter>
+
+    <filter>
+        <name>set pitch servo check</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <property>autopilot/kap140/powered</property>
+                <equals>
+                    <property>autopilot/kap140/servo/pitch-servo/check-timer</property>
+                    <value>0.0</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>
+            <expression>
+                <sum>
+                    <property>autopilot/kap140/panel/pft-1</property>
+                    <value>15.0</value>
+                    <product>
+                        <mod>
+                            <product>
+                                <property>sim/time/elapsed-sec</property>
+                                <value>1.61803398875</value>
+                            </product>
+                            <value>1.0</value>
+                        </mod>
+                        <value>15.0</value>
+                    </product>
+                </sum>
+            </expression>
+        </input>
+        <output>autopilot/kap140/servo/pitch-servo/check-timer</output>
+    </filter>
+
+    <filter>
+        <name>clear pitch servo check</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <property>autopilot/kap140/powered</property>
+                <greater-than>
+                    <property>autopilot/kap140/servo/pitch-servo/check-timer</property>
+                    <value>1.0</value>
+                </greater-than>
+                <greater-than>
+                    <property>sim/time/elapsed-sec</property>
+                    <property>autopilot/kap140/servo/pitch-servo/check-timer</property>
+                </greater-than>
+            </condition>
+        </enable>
+        <input>-1.0</input>
+        <output>autopilot/kap140/servo/pitch-servo/check-timer</output>
     </filter>
 
 <!-- reset all if the AP has no power -->
@@ -44,10 +301,10 @@
             <condition>
                 <property>autopilot/kap140/powered</property>
                 <less-than>
-                    <property alias="../../../../../params/power-supplied"/>
+                    <property alias="/params/power-supplied"/>
                     <expression>
                         <product>
-                            <property alias="../../../../../../../params/power-nominal"/>
+                            <value alias="/params/power-nominal"/>
                             <value>0.7</value>
                         </product>
                     </expression>
@@ -56,6 +313,21 @@
         </enable>
         <input>0</input>
         <output>autopilot/kap140/powered</output>
+    </filter>
+
+    <filter>
+        <name>cold state</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <or>
+                    <not><property>autopilot/kap140/powered</property></not>
+                    <not><property>autopilot/kap140/serviceable</property></not>
+                </or>
+            </condition>
+        </enable>
+        <input>0</input>
         <output>autopilot/kap140/bad-condition</output>
         <output>autopilot/kap140/panel/state</output>
         <output>autopilot/kap140/panel/state-old</output>
@@ -70,9 +342,12 @@
         <output>autopilot/kap140/panel/baro-mode</output>
         <output>autopilot/kap140/panel/baro-timer</output>
         <output>autopilot/kap140/panel/nav-timer</output>
+        <output>autopilot/kap140/panel/gs-timer</output>
+        <output>autopilot/kap140/settings/cws</output>
+        <output>autopilot/kap140/settings/ap-disc</output>
+        <output>autopilot/kap140/servo/roll-servo/check-timer</output>
+        <output>autopilot/kap140/servo/pitch-servo/check-timer</output>
     </filter>
-
-
 
 <!-- reset default altitude if the AP has no power -->
     <filter>
@@ -81,10 +356,10 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <not><property>autopilot/kap140/powered</property></not>
+                <not><property>autopilot/kap140/panel/state</property></not>
             </condition>
         </enable>
-        <input alias="../../params/default-altitude"/>
+        <input alias="/params/default-altitude"/>
         <output>autopilot/internal/target-altitude</output>
     </filter>
 
@@ -95,12 +370,12 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <not><property>autopilot/kap140/powered</property></not>
-                <not><property alias="../../../../../params/baro-tied"/></not>
+                <not><property>autopilot/kap140/panel/state</property></not>
+                <not><value alias="/params/baro-tied"/></not>
             </condition>
         </enable>
         <input>29.92</input>
-        <output alias="../../params/baro-inhg"/>
+        <output alias="/params/baro-inhg"/>
     </filter>
 
 <!-- start the Pre-Flight-Test if the AP receive enough powered -->
@@ -112,18 +387,14 @@
             <condition>
                 <not><property>autopilot/kap140/powered</property></not>
                 <greater-than>
-                    <property alias="../../../../../params/power-supplied"/>
+                    <property alias="/params/power-supplied"/>
                     <expression>
                         <product>
-                            <property alias="../../../../../../../params/power-nominal"/>
+                            <value alias="/params/power-nominal"/>
                             <value>0.7</value>
                         </product>
                     </expression>
                 </greater-than>
-                <equals>
-                    <property>options/autopilot</property>
-                    <value>KAP140</value>
-                </equals>
             </condition>
         </enable>
         <input>1</input>
@@ -177,6 +448,7 @@
                 <or>
                     <property>autopilot/kap140/roll-axis-fail</property>
                     <property>autopilot/kap140/pitch-axis-fail</property>
+                    <not><property>autopilot/kap140/sensors/turn-indicator-operable</property></not>
                 </or>
             </condition>
             <value>1</value>
@@ -419,12 +691,10 @@
         <input>
             <condition>
                 <equals>
-                    <property alias="../../../../../params/model"/>
+                    <value alias="/params/model"/>
                     <value>3</value>
                 </equals>
-                <not>
-                    <property alias="../../../../../params/baro-tied"/>
-                </not>
+                <not><value alias="/params/baro-tied"/></not>
             </condition>
             <value>4</value>
         </input>
@@ -439,20 +709,18 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <and>
-                    <equals>
-                        <property>autopilot/kap140/panel/state</property>
-                        <value>4</value>
-                    </equals>
-                    <equals>
-                        <property>autopilot/kap140/powered</property>
-                        <value>1</value>
-                    </equals>
-                    <greater-than>
-                        <property>autopilot/kap140/panel/button-baro</property>
-                        <value>0</value>
-                    </greater-than>
-                </and>
+                <equals>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>4</value>
+                </equals>
+                <equals>
+                    <property>autopilot/kap140/powered</property>
+                    <value>1</value>
+                </equals>
+                <greater-than>
+                    <property>autopilot/kap140/panel/button-baro</property>
+                    <value>0</value>
+                </greater-than>
             </condition>
         </enable>
         <input>5</input>
@@ -468,7 +736,7 @@
             <condition>
                 <equals>
                     <property>autopilot/kap140/settings/vertical-arm</property>
-                    <value>1</value>
+                    <value>2</value>
                 </equals>
                 <or>
                     <greater-than>
@@ -482,18 +750,20 @@
                 </or>
                 <greater-than>
                     <expression>
-                        <product>
-                            <abs><property>autopilot/internal/vert-speed-fpm</property></abs>
-                            <value>0.1</value>
-                        </product>
+                        <abs>
+                            <property>autopilot/internal/target-climb-rate</property>
+                        </abs>
                     </expression>
                     <expression>
-                        <abs>
-                            <dif>
-                                <property>autopilot/internal/target-altitude</property>
-                                <property alias="../../../../../../../../params/indicated-altitude-ft"/>
-                            </dif>
-                        </abs>
+                        <product>
+                            <abs>
+                                <dif>
+                                    <property>autopilot/internal/target-altitude</property>
+                                    <property alias="/params/indicated-altitude-ft"/>
+                                </dif>
+                            </abs>
+                            <value alias="/params/vs-ratio"/>
+                        </product>
                     </expression>
                 </greater-than>
             </condition>
@@ -541,7 +811,7 @@
                 <or>
                     <and>
                         <equals>
-                            <property alias="../../../../../../../params/model"/>
+                            <value alias="/params/model"/>
                             <value>3</value>
                         </equals>
                         <less-than>
@@ -560,7 +830,7 @@
                     </and>
                     <and>
                         <equals>
-                            <property alias="../../../../../../../params/model"/>
+                            <value alias="/params/model"/>
                             <value>2</value>
                         </equals>
                         <equals>
@@ -575,7 +845,7 @@
         <input>
             <condition>
                 <equals>
-                    <property alias="../../../../../params/model"/>
+                    <value alias="/params/model"/>
                     <value>3</value>
                 </equals>
                 <or>
@@ -605,7 +875,7 @@
         <input>
             <condition>
                 <equals>
-                    <property alias="../../../../../params/model"/>
+                    <value alias="/params/model"/>
                     <value>3</value>
                 </equals>
                 <greater-than>
@@ -737,7 +1007,7 @@
             <expression>
                 <sum>
                     <product>
-                        <property alias="../../../../../../params/baro-inhg"/>
+                        <property alias="/params/baro-inhg"/>
                         <value>1000</value>
                     </product>
                     <value>5</value>
@@ -755,7 +1025,7 @@
                     <value>1</value>
                 </equals>
             </condition>
-            <property alias="../../../params/baro-hpa"/>
+            <property alias="/params/baro-hpa"/>
         </input>
         <output>autopilot/kap140/panel/digit</output>
     </filter>
@@ -771,6 +1041,8 @@
                     <property>autopilot/kap140/panel/state</property>
                     <value>5</value>
                 </equals>
+                <not><property>autopilot/kap140/pitch-axis-fail</property></not>
+                <not><property>autopilot/kap140/roll-axis-fail</property></not>
                 <equals>
                     <property>autopilot/kap140/panel/state</property>
                     <property>autopilot/kap140/panel/state-old</property>
@@ -824,6 +1096,12 @@
                 <or>
                     <property>autopilot/kap140/pitch-axis-fail</property>
                     <property>autopilot/kap140/roll-axis-fail</property>
+                    <property>autopilot/kap140/settings/ap-disc</property>
+                    <not><property>autopilot/kap140/sensors/turn-indicator-operable</property></not>
+                    <and>
+                        <not><property>autopilot/kap140/settings/cws</property></not>
+                        <property>autopilot/kap140/sensors/excess-g</property>
+                    </and>
                     <and>
                         <equals>
                             <property>autopilot/kap140/panel/state</property>
@@ -886,8 +1164,13 @@
         <output>autopilot/kap140/panel/fpm-timer</output>
         <output>autopilot/kap140/panel/hdg-timer</output>
         <output>autopilot/kap140/panel/nav-timer</output>
+        <output>autopilot/kap140/panel/gs-timer</output>
         <output>autopilot/kap140/panel/baro-timer</output>
         <output>autopilot/kap140/panel/digit-timer</output>
+        <output>autopilot/kap140/settings/cws</output>
+        <output>autopilot/kap140/settings/ap-disc</output>
+        <output>autopilot/kap140/sensors/pitch-up</output>
+        <output>autopilot/kap140/sensors/pitch-down</output>
     </filter>
 
 <!-- set default lateral mode at AP activation -->
@@ -922,12 +1205,12 @@
                     <property>autopilot/kap140/panel/state</property>
                     <value>6</value>
                 </equals>
-                <equals>
+                <not-equals>
                     <property>autopilot/kap140/settings/vertical-mode</property>
-                    <value>0</value>
-                </equals>
+                    <value>1</value>
+                </not-equals>
                 <greater-than>
-                    <property alias="../../../../../params/model"/>
+                    <value alias="/params/model"/>
                     <value>1</value>
                 </greater-than>
             </condition>
@@ -952,7 +1235,7 @@
                     <value>0</value>
                 </equals>
                 <greater-than>
-                    <property alias="../../../../../params/model"/>
+                    <value alias="/params/model"/>
                     <value>1</value>
                 </greater-than>
             </condition>
@@ -993,7 +1276,7 @@
         <enable>
             <condition>
                 <less-than>
-                    <property>autopilot/kap140//settings/lateral-mode</property>
+                    <property>autopilot/kap140/settings/lateral-mode</property>
                     <value>1</value>
                 </less-than>
             </condition>
@@ -1145,6 +1428,80 @@
         <max>2000</max>
     </filter>
 
+<!-- Altitude Capture (ALT ARM) -->
+    <filter>
+        <name>slow down FPM while approaching ALT</name>
+        <debug>false</debug>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <equals>
+                  <property>autopilot/kap140/settings/vertical-arm</property>
+                  <value>2</value>
+                </equals>
+                <greater-than>
+                    <expression>
+                        <abs>
+                            <property>autopilot/internal/target-climb-rate</property>
+                        </abs>
+                    </expression>
+                    <expression>
+                        <product>
+                            <abs>
+                                <dif>
+                                    <property>autopilot/internal/target-altitude</property>
+                                    <property alias="/params/indicated-altitude-ft"/>
+                                </dif>
+                            </abs>
+                            <value alias="/params/vs-ratio"/>
+                        </product>
+                    </expression>
+                </greater-than>
+            </condition>
+        </enable>
+        <input>
+            <condition>
+                <less-than>
+                    <property alias="/params/indicated-altitude-ft"/>
+                    <property>autopilot/internal/target-altitude</property>
+                </less-than>
+            </condition>
+            <expression>
+                <product>
+                    <ceil>
+                        <product>
+                            <dif>
+                                <property>autopilot/internal/target-altitude</property>
+                                <property alias="/params/indicated-altitude-ft"/>
+                            </dif>
+                            <value alias="/params/vs-ratio"/>
+                            <value>0.01</value>
+                        </product>
+                    </ceil>
+                    <value>100</value>
+                </product>
+            </expression>
+        </input>
+        <input>
+            <expression>
+                <product>
+                    <floor>
+                        <product>
+                            <dif>
+                                <property>autopilot/internal/target-altitude</property>
+                                <property alias="/params/indicated-altitude-ft"/>
+                            </dif>
+                            <value alias="/params/vs-ratio"/>
+                            <value>0.01</value>
+                        </product>
+                    </floor>
+                    <value>100</value>
+                </product>
+            </expression>
+        </input>
+        <output>autopilot/internal/target-climb-rate</output>
+    </filter>
+
 <!-- reference altitude -->
     <filter>
         <name>reference altitude up</name>
@@ -1234,6 +1591,36 @@
         <output>autopilot/internal/target-climb-rate</output>
     </filter>
 
+<!-- reset target climb rate if UP/DN buttons are not pressed and we are in ALT-HOLD mode
+    <filter>
+        <name>ALT reset climb rate</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <equals>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>6</value>
+                </equals>
+                <equals>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property>autopilot/kap140/panel/button-up</property>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property>autopilot/kap140/panel/button-down</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+        </enable>
+        <input><value>0</value></input>
+        <output>autopilot/internal/target-climb-rate</output>
+    </filter>
+ -->
+
 <!-- set rounded FPM to next 100 ft -->
     <filter>
         <name>round target-climb-rate</name>
@@ -1300,7 +1687,9 @@
                 <property>autopilot/kap140/settings/cws</property>
             </condition>
         </enable>
-        <input>systems/static/pressure-inhg</input>
+        <input>
+            <property alias="/params/pressure-source"/>
+        </input>
         <output>autopilot/internal/target-pressure</output>
     </filter>
 
@@ -1411,23 +1800,23 @@
             <condition>
                 <greater-than>
                     <property>autopilot/kap140/settings/lateral-arm</property>
-                    <value>0</value>
+                    <value>2</value>
                 </greater-than>
                 <less-than>
                     <property>autopilot/kap140/settings/lateral-arm</property>
-                    <value>4</value>
+                    <value>6</value>
                 </less-than>
-                <property>instrumentation/nav-source/in-range</property>
+                <property>instrumentation/nav-source/signal-valid</property>
                 <less-than>
                     <expression>
                         <abs><property>instrumentation/nav-source/heading-needle-deflection-norm</property></abs>
                     </expression>
                     <value>0.6</value>
                 </less-than>
-                <less-than>
-                    <property>autopilot/kap140/panel/hdg-timer</property>
-                    <value>1</value>
-                </less-than>
+                <not-equals>
+                    <property>instrumentation/nav-source/heading-needle-deflection-norm</property>
+                    <value>0.0</value>
+                </not-equals>
             </condition>
         </enable>
         <input>
@@ -1451,11 +1840,19 @@
                     <property>autopilot/kap140/settings/lateral-mode</property>
                     <value>2</value>
                 </greater-than>
-                <not><property>instrumentation/nav-source/in-range</property></not>
+                <less-than>
+                    <property>autopilot/kap140/settings/lateral-mode</property>
+                    <value>6</value>
+                </less-than>
+                <less-than>
+                    <property>autopilot/kap140/panel/nav-timer</property>
+                    <value>1</value>
+                </less-than>
+                <not><property>instrumentation/nav-source/signal-valid</property></not>
             </condition>
         </enable>
-        <input>1</input>
-        <output>autopilot/kap140/settings/lateral-mode</output>
+        <input>sim/time/elapsed-sec</input>
+        <output>autopilot/kap140/panel/nav-timer</output>
     </filter>
 
     <filter>
@@ -1488,6 +1885,10 @@
                     <property>autopilot/kap140/settings/lateral-mode</property>
                     <value>2</value>
                 </greater-than>
+                <less-than>
+                    <property>autopilot/kap140/settings/lateral-mode</property>
+                    <value>6</value>
+                </less-than>
                 <greater-than>
                     <property>autopilot/kap140/panel/nav-timer</property>
                     <value>1</value>
@@ -1518,17 +1919,18 @@
                     <property>autopilot/kap140/settings/lateral-arm</property>
                     <value>0</value>
                 </less-than>
+                <less-than>
+                    <property>autopilot/kap140/panel/hdg-timer</property>
+                    <value>1</value>
+                </less-than>
             </condition>
         </enable>
         <input>
             <expression>
-                <sum>
-                    <product>
-                        <property>autopilot/kap140/settings/lateral-arm</property>
-                        <value>-1</value>
-                    </product>
-                    <value>2</value>
-                </sum>
+                <product>
+                    <property>autopilot/kap140/settings/lateral-arm</property>
+                    <value>-1</value>
+                </product>
             </expression>
         </input>
         <output>autopilot/kap140/settings/lateral-mode</output>
@@ -1542,29 +1944,25 @@
         <enable>
             <condition>
                 <greater-than>
-                    <property alias="../../../../../params/model"/>
+                    <value alias="/params/model"/>
                     <value>1</value>
                 </greater-than>
                 <equals>
                     <property>autopilot/kap140/settings/lateral-mode</property>
                     <value>4</value>
                 </equals>
+                <not-equals>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
+                    <value>3</value>
+                </not-equals>
                 <less-than>
                     <property>autopilot/kap140/panel/nav-timer</property>
                     <value>1</value>
                 </less-than>
+                <property>instrumentation/nav-source/has-gs</property>
             </condition>
         </enable>
-        <input>
-            <condition>
-                <equals>
-                    <property>instrumentation/nav-source/has-gs</property>
-                    <value>1</value>
-                </equals>
-            </condition>
-            <value>4</value>
-        </input>
-        <input>0</input>
+        <input>6</input>
         <output>autopilot/kap140/settings/lateral-arm</output>
     </filter>
 
@@ -1576,12 +1974,12 @@
         <enable>
             <condition>
                 <greater-than>
-                    <property alias="../../../../../params/model"/>
+                    <value alias="/params/model"/>
                     <value>1</value>
                 </greater-than>
                 <equals>
                     <property>autopilot/kap140/settings/lateral-arm</property>
-                    <value>4</value>
+                    <value>6</value>
                 </equals>
                 <or>
                     <and>
@@ -1616,6 +2014,13 @@
                     <property>autopilot/kap140/settings/lateral-arm</property>
                     <value>0</value>
                 </less-than>
+                <equals>
+                    <property>autopilot/kap140/settings/lateral-mode</property>
+                    <expression>
+                        <abs><property>autopilot/kap140/settings/lateral-arm</property></abs>
+                    </expression>
+                </equals>
+
             </condition>
         </enable>
         <input>0</input>
@@ -1631,21 +2036,93 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <equals>
-                    <property>autopilot/kap140/settings/lateral-arm</property>
-                    <value>4</value>
-                </equals>
+                <property>instrumentation/nav-source/signal-valid</property>
+                <property>instrumentation/nav-source/gs-in-range</property>
                 <less-than>
                     <property>instrumentation/nav-source/gs-needle-deflection</property>
-                    <value>0</value>
+                    <value>0.2</value>
                 </less-than>
                 <greater-than>
                     <property>instrumentation/nav-source/gs-needle-deflection</property>
-                    <value>-1</value>
+                    <value>-0.4</value>
                 </greater-than>
+                <or>
+                    <equals>
+                        <property>autopilot/kap140/settings/lateral-arm</property>
+                        <value>6</value>
+                    </equals>
+                    <greater-than>
+                        <property>autopilot/kap140/panel/gs-timer</property>
+                        <value>1</value>
+                    </greater-than>
+                </or>
             </condition>
         </enable>
         <input>3</input>
+        <output>autopilot/kap140/settings/vertical-mode</output>
+    </filter>
+
+    <filter>
+        <name>clear GS timer</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <property>instrumentation/nav-source/signal-valid</property>
+                <property>instrumentation/nav-source/gs-in-range</property>
+                <greater-than>
+                    <property>autopilot/kap140/panel/gs-timer</property>
+                    <value>1</value>
+                </greater-than>
+                <equals>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
+                    <value>3</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>0</input>
+        <output>autopilot/kap140/panel/gs-timer</output>
+    </filter>
+
+    <filter>
+        <name>lost GS</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <equals>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
+                    <value>3</value>
+                </equals>
+                <not><property>instrumentation/nav-source/gs-in-range</property></not>
+                <less-than>
+                    <property>autopilot/kap140/panel/gs-timer</property>
+                    <value>1</value>
+                </less-than>
+            </condition>
+        </enable>
+        <input>sim/time/elapsed-sec</input>
+        <output>autopilot/kap140/panel/gs-timer</output>
+    </filter>
+
+    <filter>
+        <name>fall back to VS</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <equals>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
+                    <value>3</value>
+                </equals>
+                <not><property>instrumentation/nav-source/gs-in-range</property></not>
+                <greater-than>
+                    <property>autopilot/kap140/panel/gs-timer</property>
+                    <value>1</value>
+                </greater-than>
+            </condition>
+        </enable>
+        <input>1</input>
         <output>autopilot/kap140/settings/vertical-mode</output>
     </filter>
 
@@ -1658,7 +2135,7 @@
             <condition>
                 <equals>
                     <property>autopilot/kap140/settings/lateral-arm</property>
-                    <value>4</value>
+                    <value>6</value>
                 </equals>
                 <equals>
                     <property>autopilot/kap140/settings/vertical-mode</property>
@@ -1684,14 +2161,14 @@
                 </equals>
                 <equals>
                     <property>autopilot/kap140/settings/vertical-arm</property>
-                    <value>1</value>
+                    <value>2</value>
                 </equals>
                 <less-than>
                     <expression>
                         <abs>
                             <dif>
                                 <property>autopilot/internal/target-altitude</property>
-                                <property alias="../../../../../../../../params/indicated-altitude-ft"/>
+                                <property alias="/params/indicated-altitude-ft"/>
                             </dif>
                         </abs>
                     </expression>
@@ -1699,7 +2176,9 @@
                 </less-than>
             </condition>
         </enable>
-        <input>systems/static/pressure-inhg</input>
+        <input>
+            <property alias="/params/pressure-source"/>
+        </input>
         <output>autopilot/internal/target-pressure</output>
     </filter>
 
@@ -1716,7 +2195,7 @@
                 </equals>
                 <equals>
                     <property>autopilot/kap140/settings/vertical-arm</property>
-                    <value>1</value>
+                    <value>2</value>
                 </equals>
                 <greater-than>
                     <property>autopilot/internal/target-pressure</property>
@@ -1808,7 +2287,7 @@
                         <abs>
                             <dif>
                                 <property>autopilot/internal/target-altitude</property>
-                                <property alias="../../../../../../../../params/indicated-altitude-ft"/>
+                                <property alias="/params/indicated-altitude-ft"/>
                             </dif>
                         </abs>
                     </expression>
@@ -1819,7 +2298,7 @@
                         <abs>
                             <dif>
                                 <property>autopilot/internal/target-altitude</property>
-                                <property alias="../../../../../../../../params/indicated-altitude-ft"/>
+                                <property alias="/params/indicated-altitude-ft"/>
                             </dif>
                         </abs>
                     </expression>
@@ -1851,7 +2330,7 @@
                         <abs>
                             <dif>
                                 <property>autopilot/internal/target-altitude</property>
-                                <property alias="../../../../../../../../params/indicated-altitude-ft"/>
+                                <property alias="/params/indicated-altitude-ft"/>
                             </dif>
                         </abs>
                     </expression>
@@ -1886,7 +2365,7 @@
                         <abs>
                             <dif>
                                 <property>autopilot/internal/target-altitude</property>
-                                <property alias="../../../../../../../../params/indicated-altitude-ft"/>
+                                <property alias="/params/indicated-altitude-ft"/>
                             </dif>
                         </abs>
                     </expression>
@@ -1918,7 +2397,7 @@
                         <abs>
                             <dif>
                                 <property>autopilot/internal/target-altitude</property>
-                                <property alias="../../../../../../../../params/indicated-altitude-ft"/>
+                                <property alias="/params/indicated-altitude-ft"/>
                             </dif>
                         </abs>
                     </expression>
@@ -1950,7 +2429,7 @@
                         <abs>
                             <dif>
                                 <property>autopilot/internal/target-altitude</property>
-                                <property alias="../../../../../../../../params/indicated-altitude-ft"/>
+                                <property alias="/params/indicated-altitude-ft"/>
                             </dif>
                         </abs>
                     </expression>
@@ -2001,72 +2480,32 @@
         <enable>
             <condition>
                 <equals>
-                    <property>autopilot/kap140/sensors/pitch-up</property>
-                    <value>0</value>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>6</value>
                 </equals>
-                <or>
-                    <and>
-                        <equals>
-                            <property>autopilot/kap140/panel/state</property>
-                            <value>6</value>
-                        </equals>
-                        <less-than>
-                            <property>controls/flight/elevator</property>
-                            <value>-0.03</value>
-                        </less-than>
-                    </and>
-                    <and>
-                        <equals>
-                            <property>autopilot/kap140/panel/state</property>
-                            <value>5</value>
-                        </equals>
-                        <less-than>
-                            <property>controls/flight/elevator-trim</property>
-                            <property>autopilot/kap140/sensors/elevator-trim</property>
-                        </less-than>
-                    </and>
-                </or>
-            </condition>
-        </enable>
-        <input>sim/time/elapsed-sec</input>
-        <output>autopilot/kap140/sensors/pitch-up</output>
-    </filter>
-
-    <filter>
-        <name>clear pitch up</name>
-        <debug>false</debug>
-        <type>gain</type>
-        <enable>
-            <condition>
-                <greater-than>
-                    <property>autopilot/kap140/sensors/pitch-up</property>
+                <less-than>
+                    <property>autopilot/kap140/sensors/elevator-trim-transit</property>
                     <value>0.0</value>
-                </greater-than>
-                <or>
-                    <and>
-                        <equals>
-                            <property>autopilot/kap140/panel/state</property>
-                            <value>6</value>
-                        </equals>
-                        <greater-than>
-                            <property>controls/flight/elevator</property>
-                            <value>-0.03</value>
-                        </greater-than>
-                    </and>
-                    <and>
-                        <equals>
-                            <property>autopilot/kap140/panel/state</property>
-                            <value>5</value>
-                        </equals>
-                        <equals>
-                            <property>controls/flight/elevator-trim</property>
-                            <property>autopilot/kap140/sensors/elevator-trim</property>
-                        </equals>
-                    </and>
-                </or>
+                </less-than>
+                <less-than>
+                    <property>autopilot/kap140/sensors/pitch-up</property>
+                    <value>2.0</value>
+                </less-than>
             </condition>
         </enable>
-        <input>0.0</input>
+        <input>
+            <condition>
+                <not><property>autopilot/kap140/sensors/elevator-trim-demand-high</property></not>
+            </condition>
+            <value>1.0</value>
+        </input>
+        <input>
+            <condition>
+                <property>autopilot/kap140/sensors/elevator-trim-demand-high</property>
+            </condition>
+            <property>sim/time/elapsed-sec</property>
+        </input>
+        <input>autopilot/kap140/sensors/pitch-up</input>
         <output>autopilot/kap140/sensors/pitch-up</output>
     </filter>
 
@@ -2077,73 +2516,98 @@
         <enable>
             <condition>
                 <equals>
-                    <property>autopilot/kap140/sensors/pitch-down</property>
-                    <value>0.0</value>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>6</value>
                 </equals>
-                <or>
-                    <and>
-                        <equals>
-                            <property>autopilot/kap140/panel/state</property>
-                            <value>6</value>
-                        </equals>
-                        <greater-than>
-                            <property>controls/flight/elevator</property>
-                            <value>0.03</value>
-                        </greater-than>
-                    </and>
-                    <and>
-                        <equals>
-                            <property>autopilot/kap140/panel/state</property>
-                            <value>5</value>
-                        </equals>
-                        <greater-than>
-                            <property>controls/flight/elevator-trim</property>
-                            <property>autopilot/kap140/sensors/elevator-trim</property>
-                        </greater-than>
-                    </and>
-                </or>
+                <greater-than>
+                    <property>autopilot/kap140/sensors/elevator-trim-transit</property>
+                    <value>0.0</value>
+                </greater-than>
+                <less-than>
+                    <property>autopilot/kap140/sensors/pitch-down</property>
+                    <value>2.0</value>
+                </less-than>
             </condition>
         </enable>
-        <input>sim/time/elapsed-sec</input>
+        <input>
+            <condition>
+                <not><property>autopilot/kap140/sensors/elevator-trim-demand-high</property></not>
+            </condition>
+            <value>1.0</value>
+        </input>
+        <input>
+            <condition>
+                <property>autopilot/kap140/sensors/elevator-trim-demand-high</property>
+            </condition>
+            <property>sim/time/elapsed-sec</property>
+        </input>
         <output>autopilot/kap140/sensors/pitch-down</output>
     </filter>
 
     <filter>
-        <name>clear pitch down</name>
+        <name>reset pitch up</name>
         <debug>false</debug>
         <type>gain</type>
         <enable>
             <condition>
-                <greater-than>
-                    <property>autopilot/kap140/sensors/pitch-down</property>
+                <greater-than-equals>
+                    <property>autopilot/kap140/sensors/elevator-trim-transit</property>
                     <value>0.0</value>
-                </greater-than>
-                <or>
-                    <and>
-                        <equals>
-                            <property>autopilot/kap140/panel/state</property>
-                            <value>6</value>
-                        </equals>
-                        <less-than>
-                            <property>controls/flight/elevator</property>
-                            <value>0.03</value>
-                        </less-than>
-                    </and>
-                    <and>
-                        <equals>
-                            <property>autopilot/kap140/panel/state</property>
-                            <value>5</value>
-                        </equals>
-                        <equals>
-                            <property>controls/flight/elevator-trim</property>
-                            <property>autopilot/kap140/sensors/elevator-trim</property>
-                        </equals>
-                    </and>
-                </or>
+                </greater-than-equals>
+            </condition>
+        </enable>
+        <input>0.0</input>
+        <output>autopilot/kap140/sensors/pitch-up</output>
+    </filter>
+
+    <filter>
+        <name>reset pitch down</name>
+        <debug>false</debug>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <less-than-equals>
+                    <property>autopilot/kap140/sensors/elevator-trim-transit</property>
+                    <value>0.0</value>
+                </less-than-equals>
             </condition>
         </enable>
         <input>0.0</input>
         <output>autopilot/kap140/sensors/pitch-down</output>
+    </filter>
+
+    <filter>
+        <name>pitch trim change</name>
+        <debug>false</debug>
+        <type>gain</type>
+        <input>
+            <expression>
+                <dif>
+                    <property>autopilot/kap140/sensors/elevator-trim-demand</property>
+                    <property>autopilot/kap140/sensors/elevator-trim</property>
+                </dif>
+            </expression>
+        </input>
+        <output>autopilot/kap140/sensors/elevator-trim-transit</output>
+    </filter>
+
+    <filter>
+        <name>store pitch trim</name>
+        <debug>false</debug>
+        <type>noise-spike</type>
+        <max-rate-of-change>
+            <condition>
+                <greater-than>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>4</value>
+                </greater-than>
+                <not><property>autopilot/kap140/sensors/manual-trim</property></not>
+            </condition>
+            <value>0.020</value>
+        </max-rate-of-change>
+        <max-rate-of-change>10.0</max-rate-of-change>
+        <input>controls/flight/elevator-trim</input>
+        <output>autopilot/kap140/sensors/elevator-trim</output>
     </filter>
 
 <!-- pitch trim run-away -->
@@ -2163,7 +2627,7 @@
         <input>
             <condition>
                 <less-than>
-                    <property>autopilot/kap140/sensors/pitch-trim</property>
+                    <property>autopilot/kap140/sensors/pitch-trim-run</property>
                     <value>1.0</value>
                 </less-than>
                 <not-equals>
@@ -2181,7 +2645,7 @@
         <input>
             <condition>
                 <greater-than>
-                    <property>autopilot/kap140/sensors/pitch-trim</property>
+                    <property>autopilot/kap140/sensors/pitch-trim-run</property>
                     <value>1.0</value>
                 </greater-than>
                 <equals>
@@ -2191,17 +2655,235 @@
             </condition>
             <value>0.0</value>
         </input>
-        <input>autopilot/kap140/sensors/pitch-trim</input>
+        <input>autopilot/kap140/sensors/pitch-trim-run</input>
+        <output>autopilot/kap140/sensors/pitch-trim-run</output>
+    </filter>
+
+    <filter>
+        <name>check pitch trim run-away</name>
+        <debug>false</debug>
+        <type>gain</type>
+        <input>
+            <condition>
+                <property>autopilot/kap140/sensors/elevator-trim-transit</property>
+                <property>autopilot/kap140/sensors/pitch-trim-run</property>
+                <greater-than>
+                    <property>sim/time/elapsed-sec</property>
+                    <property>autopilot/kap140/sensors/pitch-trim-run</property>
+                </greater-than>
+            </condition>
+            <value>1</value>
+        </input>
+        <input>0</input>
         <output>autopilot/kap140/sensors/pitch-trim</output>
     </filter>
 
     <filter>
-        <name>store pitch trim</name>
+        <name>reset manual trim flag</name>
         <debug>false</debug>
-        <type>noise-spike</type>
-        <max-rate-of-change>0.03</max-rate-of-change>
-        <input>controls/flight/elevator-trim</input>
-        <output>autopilot/kap140/sensors/elevator-trim</output>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <property>autopilot/kap140/sensors/manual-trim</property>
+            </condition>
+        </enable>
+        <input>0</input>
+        <output>autopilot/kap140/sensors/manual-trim</output>
     </filter>
+
+    <!-- Logic by Josh Davidson (Octal450) 2021 -->
+    <!-- Makes the conditions way simpler in the control system, easier to understand -->
+
+    <logic>
+        <input>
+            <equals>
+                <property>/autopilot/kap140/panel/state</property>
+                <value>6</value>
+            </equals>
+            <not><property>/autopilot/kap140/roll-axis-fail</property></not>
+            <not><property>/autopilot/kap140/settings/cws</property></not>
+        </input>
+        <output>/autopilot/internal/logic/roll-active</output>
+    </logic>
+
+    <logic>
+        <input>
+            <and>
+                <equals>
+                    <property>/autopilot/kap140/settings/lateral-mode</property>
+                    <value>2</value>
+                </equals>
+                <less-than>
+                    <property>/autopilot/kap140/panel/hdg-timer</property>
+                    <value>1</value>
+                </less-than>
+                <not><property>/autopilot/kap140/settings/from-hdg</property></not>
+            </and>
+        </input>
+        <output>/autopilot/internal/logic/hdg-active</output>
+    </logic>
+
+    <logic>
+        <input>
+            <or>
+                <and>
+                    <equals>
+                        <property>/autopilot/kap140/settings/lateral-mode</property>
+                        <value>3</value>
+                    </equals>
+                    <less-than>
+                        <property>/autopilot/kap140/panel/nav-timer</property>
+                        <value>1</value>
+                    </less-than>
+                    <property>instrumentation/nav-source/signal-valid</property>
+                </and>
+                <and>
+                    <not><property alias="/params/hsi-installed" /></not>
+                    <equals>
+                        <property>/autopilot/kap140/settings/lateral-arm</property>
+                        <value>3</value>
+                    </equals>
+                    <less-than>
+                        <property>/autopilot/kap140/panel/nav-timer</property>
+                        <value>1</value>
+                    </less-than>
+                    <equals>
+                        <property>/autopilot/kap140/settings/lateral-mode</property>
+                        <value>2</value>
+                    </equals>
+                    <less-than>
+                        <property>/autopilot/kap140/panel/hdg-timer</property>
+                        <value>1</value>
+                    </less-than>
+                    <property>instrumentation/nav-source/signal-valid</property>
+                </and>
+            </or>
+        </input>
+        <output>/autopilot/internal/logic/nav-active</output>
+    </logic>
+
+    <logic>
+        <input>
+            <or>
+                <and>
+                    <equals>
+                        <property>/autopilot/kap140/settings/lateral-mode</property>
+                        <value>4</value>
+                    </equals>
+                    <less-than>
+                        <property>/autopilot/kap140/panel/nav-timer</property>
+                        <value>1</value>
+                    </less-than>
+                    <property>instrumentation/nav-source/signal-valid</property>
+                </and>
+                <and>
+                    <not><property alias="/params/hsi-installed" /></not>
+                    <equals>
+                        <property>/autopilot/kap140/settings/lateral-arm</property>
+                        <value>4</value>
+                    </equals>
+                    <less-than>
+                        <property>/autopilot/kap140/panel/nav-timer</property>
+                        <value>1</value>
+                    </less-than>
+                    <equals>
+                        <property>/autopilot/kap140/settings/lateral-mode</property>
+                        <value>2</value>
+                    </equals>
+                    <less-than>
+                        <property>/autopilot/kap140/panel/hdg-timer</property>
+                        <value>1</value>
+                    </less-than>
+                    <property>instrumentation/nav-source/signal-valid</property>
+                </and>
+            </or>
+        </input>
+        <output>/autopilot/internal/logic/apr-active</output>
+    </logic>
+
+    <logic>
+        <input>
+            <or>
+                <and>
+                    <equals>
+                        <property>/autopilot/kap140/settings/lateral-mode</property>
+                        <value>5</value>
+                    </equals>
+                    <less-than>
+                        <property>/autopilot/kap140/panel/nav-timer</property>
+                        <value>1</value>
+                    </less-than>
+                    <property>instrumentation/nav-source/signal-valid</property>
+                </and>
+                <and>
+                    <not><property alias="/params/hsi-installed" /></not>
+                    <equals>
+                        <property>/autopilot/kap140/settings/lateral-arm</property>
+                        <value>5</value>
+                    </equals>
+                    <less-than>
+                        <property>/autopilot/kap140/panel/nav-timer</property>
+                        <value>1</value>
+                    </less-than>
+                    <equals>
+                        <property>/autopilot/kap140/settings/lateral-mode</property>
+                        <value>2</value>
+                    </equals>
+                    <less-than>
+                        <property>/autopilot/kap140/panel/hdg-timer</property>
+                        <value>1</value>
+                    </less-than>
+                    <property>instrumentation/nav-source/signal-valid</property>
+                </and>
+            </or>
+        </input>
+        <output>/autopilot/internal/logic/rev-active</output>
+    </logic>
+
+    <logic>
+        <input>
+            <greater-than>
+                <value alias="/params/model" />
+                <value>1</value>
+            </greater-than>
+            <equals>
+                <property>/autopilot/kap140/panel/state</property>
+                <value>6</value>
+            </equals>
+            <not><property>/autopilot/kap140/pitch-axis-fail</property></not>
+            <not><property>/autopilot/kap140/settings/cws</property></not>
+        </input>
+        <output>/autopilot/internal/logic/pitch-active</output>
+    </logic>
+
+    <logic>
+        <input>
+            <and>
+                <equals>
+                    <property>/autopilot/kap140/settings/vertical-mode</property>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property>/autopilot/kap140/panel/button-up</property>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property>/autopilot/kap140/panel/button-down</property>
+                    <value>0</value>
+                </equals>
+            </and>
+        </input>
+        <output>/autopilot/internal/logic/alt-active</output>
+    </logic>
+
+    <logic>
+        <input>
+            <equals>
+                <property>/autopilot/kap140/settings/vertical-mode</property>
+                <value>3</value>
+            </equals>
+        </input>
+        <output>/autopilot/internal/logic/gs-active</output>
+    </logic>
 
 </PropertyList>
