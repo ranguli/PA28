@@ -19,6 +19,7 @@
         <bad-condition type="bool">false</bad-condition>
         <config>
             <hsi-installed type="bool">true</hsi-installed>
+            <baro-tied type="bool">true</baro-tied>
         </config>
         <panel>
             <state type="int">0</state>

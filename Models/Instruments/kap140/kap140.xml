@@ -2400,7 +2400,7 @@
 
       <binding>
         <condition>
-          <not><value alias="/params/baro-tied"/></not>
+          <not><property alias="/params/baro-tied"/></not>
           <greater-than>
             <property>autopilot/kap140/panel/state</property>
             <value>3</value>
@@ -2424,7 +2424,7 @@
 
       <binding>
         <condition>
-          <not><value alias="/params/baro-tied"/></not>
+          <not><property alias="/params/baro-tied"/></not>
           <greater-than>
             <property>autopilot/kap140/panel/state</property>
             <value>3</value>
@@ -2448,7 +2448,7 @@
 
       <binding>
         <condition>
-          <not><value alias="/params/baro-tied"/></not>
+          <not><property alias="/params/baro-tied"/></not>
           <greater-than>
             <property>autopilot/kap140/panel/state</property>
             <value>3</value>
@@ -2536,7 +2536,7 @@
 
       <binding>
         <condition>
-          <not><value alias="/params/baro-tied"/></not>
+          <not><property alias="/params/baro-tied"/></not>
           <greater-than>
             <property>autopilot/kap140/panel/state</property>
             <value>3</value>
@@ -2560,7 +2560,7 @@
 
       <binding>
         <condition>
-          <not><value alias="/params/baro-tied"/></not>
+          <not><property alias="/params/baro-tied"/></not>
           <greater-than>
             <property>autopilot/kap140/panel/state</property>
             <value>3</value>
@@ -2584,7 +2584,7 @@
 
       <binding>
         <condition>
-          <not><value alias="/params/baro-tied"/></not>
+          <not><property alias="/params/baro-tied"/></not>
           <greater-than>
             <property>autopilot/kap140/panel/state</property>
             <value>3</value>

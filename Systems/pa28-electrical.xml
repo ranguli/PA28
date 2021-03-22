@@ -202,12 +202,12 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="/systems/electrical/outputs/comm[0]">
+		<pure_gain name="/systems/electrical/outputs/comm-nav[0]">
 			<input>/systems/electrical/bus/avionics</input>
 			<gain>1.0</gain>
 		</pure_gain>
 		
-		<pure_gain name="/systems/electrical/outputs/comm[1]">
+		<pure_gain name="/systems/electrical/outputs/comm-nav[1]">
 			<input>/systems/electrical/bus/avionics</input>
 			<gain>1.0</gain>
 		</pure_gain>
@@ -233,7 +233,7 @@
 			<input>/systems/electrical/bus/avionics</input>
 			<gain>1.0</gain>
 		</pure_gain>
-		
+		<!--
 		<pure_gain name="/systems/electrical/outputs/nav[0]">
 			<input>/systems/electrical/bus/avionics</input>
 			<gain>1.0</gain>
@@ -243,7 +243,7 @@
 			<input>/systems/electrical/bus/avionics</input>
 			<gain>1.0</gain>
 		</pure_gain>
-		
+		-->
 		<switch name="/systems/electrical/outputs/transponder">
 			<default value="0"/>
 			<test value="/systems/electrical/bus/avionics">
@@ -290,7 +290,7 @@
 	</channel>
 	
 	<channel name="Radio" execrate="8">
-		
+		<!--
 		<switch>
 			<default value="0"/>
 			<test value="1">
@@ -303,7 +303,7 @@
 			<test value="1">
 				/systems/electrical/outputs/comm[1] ge 9
 			</test>
-			<output>/instrumentation/comm[0]/serviceable</output>
+			<output>/instrumentation/comm[1]/serviceable</output>
 		</switch>
 		<switch>
 			<default value="0"/>
@@ -317,9 +317,9 @@
 			<test value="1">
 				/systems/electrical/outputs/nav[1] ge 9
 			</test>
-			<output>/instrumentation/nav[0]/serviceable</output>
+			<output>/instrumentation/nav[1]/serviceable</output>
 		</switch>
-		
+		-->
 	</channel>
 	
 	

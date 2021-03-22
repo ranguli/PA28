@@ -202,7 +202,7 @@
 			<property alias="../../../params/nav-serviceable"/>
 			<property alias="../../../params/power-comm"/>
 			<greater-than>
-				<property>systems/electrical/outputs/comm[0]</property>
+				<property>systems/electrical/outputs/comm-nav[0]</property>
 				<value>1</value>
 			</greater-than>
 		</condition>

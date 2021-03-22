@@ -87,10 +87,7 @@
 		<type>exponential</type>
 		<input>
 			<condition>
-				<less-than>
-					<property>/systems/electrical/outputs/nav[0]</property>
-					<value>8</value>
-				</less-than>
+				<not><property>/instrumentation/nav[0]/serviceable</property></not>
 			</condition>
 			<value>0</value>
 		</input>
@@ -107,10 +104,7 @@
 			<condition>
 				<or>
 					<not><property>/instrumentation/nav[0]/has-gs</property></not>
-					<less-than>
-						<property>/systems/electrical/outputs/nav[0]</property>
-						<value>8</value>
-					</less-than>
+					<not><property>/instrumentation/nav[0]/serviceable</property></not>
 				</or>
 			</condition>
 			<value>0</value>
@@ -126,10 +120,7 @@
 		<type>exponential</type>
 		<input>
 			<condition>
-				<less-than>
-					<property>/systems/electrical/outputs/nav[1]</property>
-					<value>8</value>
-				</less-than>
+				<not><property>/instrumentation/nav[1]/serviceable</property></not>
 			</condition>
 			<value>0</value>
 		</input>
@@ -146,10 +137,7 @@
 			<condition>
 				<or>
 					<not><property>/instrumentation/nav[1]/has-gs</property></not>
-					<less-than>
-						<property>/systems/electrical/outputs/nav[1]</property>
-						<value>8</value>
-					</less-than>
+					<not><property>/instrumentation/nav[1]/serviceable</property></not>
 				</or>
 			</condition>
 			<value>0</value>

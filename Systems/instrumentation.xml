@@ -3,6 +3,8 @@
 	<adf>
 		<name>adf</name>
 		<number>0</number>
+		<power-supply>/systems/electrical/outputs/adf</power-supply>
+		<minimum-supply-volts>8.5</minimum-supply-volts>
 	</adf>
 	<airspeed-indicator>
 		<name>airspeed-indicator</name>
@@ -43,6 +45,8 @@
 	<dme>
 		<name>dme</name>
 		<number>0</number>
+		<power-supply>/systems/electrical/outputs/dme</power-supply>
+		<minimum-supply-volts>8.7</minimum-supply-volts>
 	</dme>
 	<marker-beacon>
 		<name>marker-beacon</name>
@@ -115,23 +119,27 @@
 		<name>comm</name>
 		<number>0</number>
 		<eight-point-three>1</eight-point-three>
-		<power-supply>/systems/electrical/outputs/comm[0]</power-supply>
-		<minimum-supply-volts>9.0</minimum-supply-volts>
+		<power-supply>/systems/electrical/outputs/comm-nav[0]</power-supply>
+		<minimum-supply-volts>8.6</minimum-supply-volts>
 	</comm-radio>
 	<comm-radio>
 		<name>comm</name>
 		<number>1</number>
 		<eight-point-three>1</eight-point-three>
-		<power-supply>/systems/electrical/outputs/comm[1]</power-supply>
-		<minimum-supply-volts>9.0</minimum-supply-volts>
+		<power-supply>/systems/electrical/outputs/comm-nav[1]</power-supply>
+		<minimum-supply-volts>8.4</minimum-supply-volts>
 	</comm-radio>
 	<nav-radio>
 		<name>nav</name>
 		<number>0</number>
+		<power-supply>/systems/electrical/outputs/comm-nav[0]</power-supply>
+		<minimum-supply-volts>8.6</minimum-supply-volts>
 	</nav-radio>
 	<nav-radio>
 		<name>nav</name>
 		<number>1</number>
+		<power-supply>/systems/electrical/outputs/comm-nav[1]</power-supply>
+		<minimum-supply-volts>8.4</minimum-supply-volts>
 	</nav-radio>
 	<slip-skid-ball>
 		<name>slip-skid-ball</name>
@@ -141,6 +149,8 @@
 		<name>transponder</name>
 		<number>0</number>
 		<mode-c-altitude>/instrumentation/encoder/mode-c-alt-ft</mode-c-altitude>
+		<power-supply>/systems/electrical/outputs/transponder</power-supply>
+		<minimum-supply-volts>8.0</minimum-supply-volts>
 	</transponder>
 	<turn-indicator>
 		<name>turn-indicator</name>

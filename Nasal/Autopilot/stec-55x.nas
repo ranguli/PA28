@@ -114,7 +114,7 @@ var OBSGSNeedle = props.globals.getNode("/it-stec55x/nav/gs-needle", 1);
 var OBSActive = props.globals.initNode("/it-stec55x/nav/in-range", 0, "BOOL");
 var OBSIsLOC = props.globals.initNode("/it-stec55x/nav/is-loc", 0, "BOOL");
 var OBSHasGS = props.globals.getNode("/it-stec55x/nav/has-gs", 0, "BOOL");
-var NAV0Power = props.globals.getNode("/systems/electrical/outputs/nav[0]");
+var NAV0Operable = props.globals.getNode("/instrumentation/nav[0]/operable");
 var GPSActive = props.globals.getNode("/autopilot/route-manager/active");
 var turnRate = props.globals.getNode("/instrumentation/turn-indicator/indicated-turn-rate");
 var turnRateSpin = props.globals.getNode("/instrumentation/turn-indicator/spin");
@@ -467,8 +467,8 @@ var ITAF = {
 			}
 		}
 		
-		NAVFlag = !OBSActive.getBoolValue() or NAV0Power.getValue() < 8; # NAV Flag
-		GSFlag = !OBSActive.getBoolValue() or NAV0Power.getValue() < 8 or !OBSHasGS.getBoolValue(); # GS Flag
+		NAVFlag = !OBSActive.getBoolValue() or !NAV0Operable.getBoolValue(); # NAV Flag
+		GSFlag = !OBSActive.getBoolValue() or !NAV0Operable.getBoolValue() or !OBSHasGS.getBoolValue(); # GS Flag
 		
 		# Automatically arm GS
 		if (rollMode == 1 and APRModeActive.getBoolValue() and pitchMode == 0 and !NAVFlag and !GSFlag and OBSIsLOC.getBoolValue() and abs(cdiDefl) <= 5 and OBSGSNeedle.getValue() >= 0.35 and !GSArmed.getBoolValue()) {
