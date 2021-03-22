@@ -4,7 +4,7 @@
 <!-- Copyright (c) 2020 Sascha Reißner (WoodSTokk) -->
 <PropertyList include="../../Models/Instruments/kap140/kap140-config.xml">
 
-	<name>autopilot</name>
+	<name>autopilot-kap140</name>
 	<layout>vbox</layout>
 
 	<group>

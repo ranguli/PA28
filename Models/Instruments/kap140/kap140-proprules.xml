@@ -297,18 +297,24 @@ We have captured the localizer and the GS.
         <name>unpowered</name>
         <type>gain</type>
         <debug>false</debug>
-        <enable>
+               <enable>
             <condition>
                 <property>autopilot/kap140/powered</property>
-                <less-than>
-                    <property alias="/params/power-supplied"/>
-                    <expression>
-                        <product>
-                            <value alias="/params/power-nominal"/>
-                            <value>0.7</value>
-                        </product>
-                    </expression>
-                </less-than>
+                <or>
+                    <less-than>
+                        <property alias="/params/power-supplied"/>
+                        <expression>
+                            <product>
+                                <value alias="/params/power-nominal"/>
+                                <value>0.7</value>
+                            </product>
+                        </expression>
+                    </less-than>
+                    <not-equals>
+                        <property>options/autopilot</property>
+                        <value>KAP140</value>
+                    </not-equals>
+                </or>
             </condition>
         </enable>
         <input>0</input>
@@ -395,6 +401,10 @@ We have captured the localizer and the GS.
                         </product>
                     </expression>
                 </greater-than>
+                <equals>
+                    <property>options/autopilot</property>
+                    <value>KAP140</value>
+                </equals>
             </condition>
         </enable>
         <input>1</input>

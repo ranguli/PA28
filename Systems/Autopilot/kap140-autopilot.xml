@@ -780,9 +780,8 @@
 				<property>autopilot/kap140/servo/elevator-trim-servo/clutch-engaged</property>
 			</condition>
 		</enable>
-		<input>autopilot/kap140/sensors/elevator-trim-demand</input><!--
-		<output>controls/flight/elevator-trim</output>-->
-		<output>autopilot/kap140/servo/elevator-trim</output>
+		<input>autopilot/kap140/sensors/elevator-trim-demand</input>
+		<output>controls/flight/elevator-trim</output>
 		<min>-1</min>
 		<max>1</max>
 		<max-rate-of-change>
