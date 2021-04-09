@@ -564,6 +564,11 @@
 					<desc>Autopilot Disconnect</desc>
 					<binding>
 						<command>property-assign</command>
+						<property>/autopilot/kap140/settings/ap-disc</property>
+						<value>1</value>
+					</binding>
+					<binding>
+						<command>property-assign</command>
 						<property>/it-stec55x/input/disc</property>
 						<value>1</value>
 					</binding>
