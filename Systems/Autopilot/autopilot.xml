@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
+
 <!-- This autopilot file switches between S-TEC 55X and KAP140 -->
+
 <PropertyList>
 	
 	<filter>
@@ -57,25 +59,20 @@
 		<type>noise-spike</type>
 		<enable>
 			<condition>
-				<equals>
-					<property>options/autopilot</property>
-					<value>KAP140</value>
-				</equals>
+				<and>
+					<equals>
+						<property>/autopilot/kap140/panel/state</property>
+						<value>6</value>
+					</equals>
+					<not><property>/autopilot/kap140/settings/cws</property></not>
+					<equals>
+						<property>/options/autopilot</property>
+						<value>KAP140</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
-		<input>
-			<condition>
-				<equals>
-					<property>autopilot/kap140/panel/state</property>
-					<value>6</value>
-				</equals>
-				<not><property>autopilot/kap140/settings/cws</property></not>
-			</condition>
-			<property>autopilot/kap140/servo/aileron</property>
-		</input>
-		<input>
-			<property>controls/flight/aileron</property>
-		</input>
+		<input>autopilot/kap140/servo/aileron</input>
 		<output>controls/flight/aileron</output>
 		<max-rate-of-change>autopilot/internal/max-rate-of-change</max-rate-of-change>
 	</filter>
@@ -86,25 +83,22 @@
 		<type>noise-spike</type>
 		<enable>
 			<condition>
-				<equals>
-					<property>options/autopilot</property>
-					<value>KAP140</value>
-				</equals>
+				<and>
+					<equals>
+						<property>/autopilot/kap140/panel/state</property>
+						<value>6</value>
+					</equals>
+					<not><property>/autopilot/kap140/settings/cws</property></not>
+					<equals>
+						<property>/options/autopilot</property>
+						<value>KAP140</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
-		<input>
-			<condition>
-				<equals>
-					<property>autopilot/kap140/panel/state</property>
-					<value>6</value>
-				</equals>
-				<not><property>autopilot/kap140/settings/cws</property></not>
-			</condition>
-			<property>autopilot/kap140/servo/elevator</property>
-		</input>
-		<input>controls/flight/elevator</input>
-		<output>controls/flight/elevator</output>
-		<max-rate-of-change>autopilot/internal/max-rate-of-change</max-rate-of-change>
+		<input>/autopilot/kap140/servo/elevator</input>
+		<output>/controls/flight/elevator</output>
+		<max-rate-of-change>/autopilot/internal/max-rate-of-change</max-rate-of-change>
 	</filter>
 
 </PropertyList>

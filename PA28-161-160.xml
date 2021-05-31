@@ -45,8 +45,8 @@
 
 		<tank type="FUEL">    <!-- Left Wing Tank -->
 			<location unit="M">
-				<x>-1.20417</x>
-				<y>-0.96284</y>
+				<x>-0.85495</x>
+				<y>-1.79276</y>
 				<z>-0.25528</z>
 			</location>
 			<capacity unit="LBS">168</capacity>
@@ -56,8 +56,8 @@
 		</tank>
 		<tank type="FUEL">    <!-- Right Wing Tank -->
 			<location unit="M">
-				<x>-1.20417</x>
-				<y>0.96284</y>
+				<x>-0.85495</x>
+				<y>1.79276</y>
 				<z>-0.25528</z>
 			</location>
 			<capacity unit="LBS">168</capacity>
