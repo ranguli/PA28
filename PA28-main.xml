@@ -413,7 +413,7 @@
 				</engine>
 			</engines>
 			<flight n="0">
-				<elevator-trim type="double">0.015</elevator-trim>
+				<elevator-trim type="double">0.062</elevator-trim>
 			</flight>
 			<fuel n="0">
 				<switches n="0">

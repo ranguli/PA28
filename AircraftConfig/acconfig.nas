@@ -163,7 +163,7 @@ var colddark = func {
 	libraries.crashStress.reset();
 	# Initial shutdown, and reinitialization.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0.015);
+	setprop("/controls/flight/elevator-trim", 0.062);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
 	if (getprop("/engines/engine[0]/rpm") < 421) {
@@ -194,7 +194,7 @@ var beforestart = func {
 	libraries.crashStress.reset();
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0.015);
+	setprop("/controls/flight/elevator-trim", 0.062);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
 	
@@ -220,7 +220,7 @@ var taxi = func {
 	libraries.crashStress.reset();
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0.015);
+	setprop("/controls/flight/elevator-trim", 0.062);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
 	

@@ -650,7 +650,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/aileron-left-deg</property></toradians>
-				<value>0.2892</value>
+				<value>0.4256</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">aero/beta-rad</independentVar>
@@ -671,7 +671,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/aileron-right-deg</property></toradians>
-				<value>-0.2892</value>
+				<value>-0.4256</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">aero/beta-rad</independentVar>
