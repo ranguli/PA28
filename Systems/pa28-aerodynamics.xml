@@ -655,9 +655,9 @@
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<independentVar lookup="column">aero/beta-deg</independentVar>
 					<tableData>
-						      -20     0      20
-						0.000  0.667  1.000  0.667
-						0.144  1.334  1.667  1.334
+						  -20     0      20
+						0  0.667  1.000  0.667
+						8  1.334  1.667  1.334
 					</tableData>
 				</table>
 				<property>crash-stress/left-wing-factor</property>
@@ -676,9 +676,9 @@
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<independentVar lookup="column">aero/beta-deg</independentVar>
 					<tableData>
-						      -20     0      20
-						0.000  0.667  1.000  0.667
-						0.144  1.334  1.667  1.334
+						  -20     0      20
+						0  0.667  1.000  0.667
+						8  1.334  1.667  1.334
 					</tableData>
 				</table>
 				<property>crash-stress/right-wing-factor</property>
