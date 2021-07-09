@@ -15,7 +15,7 @@
 -->
 
 <aerodynamics>
-	
+	<property value="0.1">tune</property>
 	<function name="aero/function/kCDge">
 		<description>Change in drag due to ground effect</description>
 		<table>
@@ -650,14 +650,14 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/aileron-left-deg</property></toradians>
-				<value>0.4256</value>
+				<value>-0.002047</value>
 				<table>
-					<independentVar lookup="row">aero/alpha-rad</independentVar>
-					<independentVar lookup="column">aero/beta-rad</independentVar>
+					<independentVar lookup="row">aero/alpha-deg</independentVar>
+					<independentVar lookup="column">aero/beta-deg</independentVar>
 					<tableData>
-						      -0.35    0.00    0.35
-						0.000 -0.0010 -0.0015 -0.0010
-						0.144 -0.0020 -0.0025 -0.0020
+						      -20     0      20
+						0.000  0.667  1.000  0.667
+						0.144  1.334  1.667  1.334
 					</tableData>
 				</table>
 				<property>crash-stress/left-wing-factor</property>
@@ -671,14 +671,14 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/aileron-right-deg</property></toradians>
-				<value>-0.4256</value>
+				<value>0.002047</value>
 				<table>
-					<independentVar lookup="row">aero/alpha-rad</independentVar>
-					<independentVar lookup="column">aero/beta-rad</independentVar>
+					<independentVar lookup="row">aero/alpha-deg</independentVar>
+					<independentVar lookup="column">aero/beta-deg</independentVar>
 					<tableData>
-						      -0.35    0.00    0.35
-						0.000 -0.0010 -0.0015 -0.0010
-						0.144 -0.0020 -0.0025 -0.0020
+						      -20     0      20
+						0.000  0.667  1.000  0.667
+						0.144  1.334  1.667  1.334
 					</tableData>
 				</table>
 				<property>crash-stress/right-wing-factor</property>
