@@ -165,8 +165,8 @@
 					<tableData>
 						0	0.00
 						10	0.09
-						25	0.37
-						40	0.53
+						25	0.31
+						40	0.44
 					</tableData>
 				</table>
 				<property>crash-stress/wing-factor</property>
@@ -262,16 +262,16 @@
 				<property>metrics/Sw-sqft</property>
 				<property>aero/function/kCDge</property>
 				<property>aero/cl-squared</property>
-          			<table>
-          				<independentVar>fcs/flap-pos-deg</independentVar>
+				<table>
+					<independentVar>fcs/flap-pos-deg</independentVar>
 					<tableData>
-						       0  0.0696
-						       10 0.0742
-						       25  0.0768
-						       40  0.0796
+						 0  0.0696
+						10  0.0742
+						25  0.0768
+						40  0.0796
 					</tableData>
 				</table>
-				</product>
+			</product>
 		</function>
 		
 		<function name="aero/coefficient/CDbeta">
@@ -554,9 +554,9 @@
 					<tableData>
 						   -12   12
 						 2  1.0  1.0
-						 8  0.3  0.7
-						16  0.2  0.5
-						20  0.1  0.3
+						10  0.3  0.7
+						18  0.2  0.5
+						22  0.1  0.3
 					</tableData>
 				</table>
 				<property>crash-stress/htail-factor</property>
@@ -650,7 +650,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/aileron-left-deg</property></toradians>
-				<value>-0.002047</value>
+				<value>-0.003156</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<independentVar lookup="column">aero/beta-deg</independentVar>
@@ -671,7 +671,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/aileron-right-deg</property></toradians>
-				<value>0.002047</value>
+				<value>0.003156</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<independentVar lookup="column">aero/beta-deg</independentVar>
