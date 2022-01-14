@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2022 Josh Davidson (Octal450) -->
 
 <PropertyList>
 	
@@ -240,13 +240,13 @@
 		<startup>
 			<splash-texture>Aircraft/PA28/Splash/cockpit1.jpg</splash-texture>
 		</startup>
-		<status>Pre V1.0</status>
+		<status>Stable</status>
 		<systems>
 			<electrical>
 				<path></path>
 			</electrical>
 			<autopilot n="0">
-				<name>Autopilot Join</name>
+				<name>Autopilot Switcher</name>
 				<path>Aircraft/PA28/Systems/Autopilot/autopilot.xml</path>
 			</autopilot>
 			<autopilot n="1">
@@ -259,15 +259,15 @@
 			</autopilot>
 			<autopilot n="3">
 				<name>NAV-selector</name>
-				<path>Models/Instruments/kap140/nav-selector.xml</path>
+				<path>Aircraft/PA28/Models/Instruments/kap140/nav-selector.xml</path>
 			</autopilot>
 			<autopilot n="4">
 				<name>KAP140-autopilot</name>
-				<path>Systems/Autopilot/kap140-autopilot.xml</path>
+				<path>Aircraft/PA28/Systems/Autopilot/kap140-autopilot.xml</path>
 			</autopilot>
-			 <property-rule n="101">
+			<property-rule n="101">
 				<name>KAP140-control</name>
-				<path>Models/Instruments/kap140/kap140-proprules.xml</path>
+				<path>Aircraft/PA28/Models/Instruments/kap140/kap140-proprules.xml</path>
 			</property-rule>
 			<property-rule n="102">
 				<path>Aircraft/PA28/Systems/glass-rain.xml</path> <!-- rain vector system by wlbragg from the Cessna 172P -->
@@ -846,7 +846,7 @@
 			<hsi-equipped-1 type="bool">1</hsi-equipped-1> <!-- Does the aircraft have an HSI or OBS for NAV1? -->
 			<hsi-equipped-2 type="bool">0</hsi-equipped-2> <!-- Does the aircraft have an HSI or OBS for NAV2? -->
 			<is-turboprop type="bool">0</is-turboprop> <!-- Does the aircraft have turboprop engines? -->
-			<use-controls-flight type="bool">0</use-controls-flight> <!-- Use generic /controls/flight for flight controls instead of custom properties -->
+			<use-controls-flight type="bool">1</use-controls-flight> <!-- Use generic /controls/flight for flight controls instead of custom properties -->
 			<yd-equipped type="bool">0</yd-equipped> <!-- Does the aircraft have the optional yaw damper installed? -->
 		</settings>
 	</it-stec55x>
@@ -974,4 +974,5 @@
 			<file>Aircraft/Instruments-3d/garmin196/garmin196.nas</file>
 		</garmin196>
 	</nasal>
+
 </PropertyList>

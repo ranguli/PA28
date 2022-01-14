@@ -1,8 +1,8 @@
 # PA28 Libraries
-# Josh Davidson (Octal450)
+# Copyright (c) 2022 Josh Davidson (Octal450)
 
 print("------------------------------------------------");
-print("Copyright (c) 2017-2020 Josh Davidson (Octal450)");
+print("Copyright (c) 2017-2022 Josh Davidson (Octal450)");
 print("------------------------------------------------");
 
 setprop("/sim/menubar/default/menu[2]/item[2]/enabled", 0);

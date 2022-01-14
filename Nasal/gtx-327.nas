@@ -1,5 +1,5 @@
 # Garmin GTX-327 Transponder
-# Copyright (c) 2021 Josh Davidson (Octal450)
+# Copyright (c) 2022 Josh Davidson (Octal450)
 
 # Initialize variables
 var annuns = ["off", "stby", "off", "stby", "on", "alt"];

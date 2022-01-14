@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- Piper PA28 FCS -->
-<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2022 Josh Davidson (Octal450) -->
 
 <system name="PA28: FCS">
 	
 	<channel name="Control Inputs">
 		
-		<actuator name="fcs/aileron-overpower">
+		<!--actuator name="fcs/aileron-overpower">
 			<input>/controls/flight/aileron</input>
 			<rate_limit>0.1</rate_limit>
 		</actuator>
@@ -34,14 +34,14 @@
 				/it-stec55x/output/roll gt -1
 				/it-stec55x/internal/servo-roll-power eq 1
 			</test>
-		</switch>
+		</switch-->
 		
 		<lag_filter name="fcs/aileron-yoke">
-			<input>fcs/aileron-switch</input>
+			<input>/controls/flight/aileron</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<actuator name="fcs/elevator-overpower">
+		<!--actuator name="fcs/elevator-overpower">
 			<input>/controls/flight/elevator</input>
 			<rate_limit>0.1</rate_limit>
 		</actuator>
@@ -68,10 +68,10 @@
 				/it-stec55x/output/pitch gt -1
 				/it-stec55x/internal/servo-pitch-power eq 1
 			</test>
-		</switch>
+		</switch-->
 		
 		<lag_filter name="fcs/elevator-yoke">
-			<input>fcs/elevator-switch</input>
+			<input>/controls/flight/elevator</input>
 			<c1>20</c1>
 		</lag_filter>
 		
