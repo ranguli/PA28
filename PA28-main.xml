@@ -831,12 +831,12 @@
 		<internal n="0">
 			<aileron type="double">0</aileron>
 			<elevator type="double">0</elevator>
-			<servo-roll-power type="bool">0</servo-roll-power>
 			<servo-pitch-power type="bool">0</servo-pitch-power>
+			<servo-roll-power type="bool">0</servo-roll-power>
 		</internal>
 		<output n="0">
-			<roll type="int">-1</roll>
 			<pitch type="int">-1</pitch>
+			<roll type="int">-1</roll>
 		</output>
 		<settings n="0">
 			<fd-equipped type="bool">0</fd-equipped> <!-- Does the aircraft have a flight director installed? -->
@@ -846,6 +846,7 @@
 			<hsi-equipped-1 type="bool">1</hsi-equipped-1> <!-- Does the aircraft have an HSI or OBS for NAV1? -->
 			<hsi-equipped-2 type="bool">0</hsi-equipped-2> <!-- Does the aircraft have an HSI or OBS for NAV2? -->
 			<is-turboprop type="bool">0</is-turboprop> <!-- Does the aircraft have turboprop engines? -->
+			<static-port-num type="int">0</static-port-num> <!-- Select which dedicated static port to use between 0 and 5 -->
 			<use-controls-flight type="bool">1</use-controls-flight> <!-- Use generic /controls/flight for flight controls instead of custom properties -->
 			<yd-equipped type="bool">0</yd-equipped> <!-- Does the aircraft have the optional yaw damper installed? -->
 		</settings>
