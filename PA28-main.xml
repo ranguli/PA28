@@ -246,27 +246,26 @@
 				<path></path>
 			</electrical>
 			<autopilot n="0">
-				<name>Autopilot Switcher</name>
-				<path>Aircraft/PA28/Systems/Autopilot/autopilot.xml</path>
+				<path>Aircraft/PA28/Systems/libraries.xml</path>
 			</autopilot>
 			<autopilot n="1">
-				<name>System Libraries</name>
-				<path>Aircraft/PA28/Systems/libraries.xml</path>
+				<name>Autopilot Switcher</name>
+				<path>Aircraft/PA28/Systems/autopilot-sel.xml</path>
 			</autopilot>
 			<autopilot n="2">
 				<name>S-TEC 55X</name>
-				<path>Aircraft/PA28/Systems/Autopilot/stec-55x.xml</path>
+				<path>Aircraft/PA28/Systems/stec-55x.xml</path>
 			</autopilot>
 			<autopilot n="3">
-				<name>NAV-selector</name>
+				<name>NAV Selector</name>
 				<path>Aircraft/PA28/Models/Instruments/kap140/nav-selector.xml</path>
 			</autopilot>
 			<autopilot n="4">
-				<name>KAP140-autopilot</name>
-				<path>Aircraft/PA28/Systems/Autopilot/kap140-autopilot.xml</path>
+				<name>KAP140 Autopilot</name>
+				<path>Aircraft/PA28/Systems/KAP140/kap140-autopilot.xml</path>
 			</autopilot>
 			<property-rule n="101">
-				<name>KAP140-control</name>
+				<name>KAP140 Control</name>
 				<path>Aircraft/PA28/Models/Instruments/kap140/kap140-proprules.xml</path>
 			</property-rule>
 			<property-rule n="102">
@@ -846,7 +845,7 @@
 			<hsi-equipped-1 type="bool">1</hsi-equipped-1> <!-- Does the aircraft have an HSI or OBS for NAV1? -->
 			<hsi-equipped-2 type="bool">0</hsi-equipped-2> <!-- Does the aircraft have an HSI or OBS for NAV2? -->
 			<is-turboprop type="bool">0</is-turboprop> <!-- Does the aircraft have turboprop engines? -->
-			<static-port-num type="int">0</static-port-num> <!-- Select which dedicated static port to use between 0 and 5 -->
+			<static-port-path type="string">/systems/static[0]/pressure-inhg</static-port-path> <!-- Path to the dedicated static port to use -->
 			<use-controls-flight type="bool">1</use-controls-flight> <!-- Use generic /controls/flight for flight controls instead of custom properties -->
 			<yd-equipped type="bool">0</yd-equipped> <!-- Does the aircraft have the optional yaw damper installed? -->
 		</settings>
