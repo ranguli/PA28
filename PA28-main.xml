@@ -28,13 +28,14 @@
 				<nick>WoodSTokk</nick>
 			</author>
 		</authors>
-		<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
+		<chase-distance-m type="double" archive="y">-20</chase-distance-m>
 		<checklists include="PA28-Checklists.xml"/>
 		<current-view>
-			<z-offset-default type="float">20.0</z-offset-default>
+			<z-offset-default type="float">20</z-offset-default>
 			<z-offset-min-m type="float">2.5</z-offset-min-m>
-			<z-offset-max-m type="float">200.0</z-offset-max-m>
+			<z-offset-max-m type="float">200</z-offset-max-m>
 		</current-view>
+		<expected-aircraft-dir-name type="string">PA28</expected-aircraft-dir-name>
 		<flaps>
 			<setting>0.000</setting>
 			<setting>0.250</setting>
@@ -954,7 +955,7 @@
 			<file>Aircraft/PA28/Nasal/systems.nas</file>
 		</systems>
 		<stec55x>
-			<file>Aircraft/PA28/Nasal/Autopilot/stec-55x.nas</file>
+			<file>Aircraft/PA28/Nasal/stec-55x.nas</file>
 		</stec55x>
 		<gtx327>
 			<file>Aircraft/PA28/Nasal/gtx-327.nas</file>
