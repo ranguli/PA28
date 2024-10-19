@@ -4,7 +4,7 @@
 
 <PropertyList>
 
-	<path>PA28-161.ac</path>
+	<path>PA28-161.gltf</path>
 
 	<!-- LIVERY SELECT -->
 	<!-- Animation -->
@@ -81,7 +81,8 @@
 	<!-- Define Parts for Crash and Stress -->
 	<animation>
 		<name>NoseGear</name>
-		<object-name>WheelN</object-name>
+		<object-name>gear.front.tire</object-name>
+		<object-name>gear.front.rim</object-name>
 		<object-name>gear.F.low</object-name>
 		<object-name>gear.F.scissor1</object-name>
 		<object-name>gear.F.scissor2</object-name>
@@ -90,24 +91,26 @@
 	</animation>
 	<animation>
 		<name>LeftGear</name>
-		<object-name>WheelL</object-name>
+		<object-name>gear.left.tire</object-name>
+		<object-name>gear.left.rim</object-name>
 		<object-name>gear.low.L</object-name>
 		<object-name>gear.high.L</object-name>
 		<object-name>gear.oleo.L</object-name>
 		<object-name>gear.high.L</object-name>
 		<object-name>gear.low.scissor.L</object-name>
-		<object-name>gear.high.scissor.L</object-name>
+		<object-name>gear.left.upper.scissor</object-name>
 		<object-name>gear.fairing.L</object-name>
 	</animation>
 	<animation>
 		<name>RightGear</name>
-		<object-name>WheelR</object-name>
+		<object-name>gear.right.tire</object-name>
+		<object-name>gear.right.rim</object-name>
 		<object-name>gear.low.R</object-name>
 		<object-name>gear.high.R</object-name>
 		<object-name>gear.oleo.R</object-name>
 		<object-name>gear.high.R</object-name>
-		<object-name>gear.low.scissor.R</object-name>
-		<object-name>gear.high.scissor.R</object-name>
+		<object-name>gear.right.lower.scissor</object-name>
+		<object-name>gear.right.upper.scissor</object-name>
 		<object-name>gear.fairing.R</object-name>
 	</animation>
 	<animation>
@@ -251,7 +254,8 @@
 		<object-name>windows.int</object-name>
 		<object-name>window.doorF.int</object-name>
 	</effect>
-	
+
+	<!--
 	<effect>
 		<inherits-from>Aircraft/PA28/Models/Effects/fuselage</inherits-from>
 		<object-name>Fuselage</object-name>
@@ -286,15 +290,16 @@
 		<object-name>gear.oleo.L</object-name>
 		<object-name>gear.high.L</object-name>
 		<object-name>gear.low.scissor.L</object-name>
-		<object-name>gear.high.scissor.L</object-name>
+		<object-name>gear.left.upper.scissor</object-name>
 		<object-name>gear.fairing.L</object-name>
-		<object-name>WheelR</object-name>
+		<object-name>gear.right.tire</object-name>
+		<object-name>gear.right.rim</object-name>
 		<object-name>gear.low.R</object-name>
 		<object-name>gear.high.R</object-name>
 		<object-name>gear.oleo.R</object-name>
 		<object-name>gear.high.R</object-name>
-		<object-name>gear.low.scissor.R</object-name>
-		<object-name>gear.high.scissor.R</object-name>
+		<object-name>gear.right.lower.scissor</object-name>
+		<object-name>gear.right.upper.scissor</object-name>
 		<object-name>gear.fairing.R</object-name>
 	</effect>
 	
@@ -315,6 +320,7 @@
 		<object-name>throttle.lever</object-name>
 		<object-name>annun.test.btn</object-name>
 	</effect>
+	-->
 	
 	<animation>
 		<type>material</type>
@@ -527,7 +533,7 @@
 		<offsets>
 			<x-m>-1.73172</x-m>
 			<y-m>-0.168217</y-m>
-			<z-m>-0.007222</z-m>
+			<z-m>-0.007222</z-m>/thrott
 			<pitch-deg>-7.4</pitch-deg>
 		</offsets>
 	</model>
@@ -1418,14 +1424,14 @@
 		<property>fdm/jsbsim/fcs/throttle-cmd-lag</property>
 		<factor>59.6</factor>
 		<center>
-			<x-m>-1.72094</x-m>
-			<y-m>0.0</y-m>
-			<z-m>-0.052203</z-m>
+			<x-m>-1.725</x-m>
+			<y-m>-0.04656</y-m>
+			<z-m>0.00418</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
-			<y>-1.0</y>
-			<z>0.0</z>
+			<y>0.0</y>
+			<z>1.0</z>
 		</axis>
 	</animation>
 	
@@ -1467,13 +1473,13 @@
 		<factor>59.6</factor>
 		<center>
 			<x-m>-1.72094</x-m>
-			<y-m>0.0</y-m>
-			<z-m>-0.052203</z-m>
+			<y-m>-0.052203</y-m>
+			<z-m>0.0</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
-			<y>-1.0</y>
-			<z>0.0</z>
+			<y>0.0</y>
+			<z>1.0</z>
 		</axis>
 	</animation>
 	
@@ -1515,13 +1521,13 @@
 		<factor>80</factor>
 		<center>
 			<x-m>-1.7546</x-m>
-			<y-m>0.0</y-m>
-			<z-m>-0.005097</z-m>
+			<y-m>-0.005097</y-m>
+			<z-m>0.0</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
-			<y>1.0</y>
-			<z>0.0</z>
+			<y>0.0</y>
+			<z>-1.0</z>
 		</axis>
 	</animation>
 	
@@ -1698,13 +1704,13 @@
 		<factor>1</factor>
 		<center>
 			<x-m>3.00905</x-m>
-			<y-m>0.0</y-m>
-			<z-m>0.08658</z-m>
+			<z-m>0.0</z-m>
+			<y-m>0.08658</y-m>
 		</center>
 		<axis>
 			<x>0.0</x>
-			<y>1.0</y>
-			<z>0.0</z>
+			<z>1.0</z>
+			<y>0.0</y>
 		</axis>
 	</animation>
 	
@@ -1796,11 +1802,12 @@
 		<factor>-1</factor>
 		<axis>
 			<x1-m>3.01317</x1-m>
-			<y1-m>0.0</y1-m>
-			<z1-m>0.26147</z1-m>
+			<z1-m>0.0</z1-m>
+			<y1-m>0.26147</y1-m>
+
 			<x2-m>3.2942</x2-m>
-			<y2-m>0.0</y2-m>
-			<z2-m>1.4045</z2-m>
+			<z2-m>0.0</z2-m>
+			<y2-m>1.4045</y2-m>
 		</axis>
 	</animation>
 	
@@ -2018,7 +2025,7 @@
 	</animation>
 	<animation>
 		<type>rotate</type>
-		<object-name>gear.high.scissor.L</object-name>
+		<object-name>gear.left.upper.scissor</object-name>
 		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
@@ -2052,9 +2059,10 @@
 
 	<animation>
 		<type>translate</type>
-		<object-name>WheelR</object-name>
+		<object-name>gear.right.tire</object-name>
+		<object-name>gear.right.rim</object-name>
 		<object-name>gear.low.R</object-name>
-		<object-name>gear.low.scissor.R</object-name>
+		<object-name>gear.right.lower.scissor</object-name>
 		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
@@ -2071,7 +2079,7 @@
 	</animation>
 	<animation>
 		<type>rotate</type>
-		<object-name>gear.low.scissor.R</object-name>
+		<object-name>gear.right.lower.scissor</object-name>
 		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
@@ -2089,7 +2097,7 @@
 	</animation>
 	<animation>
 		<type>rotate</type>
-		<object-name>gear.high.scissor.R</object-name>
+		<object-name>gear.right.upper.scissor</object-name>
 		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
